@@ -37,8 +37,6 @@ async function runInference(text, generated_responses, past_user_inputs) {
                 text: text
             }
         });
-        
-
 
         console.log(`Bot: ${result.generated_text}`);
 
