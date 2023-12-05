@@ -4,7 +4,6 @@ import { readFileSync } from 'fs';
 const rawConfig = readFileSync('config.json');
 const config = JSON.parse(rawConfig);
 
-// Access the token
 const token = config.token;
 
 

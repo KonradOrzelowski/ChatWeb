@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/KonradOrzelowski/ChatWeb/issues"
   },
-  "homepage": "https://github.com/KonradOrzelowski/ChatWeb#readme"
+  "homepage": "https://github.com/KonradOrzelowski/ChatWeb#readme",
+  "dependencies": {
+    "@huggingface/inference": "^2.6.4"
+  }
 }
