@@ -8,7 +8,7 @@
 
 <body>
     <input type="text" placeholder="Message ChatBot" onkeydown="search(this)"/>
-    <output id="result"></output>
+    <div id="output"></div>
 </body>
 <script>
     const url = 'http://localhost:3000/message';
@@ -30,7 +30,11 @@
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Server response:', data);
+            console.log('Server response:', data.asyncMessage);
+            var p = document.createElement("p");
+            p.innerHTML = data.asyncMessage;
+            document.getElementById("output").appendChild(p);
+
         })
         .catch(error => {
             console.error('Error:', error);
@@ -45,7 +49,16 @@
             
             // console.log(typeof ele.value);
             send_to_server(ele.value)
-            document.getElementById("result").innerHTML = ele.value;
+
+            var p = document.createElement("p");
+            p.innerHTML = ele.value;
+            document.getElementById("output").appendChild(p);
+
+
+
+            // create a p element
+            
+
      
         }
     }
