@@ -19,9 +19,10 @@ const inference = new HfInference(token);
 const app = express();
 app.use(express.json());
 app.use(cors());
+
 var generated_responses = [];
 var past_user_inputs = [];
-// An asynchronous function to simulate an asynchronous task
+
 async function runInference(text) {
     const result = await inference.conversational({
         model: "facebook/blenderbot-1B-distill",
