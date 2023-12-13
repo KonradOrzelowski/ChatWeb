@@ -11,8 +11,35 @@
     <output id="result"></output>
 </body>
 <script>
+    const url = 'http://localhost:3000/message';
+    
+    // Data to be sent in the request body
+    const data = {
+      message: 'I send a message from the client!'
+    };
+    function send_to_server(data){
+        fetch(url, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Server response:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+
+    </script>
+<script>
     function search(ele) {
         if(event.key === 'Enter') {
+            send_to_server(ele.value)
             document.getElementById("result").innerHTML = ele.value;
      
         }
