@@ -28,4 +28,22 @@
     align-items: center;
     flex-direction: column;
 
+    background-color: burlywood;
+
+    overflow-y: scroll;
+}
+
+.input_div{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+input{
+    width: 50%;
+    height: 30px;
+    border-radius: 10px;
+
 }

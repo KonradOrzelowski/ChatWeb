@@ -8,8 +8,12 @@
 </head>
 
 <body>
-    <input type="text" placeholder="Message ChatBot" onkeydown="search(this)"/>
+    
     <div class="conversation"></div>
+    <div class="input_div">
+        <input type="text" placeholder="Message ChatBot" onkeydown="search(this)"/>
+    </div>
+    
 </body>
 <script>
     fetch('http://localhost:3000/convs/conv_1')
