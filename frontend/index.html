@@ -3,17 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>ChatWeb</title>
 </head>
 
 <body>
     <input type="text" placeholder="Message ChatBot" onkeydown="search(this)"/>
-    <div id="output"></div>
+    <div class="conversation"></div>
 </body>
 <script>
+    fetch('http://localhost:3000/convs/conv_1')
+    .then((response) => response.json())
+    .then((json) => add_conversation(json));
+
+    function add_conversation(json){
+        const conv = json.conversation;
+        conv.forEach(element => {
+
+            var div_conv = document.createElement("div");
+            console.log(element.speaker);
+
+            div_conv.classList.add(element.speaker);
+            div_conv.classList.add('conversation_item');
+
+            div_conv.innerHTML = element.message;
+            document.getElementsByClassName("conversation")[0].appendChild(div_conv);
+            
+        });
+
+
+    }
+    
+    
     const url = 'http://localhost:3000/message';
     
-    // Data to be sent in the request body
 
     function send_to_server(mgs){
         console.log(mgs);
@@ -33,7 +56,8 @@
             console.log('Server response:', data.asyncMessage);
             var p = document.createElement("p");
             p.innerHTML = data.asyncMessage;
-            document.getElementById("output").appendChild(p);
+            document.getElementsByClassName("conversation")[0].appendChild(p);
+
 
         })
         .catch(error => {
@@ -52,7 +76,8 @@
 
             var p = document.createElement("p");
             p.innerHTML = ele.value;
-            document.getElementById("output").appendChild(p);
+            document.getElementsByClassName("conversation")[0].appendChild(p);
+
 
 
 

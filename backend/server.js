@@ -5,9 +5,9 @@ const { readFileSync } = require('fs');
 const path = require('path');
 
 
-const configFilePath = path.join(__dirname, '..', 'config.json');
+// const configFilePath = path.join(__dirname, '..', 'config.json');
 
-const rawConfig = readFileSync(configFilePath);
+const rawConfig = readFileSync('config.json');
 const config = JSON.parse(rawConfig);
 
 const token = config.token;
@@ -57,12 +57,17 @@ app.post('/message', async (req, res) => {
   }
 });
 
+const conv_1 = readFileSync('conversation_1.json');
+const json_conv_1 = JSON.parse(conv_1);
+
+app.get('/convs/conv_1', (req, res) => {
+  res.send(json_conv_1);
+});
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-// const rawConfig2 = readFileSync('conversation_1.json');
-// const config2 = JSON.parse(rawConfig);
-console.log(path.join(__dirname, '..', 'conversation_1.json'));
+
 
