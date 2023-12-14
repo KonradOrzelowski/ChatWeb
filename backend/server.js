@@ -61,3 +61,8 @@ const port = 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+// const rawConfig2 = readFileSync('conversation_1.json');
+// const config2 = JSON.parse(rawConfig);
+console.log(path.join(__dirname, '..', 'conversation_1.json'));
+
