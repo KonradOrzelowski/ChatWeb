@@ -10,13 +10,19 @@ const fetchConversation = async () => {
     }
 };
 
+function add_div_to_conversation(speaker_class, text) {
+    const divConv = document.createElement("div");
+    divConv.classList.add(speaker_class, 'conversation_item');
+    divConv.innerHTML = text;
+    document.querySelector(".conversation").appendChild(divConv);
+}
+
 const addConversation = (json) => {
     const conv = json.conversation;
     conv.forEach(element => {
-        const divConv = document.createElement("div");
-        divConv.classList.add(element.speaker, 'conversation_item');
-        divConv.innerHTML = element.message;
-        document.querySelector(".conversation").appendChild(divConv);
+
+        add_div_to_conversation(element.speaker, element.message)
+
     });
 };
 
@@ -29,10 +35,10 @@ const sendToServer = async (msg) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         });
+
         data = await response.json();
-        const p = document.createElement("p");
-        p.innerHTML = data.asyncMessage;
-        document.querySelector(".conversation").appendChild(p);
+        add_div_to_conversation("bot", data.asyncMessage)
+
     } catch (error) {
         console.error('Error:', error);
     }
@@ -41,10 +47,12 @@ const sendToServer = async (msg) => {
 document.getElementById('chatInput').addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         sendToServer(event.target.value);
-        const p = document.createElement("p");
-        p.innerHTML = event.target.value;
-        document.querySelector(".conversation").appendChild(p);
+
+        add_div_to_conversation('user', event.target.value)
+
     }
 });
+
+
 
 fetchConversation();
