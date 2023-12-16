@@ -1,4 +1,4 @@
-# Test Proposals for Project Files
+# Test Proposals
 
 ## 1. `backend/main.js`
 - Test the `askQuestion` function to ensure it correctly prompts and retrieves user input.
