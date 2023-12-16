@@ -8,103 +8,23 @@
 </head>
 
 <body>
-    <div class = "content">
-        <div class = "left-side">
+    <div class="content">
+        <div class="left-side">
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">ChatBot</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
-            
         </div>
 
         <main>
             <div class="conversation"></div>
             <div class="input_div">
-                <input type="text" placeholder="Message ChatBot" onkeydown="search(this)"/>
+                <input id="chatInput" type="text" placeholder="Message ChatBot"/>
             </div>
         </main>
-
     </div>
-
-    
 </body>
-<script>
-    fetch('http://localhost:3000/convs/conv_1')
-    .then((response) => response.json())
-    .then((json) => add_conversation(json));
-
-    function add_conversation(json){
-        const conv = json.conversation;
-        conv.forEach(element => {
-
-            var div_conv = document.createElement("div");
-            console.log(element.speaker);
-
-            div_conv.classList.add(element.speaker);
-            div_conv.classList.add('conversation_item');
-
-            div_conv.innerHTML = element.message;
-            document.getElementsByClassName("conversation")[0].appendChild(div_conv);
-            
-        });
-
-
-    }
-    
-    
-    const url = 'http://localhost:3000/message';
-    
-
-    function send_to_server(mgs){
-        console.log(mgs);
-        const data = {
-            message: mgs
-        };
-
-        fetch(url, {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Server response:', data.asyncMessage);
-            var p = document.createElement("p");
-            p.innerHTML = data.asyncMessage;
-            document.getElementsByClassName("conversation")[0].appendChild(p);
-
-
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-
-
-    </script>
-<script>
-    function search(ele) {
-        if(event.key === 'Enter') {
-            
-            // console.log(typeof ele.value);
-            send_to_server(ele.value)
-
-            var p = document.createElement("p");
-            p.innerHTML = ele.value;
-            document.getElementsByClassName("conversation")[0].appendChild(p);
-
-
-
-
-            // create a p element
-            
-
-     
-        }
-    }
-</script>
+<script src="script.js"></script>
 </html>
