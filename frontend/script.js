@@ -21,7 +21,7 @@ const addConversation = (json) => {
 };
 
 const sendToServer = async (msg) => {
-    const data = { message: msg };
+    let data = { message: msg };
 
     try {
         const response = await fetch(url, {
@@ -29,7 +29,7 @@ const sendToServer = async (msg) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         });
-        const data = await response.json();
+        data = await response.json();
         const p = document.createElement("p");
         p.innerHTML = data.asyncMessage;
         document.querySelector(".conversation").appendChild(p);

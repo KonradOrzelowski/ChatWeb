@@ -1,0 +1,8 @@
+{
+    "ignore": ["node_modules/**", "logs/**"],
+    "watch": ["."],
+    "execMap": {
+      "js": "node --inspect"
+    },
+    "delay": 1000
+  }
