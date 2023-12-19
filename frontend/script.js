@@ -17,14 +17,14 @@ function add_div_to_conversation(speaker_class, text) {
     document.querySelector(".conversation").appendChild(divConv);
 }
 
-const addConversation = (json) => {
-    const conv = json.conversation;
-    conv.forEach(element => {
+// const addConversation = (json) => {
+//     const conv = json.conversation;
+//     conv.forEach(element => {
 
-        add_div_to_conversation(element.speaker, element.message)
+//         add_div_to_conversation(element.speaker, element.message)
 
-    });
-};
+//     });
+// };
 
 const sendToServer = async (msg) => {
     let data = { message: msg };
