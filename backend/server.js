@@ -1,18 +1,25 @@
 const express = require('express');
 const cors = require('cors');
-const { HfInference } = require("@huggingface/inference");
-const { readFileSync } = require('fs');
-const path = require('path');
 
+/**
+ * Requires the BotHandler module and imports the runInference function.
+ * @requires BotHandler
+ * @function
+ */
+const { runInference } = require('./BotHandler');
+
+/**
+ * Importing the list_of_titles and list_of_convs from ConversationsHandler module.
+ * @module ConversationsHandler
+ * @type {Object}
+ * @property {Array} list_of_titles - The list of conversation titles.
+ * @property {Array} list_of_convs - The list of conversations.
+ */
+const {list_of_titles, list_of_convs} = require('./ConversationsHandler');
 
 // const configFilePath = path.join(__dirname, '..', 'config.json');
 
-const rawConfig = readFileSync('config.json');
-const config = JSON.parse(rawConfig);
 
-const token = config.token;
-
-const inference = new HfInference(token);
 
 
 
@@ -20,30 +27,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-var generated_responses = [];
-var past_user_inputs = [];
 
-async function runInference(text) {
-    const result = await inference.conversational({
-        model: "facebook/blenderbot-1B-distill",
-        parameters: {},
-        inputs: {
-            generated_responses: generated_responses,
-            past_user_inputs: past_user_inputs,
-            text: text
-        }
-    });
-
-    generated_responses = result.conversation.generated_responses.slice(-2);
-    past_user_inputs = result.conversation.past_user_inputs.slice(-2);
-
-    return result.generated_text;
-  }
 
 app.post('/message', async (req, res) => {
   try {
     const message = req.body.message;
-
 
     const asyncMessage = await runInference(message);
 
@@ -51,14 +39,13 @@ app.post('/message', async (req, res) => {
     console.log(`Async message: ${asyncMessage}`);
 
     res.json({ receivedMessage: message, asyncMessage });
+    
   } catch (error) {
     console.error('Error processing message:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
-const conv_1 = readFileSync('conversation_1.json');
-const json_conv_1 = JSON.parse(conv_1);
 
 app.get('/convs/conv_1', (req, res) => {
   res.send(json_conv_1);
