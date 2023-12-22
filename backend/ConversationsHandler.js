@@ -30,6 +30,7 @@ function processJsonFiles(jsonFiles) {
         list_of_titles.push({'title': jsonFile.title, 'index': index});
         
         list_of_convs[index] = {'title': jsonFile.title, 'conversation': jsonFile.conversation};
+        index++;
     }
     return { list_of_titles, list_of_convs };
 }
