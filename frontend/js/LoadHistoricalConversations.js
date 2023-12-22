@@ -16,13 +16,15 @@ async function main(){
     for (let value of list_of_titles.response) {
 
         let li = document.createElement("li");
-
-        li.innerHTML = value.title;
+        let link = document.createElement("a");
+        
+        link.textContent = value.title;
+        li.appendChild(link);
+        // li.innerHTML = `<a>${value.title}</a>`;
         li.classList.add('conversation_title');
 
         document.querySelector(".historical-conversations").appendChild(li);
 
-        console.log(value.title);
     }
     
 

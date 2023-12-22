@@ -1,3 +1,20 @@
-.conversation_item{
-    
+.historical-conversations{
+
+}
+
+
+.conversation_title{
+    height: 30px;
+    margin: 10px;
+    overflow: hidden;
+    border-radius: 5%;
+    background-color: blue;
+}
+
+.conversation_title:hover {
+    background-color: #ddd;
+}
+
+.conversation_title a{
+    padding: 10px;
 }
