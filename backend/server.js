@@ -47,13 +47,15 @@ app.post('/message', async (req, res) => {
 });
 
 
-app.get('/convs/conv_1', (req, res) => {
-  res.send(json_conv_1);
+for(item in list_of_convs){
+  app.get(`/conversations/conv_${item}`, (req, res) => {
+    res.json({ receivedMessage: list_of_convs[item] });
+  });
+}
+
+app.get('/conversations/list_of_titles', (req, res) => {
+  res.json({ receivedMessage: list_of_titles });
 });
-
-
-
-
 
 const port = 3000;
 app.listen(port, () => {
