@@ -49,12 +49,12 @@ app.post('/message', async (req, res) => {
 
 for(item in list_of_convs){
   app.get(`/conversations/conv_${item}`, (req, res) => {
-    res.json({ receivedMessage: list_of_convs[item] });
+    res.json({ response: list_of_convs[item] });
   });
 }
 
 app.get('/conversations/list_of_titles', (req, res) => {
-  res.json({ receivedMessage: list_of_titles });
+  res.json({ response: list_of_titles });
 });
 
 const port = 3000;
