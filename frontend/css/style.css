@@ -61,12 +61,15 @@ input {
     padding: 10px;
     border-radius: 10px;
     width: 45vw;
+
+
+    border: 10px solid black;
 }
 
-.bot {
+/* .bot {
     background-color: rgb(183, 245, 245);
 }
 
 .user {
     background-color: rgb(255, 174, 174);
-}
+} */

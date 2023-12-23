@@ -4,17 +4,30 @@
 
 
 .conversation_title{
+    position: relative;
+
+    font-size: .875rem;
+    line-height: 1.25rem;
+
     height: 30px;
     margin: 10px;
     overflow: hidden;
-    border-radius: 5%;
-    background-color: blue;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    border-radius: .5rem;
+    padding: .5rem;
+
+    cursor: pointer;
+    overflow: hidden;
+
 }
+
    
 .conversation_title:hover{
     background-color: #515151;
 }
 
-.conversation_title a{
+/* .conversation_title a{
     padding: 10px;
-}
+} */
