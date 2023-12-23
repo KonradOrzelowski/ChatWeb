@@ -1,8 +1,3 @@
-.historical-conversations{
-
-}
-
-
 .conversation_title{
     position: relative;
 
@@ -22,12 +17,7 @@
     overflow: hidden;
 
 }
-
    
 .conversation_title:hover{
     background-color: #515151;
 }
-
-/* .conversation_title a{
-    padding: 10px;
-} */

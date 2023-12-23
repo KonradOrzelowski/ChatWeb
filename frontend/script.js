@@ -1,21 +1,16 @@
-const url = 'http://localhost:3000/message';
+// const url = 'http://localhost:3000/message';
 
-const fetchConversation = async () => {
-    try {
-        const response = await fetch('http://localhost:3000/convs/conv_1');
-        const json = await response.json();
-        addConversation(json);
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
+// const fetchConversation = async () => {
+//     try {
+//         const response = await fetch('http://localhost:3000/convs/conv_1');
+//         const json = await response.json();
+//         addConversation(json);
+//     } catch (error) {
+//         console.error('Error:', error);
+//     }
+// };
 
-function add_div_to_conversation(speaker_class, text) {
-    const divConv = document.createElement("div");
-    divConv.classList.add(speaker_class, 'conversation_item');
-    divConv.innerHTML = text;
-    document.querySelector(".conversation").appendChild(divConv);
-}
+
 
 // const addConversation = (json) => {
 //     const conv = json.conversation;
@@ -37,7 +32,7 @@ const sendToServer = async (msg) => {
         });
 
         data = await response.json();
-        add_div_to_conversation("bot", data.asyncMessage)
+        add_div_to_conversation("ChatBot", data.asyncMessage)
 
     } catch (error) {
         console.error('Error:', error);
@@ -48,7 +43,7 @@ document.getElementById('chatInput').addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         sendToServer(event.target.value);
 
-        add_div_to_conversation('user', event.target.value)
+        add_div_to_conversation('You', event.target.value)
 
     }
 });
