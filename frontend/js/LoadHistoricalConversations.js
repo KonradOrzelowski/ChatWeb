@@ -1,8 +1,8 @@
 // fetch(file)
 // .then(x => x.text())
 // .then(y => myDisplay(y));
-
-// const { add_div_to_conversation } = require('./utils');
+{/* <script type="module" src="js/utils.js"></script> */}
+// import { clear_conversation } from "./utils.js";
 
 async function get_data(url) {
     const response = await fetch(url);
@@ -28,15 +28,7 @@ async function main(){
         li.addEventListener("click", (event) => {
             // conversation
 
-            var divs = document.getElementsByClassName("conversation");
-
-            for (var i = divs.length - 1; i >= 0; i--) {
-                var div = divs[i];
-                while (div.firstChild) {
-                    div.removeChild(div.firstChild);
-                }
-            }
-
+            clear_conversation()
             for(item of list_of_convs.response[value.index].conversation){
                 add_div_to_conversation(item.speaker, item.message)
             }

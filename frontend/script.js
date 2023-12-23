@@ -53,6 +53,20 @@ document.getElementById('chatInput').addEventListener('keydown', (event) => {
     }
 });
 
+function add_click_to_new_chat() {
+    var new_chat = document.getElementsByClassName("new_chat")[0];
+
+    new_chat.addEventListener("click", (event) => {
+
+        clear_conversation();
+
+    });
+}
+
+add_click_to_new_chat();
 
 
-fetchConversation();
+
+
+
+
