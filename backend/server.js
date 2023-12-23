@@ -57,6 +57,10 @@ app.get('/conversations/list_of_titles', (req, res) => {
   res.json({ response: list_of_titles });
 });
 
+app.get('/conversations/list_of_convs', (req, res) => {
+  res.json({ response: list_of_convs });
+});
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

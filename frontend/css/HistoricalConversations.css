@@ -11,8 +11,8 @@
     background-color: blue;
 }
    
-.conversation_title:hover {
-    background-color: #ddd;
+.conversation_title:hover{
+    background-color: #515151;
 }
 
 .conversation_title a{
