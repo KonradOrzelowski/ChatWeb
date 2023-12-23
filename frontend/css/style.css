@@ -61,6 +61,13 @@ input {
 
     width: 45vw;
 }
+
+.div_circle{
+    width: 10px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: red;
+}
 /* Conversation item styles */
 .conversation_item {
     margin: 0 10px 10px 10px;

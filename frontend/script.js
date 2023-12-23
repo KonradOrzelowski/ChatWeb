@@ -1,4 +1,4 @@
-// const url = 'http://localhost:3000/message';
+const url = 'http://localhost:3000/message';
 
 // const fetchConversation = async () => {
 //     try {
