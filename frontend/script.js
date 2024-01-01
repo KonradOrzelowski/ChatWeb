@@ -24,6 +24,8 @@ document.getElementById('chatInput').addEventListener('keydown', (event) => {
 
         add_div_to_conversation('You', event.target.value)
 
+        document.getElementById('chatInput').value = "";
+
     }
 });
 

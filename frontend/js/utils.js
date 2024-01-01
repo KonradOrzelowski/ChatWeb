@@ -1,3 +1,6 @@
+/**
+ * Clears the conversation by removing all child elements from the conversation container.
+ */
 function clear_conversation(){
     var divs = document.getElementsByClassName("conversation");
 
@@ -9,29 +12,41 @@ function clear_conversation(){
     }
 }
 
+/**
+ * Types text into a div element character by character with a specified delay.
+ * @param {HTMLElement} element - The div element to type the text into.
+ * @param {string} text - The text to be typed into the div element.
+ * @param {number} time - The delay between typing each character (in milliseconds).
+ * @param {number} counter - The current index of the character being typed.
+ */
+function type_text_to_div(element, text, time, counter) {
+    if (counter < text.length) {
+        element.innerHTML += text.charAt(counter);
+        counter++;
+        setTimeout(function () {
+            type_text_to_div(element, text, time, counter);
+        }, time);
+        
+    }
+}
 
-function add_div_to_conversation(speaker_class, text) {
+
+/**
+ * Adds a new div element to the conversation container with the specified speaker class, text, and optional time delay.
+ * @param {string} speaker_class - The class name of the speaker.
+ * @param {string} text - The text content to be displayed in the div.
+ * @param {number} [time=50] - Optional time delay in milliseconds for typing effect.
+ */
+function add_div_to_conversation(speaker_class, text, time = 50) {
     const div_conv = document.createElement("div");
-    const div_owner = document.createElement("div");
-    const div_text = document.createElement("div");
-    const div_circle = document.createElement("div");
 
-    div_conv.classList.add('div_conv');
-
-    div_owner.classList.add('owner');
-    div_owner.innerHTML = speaker_class;
-
-    div_text.classList.add(speaker_class, 'div_text');
-
-
-
-    
-
-    div_circle.classList.add('circle');
-    div_owner.appendChild(div_circle);
-
-    div_conv.appendChild(div_owner);
-    div_conv.appendChild(div_text);
+    div_conv.innerHTML =
+        `<div class="div_conv">
+        <div class="owner">${speaker_class}
+            <div class="circle"></div>
+        </div>
+        <div class="${speaker_class} div_text"></div>
+        </div>`
 
     document.querySelector(".conversation").appendChild(div_conv);
 
@@ -40,23 +55,14 @@ function add_div_to_conversation(speaker_class, text) {
     var lastElement = elements[elements.length - 1];
 
 
-    var lastElement_div_text = lastElement.getElementsByClassName('div_text')[0];
-    // lastElement_div_text.innerHTML = text;
-    
+    var lastElement_div_text = lastElement.getElementsByClassName('div_text')[0];   
 
-    type_text_to_div(lastElement_div_text, text, 1000, 0)
-
-
-}
-
-function type_text_to_div(element, text, time, counter) {
-    if (counter < text.length) {
-        element.innerHTML += text.charAt(counter);
-        console.log(text.charAt(counter));
-        counter++;
-        setTimeout(function () {
-            type_text_to_div(element, text, time, counter);
-        }, time);
-        
+    if(time == 0){
+        lastElement_div_text.innerHTML = text;
+    }else if(speaker_class == "ChatBot"){
+        type_text_to_div(lastElement_div_text, text, time, 0)
+    }else{
+        lastElement_div_text.innerHTML = text;
     }
 }
+

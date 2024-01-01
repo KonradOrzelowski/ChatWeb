@@ -30,7 +30,7 @@ async function main(){
 
             clear_conversation()
             for(item of list_of_convs.response[value.index].conversation){
-                add_div_to_conversation(item.speaker, item.message)
+                add_div_to_conversation(item.speaker, item.message, 0)
             }
             
 
