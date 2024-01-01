@@ -1,26 +1,5 @@
 const url = 'http://localhost:3000/message';
 
-// const fetchConversation = async () => {
-//     try {
-//         const response = await fetch('http://localhost:3000/convs/conv_1');
-//         const json = await response.json();
-//         addConversation(json);
-//     } catch (error) {
-//         console.error('Error:', error);
-//     }
-// };
-
-
-
-// const addConversation = (json) => {
-//     const conv = json.conversation;
-//     conv.forEach(element => {
-
-//         add_div_to_conversation(element.speaker, element.message)
-
-//     });
-// };
-
 const sendToServer = async (msg) => {
     let data = { message: msg };
 
