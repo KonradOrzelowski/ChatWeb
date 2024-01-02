@@ -40,10 +40,18 @@ function type_text_to_div(element, text, time, counter) {
 function add_div_to_conversation(speaker_class, text, time = 50) {
     const div_conv = document.createElement("div");
 
+    if(speaker_class == 'You'){
+        speaker_div = 'div_you'
+    }else{
+        speaker_div = 'div_chatbot'
+    }
+    
     div_conv.innerHTML =
         `<div class="div_conv">
-        <div class="owner">${speaker_class}
-            <div class="circle"></div>
+        <div class="owner">
+            <div class="div_circle ${speaker_div}"></div>
+            ${speaker_class}
+            
         </div>
         <div class="${speaker_class} div_text"></div>
         </div>`

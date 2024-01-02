@@ -55,6 +55,9 @@ input {
 }
 
 .owner{
+    display: flex;
+    align-items: center;
+
     margin-top: 10px;
     margin-left: 10px;
     padding-left: 10px;
@@ -62,13 +65,23 @@ input {
     width: 45vw;
 }
 
-.div_circle{
-    width: 10px;
-    height: 100px;
+.div_circle {
+    margin-right: 8px;
+
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
+
+
+}
+.div_you{
     background-color: red;
 }
-/* Conversation item styles */
+
+.div_chatbot{
+    background-color: blue;
+}
+
 .div_text {
 
     margin: 0 10px 10px 10px;

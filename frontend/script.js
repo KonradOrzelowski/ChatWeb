@@ -3,7 +3,40 @@ const url = 'http://localhost:3000/message';
 const sendToServer = async (msg) => {
     let data = { message: msg };
 
+    const intervalId = setInterval(() => {
+        var elements = document.getElementsByClassName('div_conv');
+        var lastElement = elements[elements.length - 1];
+    
+    
+        var lastElement_div_text = lastElement.getElementsByClassName('div_text')[0];   
+
+        lastElement_div_text.innerHTML += '.';
+    }, 500);
+
     try {
+        const div_conv = document.createElement("div");
+
+        const speaker_class = 'ChatBot';
+
+        if(speaker_class == 'You'){
+            speaker_div = 'div_you'
+        }else{
+            speaker_div = 'div_chatbot'
+        }
+        
+        div_conv.innerHTML =
+            `<div class="div_conv">
+            <div class="owner">
+                <div class="div_circle ${speaker_div}"></div>
+                ${speaker_class}
+                
+            </div>
+            <div class="${speaker_class} div_text"></div>
+            </div>`
+    
+        document.querySelector(".conversation").appendChild(div_conv);
+
+
         const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -11,7 +44,22 @@ const sendToServer = async (msg) => {
         });
 
         data = await response.json();
-        add_div_to_conversation("ChatBot", data.asyncMessage)
+        // Clear the interval once the response is received
+        clearInterval(intervalId);
+
+        var elements = document.getElementsByClassName('div_conv');
+        var lastElement = elements[elements.length - 1];
+    
+    
+        var lastElement_div_text = lastElement.getElementsByClassName('div_text')[0];
+        lastElement_div_text.innerHTML = '';
+
+        var text = data.asyncMessage;
+    
+        type_text_to_div(lastElement_div_text, text, 50, 0)
+
+
+        // add_div_to_conversation("ChatBot", data.asyncMessage)
 
     } catch (error) {
         console.error('Error:', error);
@@ -20,9 +68,11 @@ const sendToServer = async (msg) => {
 
 document.getElementById('chatInput').addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
+        add_div_to_conversation('You', event.target.value)
+
         sendToServer(event.target.value);
 
-        add_div_to_conversation('You', event.target.value)
+        
 
         document.getElementById('chatInput').value = "";
 
@@ -44,5 +94,42 @@ add_click_to_new_chat();
 
 
 
+const div_conv = document.createElement("div");
+
+const speaker_class = 'ChatBot';
+
+if(speaker_class == 'You'){
+    speaker_div = 'div_you'
+}else{
+    speaker_div = 'div_chatbot'
+}
+
+div_conv.innerHTML =
+    `<div class="div_conv">
+        <div class="owner">
+            <div class="div_circle ${speaker_div}"></div>
+            ${speaker_class}
+            
+        </div>
+        <div class="${speaker_class} div_text">
+            <div class="typing_0">
+            </div>
+        </div>
+    </div>`
+
+document.querySelector(".conversation").appendChild(div_conv);
+
+const intervalId = setInterval(() => {
+    var elements = document.getElementsByClassName('div_conv');
+    var lastElement = elements[elements.length - 1];
 
 
+    var lastElement_div_text = lastElement.getElementsByClassName('div_text')[0];
+
+    // replace typing_0 with typing_1
+    var typing_0 = lastElement.getElementsByClassName('typing_0')[0];
+    typing_0.classList.remove("typing_0");
+    typing_0.classList.add("typing_1");
+
+    // lastElement_div_text.innerHTML += '.';
+}, 500);
