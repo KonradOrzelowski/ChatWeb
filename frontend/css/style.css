@@ -90,3 +90,19 @@ input {
     width: 45vw;
 
 }
+.typing_0{
+    width: 24px;
+    height: 24px;
+
+    transition: background-color 500ms;
+    background-color: red;
+}
+
+.typing_1{
+    width: 24px;
+    height: 24px;
+
+    
+    transition: background-color 500ms;
+    background-color: blue;
+}

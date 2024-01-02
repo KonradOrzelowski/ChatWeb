@@ -11,7 +11,7 @@ const sendToServer = async (msg) => {
         var lastElement_div_text = lastElement.getElementsByClassName('div_text')[0];   
 
         lastElement_div_text.innerHTML += '.';
-    }, 500);
+    }, 1000);
 
     try {
         const div_conv = document.createElement("div");
@@ -123,13 +123,16 @@ const intervalId = setInterval(() => {
     var elements = document.getElementsByClassName('div_conv');
     var lastElement = elements[elements.length - 1];
 
+    try{
+        var typing_0 = lastElement.getElementsByClassName('typing_0')[0];
+        typing_0.classList.remove("typing_0");
+        typing_0.classList.add("typing_1");
+    }catch(err){
+        var typing_1 = lastElement.getElementsByClassName('typing_1')[0];
+        typing_1.classList.remove("typing_1");
+        typing_1.classList.add("typing_0");
+    }
 
-    var lastElement_div_text = lastElement.getElementsByClassName('div_text')[0];
-
-    // replace typing_0 with typing_1
-    var typing_0 = lastElement.getElementsByClassName('typing_0')[0];
-    typing_0.classList.remove("typing_0");
-    typing_0.classList.add("typing_1");
 
     // lastElement_div_text.innerHTML += '.';
 }, 500);
