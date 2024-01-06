@@ -108,7 +108,7 @@ async function main(){
         }
     );
     console.log(db_exist, collection_exist);
-    if(db_exist && !collection_exist){
+    if (db_exist && !collection_exist) {
         // Create a collection
         await adminDb.createCollection(name_db);
         const db = client.db(name_db);
@@ -117,16 +117,16 @@ async function main(){
         // await createCollectionAndInsert(db, 'conversations', {});
         //insert data
         var list_of_convs = [];
-        conversations.forEach(conv =>{
+        conversations.forEach(conv => {
             // console.log(conv);
 
             const rawFile = fs.readFileSync(conv);
             const jsonFile = JSON.parse(rawFile);
             list_of_convs.push(jsonFile);
         })
-        console.log(list_of_convs); 
+        console.log(list_of_convs);
         // add data to collection
-        await createCollectionAndInsert(db, 'conversations', list_of_convs);
+        await createCollectionAndInsert(db, 'conversations', { conversations: list_of_convs });
         // await createCollectionAndInsert(db, 'conversations', conversations);
     }
 
@@ -147,3 +147,5 @@ main()
 // })
 
 // console.log(list_of_convs);
+
+
