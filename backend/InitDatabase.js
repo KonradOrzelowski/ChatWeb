@@ -39,7 +39,12 @@ async function checkDatabases(url) {
         await client.close();
     }
 }
-function get_list_of_convs(dir) {
+/**
+ * Retrieves a list of files from the specified directory.
+ * @param {string} dir - The directory path.
+ * @returns {Array} - An array of conversation objects.
+ */
+function get_list_of_files(dir) {
 
   var list_of_convs = [];
   const dir_conversations = find_all_json_in_dir(dir);
@@ -55,8 +60,8 @@ function get_list_of_convs(dir) {
 }
 
 async function insert_collection_into_db(client, dir, collection) {
-  // find all files in dir conversations
-  const list_of_convs = get_list_of_convs(dir);
+
+  const list_of_convs = get_list_of_files(dir);
 
   await client.db('ChatWebDB').collection(collection)
       .insertMany(list_of_convs, function(err) {
