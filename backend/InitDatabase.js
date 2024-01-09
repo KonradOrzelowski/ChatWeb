@@ -79,73 +79,52 @@ async function main(){
 
     const reuslt = await checkDatabases(url);
     if (!reuslt) {
-        
         console.log("Database is not connected");
         return false;
     }
 
     const client = new MongoClient(url);
     await client.connect();
-    const adminDb = client.db('admin');
-    const databases = await adminDb.admin().listDatabases();
+    const connection2admin = client.db('admin');
+    const list_of_databases = await connection2admin.admin().listDatabases();
 
-    var name_db = 'ChatBotDB'
+    var name_db = 'ChatWebDB'
     var db_exist = false;
-    databases.databases.forEach(
+
+    list_of_databases.databases.forEach(
         db => {
             if(db.name == name_db) db_exist = true;
         }
     );
-    
-    const db = client.db(name_db);
+    console.log(db_exist);
+    if (!db_exist) {
+      client.db('ChatWebDB').createCollection("conversations");
+    }
 
-    // chekc if collection exist
-    const collections = await db.collections();
-    var collection_exist = false;
-    collections.forEach(
-        collection => {
-            if(collection.name == 'conversations') collection_exist = true;
-        }
-    );
-    console.log(db_exist, collection_exist);
-    if (db_exist && !collection_exist) {
-        // Create a collection
-        await adminDb.createCollection(name_db);
-        const db = client.db(name_db);
-        const conversations = findJsonFiles('conversations');
-        //create collection empty
-        // await createCollectionAndInsert(db, 'conversations', {});
-        //insert data
+    const conversations = await client.db('ChatWebDB').collection('conversations');
+    const array_of_convs = await conversations.find({}).toArray();
+    const len_convs = array_of_convs.length;
+    console.log(len_convs);
+
+    if ( len_convs == 0) {
+        console.log("There is no collections in database");
         var list_of_convs = [];
-        conversations.forEach(conv => {
-            // console.log(conv);
 
+        // find all files in folder conversations
+        const dir_conversations = findJsonFiles('conversations');
+        dir_conversations.forEach(conv => {
             const rawFile = fs.readFileSync(conv);
             const jsonFile = JSON.parse(rawFile);
             list_of_convs.push(jsonFile);
         })
-        console.log(list_of_convs);
-        // add data to collection
-        await createCollectionAndInsert(db, 'conversations', { conversations: list_of_convs });
-        // await createCollectionAndInsert(db, 'conversations', conversations);
-    }
+       
 
+        await client.db('ChatWebDB').collection('conversations').insertMany(list_of_convs, function(err, result) {
+          if (err) throw err;
+        });        
+
+    }
     await client.close()
 }
 
 main()
-
-
-// const conversations = findJsonFiles('conversations');
-
-// var list_of_convs = [];
-// conversations.forEach(conv =>{
-//     const rawFile = fs.readFileSync(conv);
-//     const jsonFile = JSON.parse(rawFile);
-//     // console.log(jsonFile.conversation);
-//     list_of_convs.push(jsonFile);
-// })
-
-// console.log(list_of_convs);
-
-
