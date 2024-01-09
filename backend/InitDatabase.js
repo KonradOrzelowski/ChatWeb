@@ -39,20 +39,25 @@ async function checkDatabases(url) {
         await client.close();
     }
 }
-
-async function insertConversations(client) {
-  console.log("There is no collections in database");
+function get_list_of_convs(dir) {
   var list_of_convs = [];
-
-  // find all files in dir conversations
-  const dir_conversations = find_all_json_in_dir('conversations');
+  const dir_conversations = find_all_json_in_dir(dir);
   dir_conversations.forEach(conv => {
     const rawFile = fs.readFileSync(conv);
     const jsonFile = JSON.parse(rawFile);
     list_of_convs.push(jsonFile);
   });
+  return list_of_convs;
+}
 
-  await client.db('ChatWebDB').collection('conversations')
+async function insertConversations(client, dir, collection) {
+  console.log("There is no collections in database");
+  
+
+  // find all files in dir conversations
+  const list_of_convs = get_list_of_convs(dir);
+
+  await client.db('ChatWebDB').collection(collection)
       .insertMany(list_of_convs, function(err) {
       if (err) throw err;
   });
@@ -85,7 +90,6 @@ async function main(){
             if(db.name == name_db) db_exist = true;
         }
     );
-    console.log(db_exist);
     if (!db_exist) {
       client.db('ChatWebDB').createCollection("conversations");
     }
@@ -93,11 +97,10 @@ async function main(){
     const conversations = await client.db('ChatWebDB').collection('conversations');
     const array_of_convs = await conversations.find({}).toArray();
     const len_convs = array_of_convs.length;
-    console.log(len_convs);
+    console.log(`There are ${len_convs} collection in database`);
 
     if ( len_convs == 0) {
-        await insertConversations(client);  
-
+        await insertConversations(client, 'conversations', 'conversations');  
     }
     await client.close()
 }
