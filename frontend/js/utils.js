@@ -46,7 +46,7 @@ function add_div_to_conversation(speaker_class, text, time = 50) {
         speaker_div = 'div_chatbot'
     }
     
-    div_conv.innerHTML =
+    div_conv.innerHTML = 
         `<div class="div_conv">
         <div class="owner">
             <div class="div_circle ${speaker_div}"></div>

@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-
+const { MongoClient } = require('mongodb');
 /**
  * Requires the BotHandler module and imports the runInference function.
  * @requires BotHandler
@@ -9,12 +9,12 @@ const cors = require('cors');
 const { runInference } = require('./BotHandler');
 
 
-const {get_all_from_collection, get_list_of_titles} = require('./ConversationsHandler');
-
+const {get_all_from_collection, get_list_of_titles, url} = require('./ConversationsHandler');
+var current_mgs = [];
 async function main(){
 
-  const list_of_convs = await get_all_from_collection('ChatWebDB', 'conversations');
-  const list_of_titles = get_list_of_titles(list_of_convs);
+  var list_of_convs = await get_all_from_collection('ChatWebDB', 'conversations');
+  var list_of_titles = get_list_of_titles(list_of_convs);
 
 
   const app = express();
@@ -22,6 +22,7 @@ async function main(){
   app.use(cors());
 
 
+  
 
   app.post('/message', async (req, res) => {
     try {
@@ -29,8 +30,12 @@ async function main(){
 
       const asyncMessage = await runInference(message);
 
+
       console.log(`Received message: ${message}`);
       console.log(`Async message: ${asyncMessage}`);
+
+      current_mgs.push({"speaker": "You", "message": message});
+      current_mgs.push({"speaker": "Bot", "message": asyncMessage});
 
       res.json({ receivedMessage: message, asyncMessage });
       
@@ -53,6 +58,37 @@ async function main(){
 
   app.get('/conversations/list_of_convs', (req, res) => {
     res.json({ response: list_of_convs });
+  });
+
+  app.post('/refresh', async (req, res) => {
+    res.json({ response: current_mgs });
+
+    if(current_mgs.length > 1){
+      const title = current_mgs[0].message;
+      const conversation = current_mgs;
+      const client = new MongoClient(url);
+      try {
+        const data = { title, conversation };
+
+            // Connect to the "insertDB" database and access its "haiku" collection
+        const database = client.db("ChatWebDB");
+        const collection = database.collection("conversations");
+
+        const result = await collection.insertOne(data);
+            // Print the ID of the inserted document
+        console.log(`A document was inserted with the _id: ${result.insertedId}`);
+        
+        list_of_convs = await get_all_from_collection('ChatWebDB', 'conversations');
+        list_of_titles = get_list_of_titles(list_of_convs);
+      }catch (error) {
+        console.error('Error:', error);
+      }
+       finally {
+        // Close the MongoDB client connection
+        await client.close();
+      }
+    }
+
   });
 
   const port = 3000;
