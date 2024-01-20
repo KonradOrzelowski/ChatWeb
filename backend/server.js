@@ -45,7 +45,7 @@ async function main(){
   });
 
 
-  for(item in list_of_convs){
+  for(let item in list_of_convs){
     app.get(`/conversations/${list_of_convs[item]._id}`, (req, res) => {
       res.json({ response: list_of_convs[item] });
     });

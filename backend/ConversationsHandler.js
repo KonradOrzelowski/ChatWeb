@@ -62,7 +62,7 @@ function get_list_of_titles(list_of_convs){
   var index = 0;
   for (const conv of list_of_convs) {
 
-      list_of_titles.push({'title': conv.title, 'index': conv._id});
+      list_of_titles.push({'title': conv.title, '_id': conv._id});
       index++;
   }
   return list_of_titles;
