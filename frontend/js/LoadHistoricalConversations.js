@@ -1,9 +1,3 @@
-// fetch(file)
-// .then(x => x.text())
-// .then(y => myDisplay(y));
-{/* <script type="module" src="js/utils.js"></script> */}
-// import { clear_conversation } from "./utils.js";
-
 async function get_data(url) {
     const response = await fetch(url);
     const response_json = await response.json();

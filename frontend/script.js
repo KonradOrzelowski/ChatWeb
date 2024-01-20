@@ -118,6 +118,7 @@ function add_click_to_new_chat() {
 
         sendNewChatSignal();
         clear_conversation();
+        
 
 
     });

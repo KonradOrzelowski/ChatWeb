@@ -16,7 +16,6 @@ async function main(){
   var list_of_convs = await get_all_from_collection('ChatWebDB', 'conversations');
   var list_of_titles = get_list_of_titles(list_of_convs);
 
-
   const app = express();
   app.use(express.json());
   app.use(cors());
@@ -47,7 +46,7 @@ async function main(){
 
 
   for(item in list_of_convs){
-    app.get(`/conversations/conv_${item}`, (req, res) => {
+    app.get(`/conversations/${list_of_convs[item]._id}`, (req, res) => {
       res.json({ response: list_of_convs[item] });
     });
   }
