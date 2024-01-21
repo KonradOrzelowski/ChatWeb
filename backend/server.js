@@ -90,6 +90,17 @@ async function main(){
 
   });
 
+
+app.post('/is_closed', (req, res) => {
+    const { is_closed } = req.body;
+    if(is_closed){
+      console.log('ChatWeb is closed');
+    }else{
+      console.log(`Incomming message from /is_closed: ${is_closed}`);
+    }
+    
+});
+
   const port = 3000;
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
