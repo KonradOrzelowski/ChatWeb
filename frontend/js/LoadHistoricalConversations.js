@@ -6,8 +6,8 @@ async function get_data(url) {
 
 
 async function main(){
-    const list_of_titles = await get_data("http://localhost:3000/conversations/list_of_titles");
-    const list_of_convs = await get_data("http://localhost:3000/conversations/list_of_convs");
+    const list_of_titles = await get_data("http://localhost:3000/lists/list_of_titles");
+    const list_of_convs = await get_data("http://localhost:3000/lists/list_of_convs");
 
     for (let value of list_of_titles.response) {
 

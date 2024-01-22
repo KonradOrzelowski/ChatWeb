@@ -66,14 +66,20 @@ async function get_all_from_collection(db_name, collection_name){
 
 function get_list_of_titles(list_of_convs){
   var list_of_titles = [];
-  var index = 0;
-  for (const conv of list_of_convs) {
+  for (var [_, value] of Object.entries(list_of_convs)) {
+    
+      list_of_titles.push({'title': value.title, '_id': value._id});
 
-      list_of_titles.push({'title': conv.title, '_id': conv._id});
-      index++;
   }
   return list_of_titles;
 };
+
+
+// async function main(){
+//     var list_of_convs = await get_all_from_collection('ChatWebDB', 'conversations');
+
+// }
+// main();
 
 module.exports.url = url;
 module.exports.get_all_from_collection = get_all_from_collection;

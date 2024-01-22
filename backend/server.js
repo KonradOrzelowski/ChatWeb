@@ -14,7 +14,7 @@ var current_mgs = [];
 async function main(){
 
   var list_of_convs = await get_all_from_collection('ChatWebDB', 'conversations');
-  // var list_of_titles = get_list_of_titles(list_of_convs);
+  var list_of_titles = get_list_of_titles(list_of_convs);
 
   const app = express();
   app.use(express.json());
@@ -50,19 +50,11 @@ app.get('/conversations/:id', (req, res) => {
     res.json({ response: list_of_convs[id] });
 });
 
+  app.get('/lists/list_of_titles', (req, res) => {
+    res.json({ response: list_of_titles });
+  });
 
-
-// for(let item in list_of_convs){
-//   app.get(`/conversations/${list_of_convs[item]._id}`, (req, res) => {
-//     res.json({ response: list_of_convs[item] });
-//   });
-// }
-
-  // app.get('/list/list_of_titles', (req, res) => {
-  //   res.json({ response: list_of_titles });
-  // });
-
-  app.get('/list/list_of_convs', (req, res) => {
+  app.get('/lists/list_of_convs', (req, res) => {
     res.json({ response: list_of_convs });
   });
 
@@ -81,11 +73,10 @@ app.get('/conversations/:id', (req, res) => {
         const collection = database.collection("conversations");
 
         const result = await collection.insertOne(data);
-            // Print the ID of the inserted document
         console.log(`A document was inserted with the _id: ${result.insertedId}`);
         
         list_of_convs = await get_all_from_collection('ChatWebDB', 'conversations');
-        // list_of_titles = get_list_of_titles(list_of_convs);
+        list_of_titles = get_list_of_titles(list_of_convs);
       }catch (error) {
         console.error('Error:', error);
       }
