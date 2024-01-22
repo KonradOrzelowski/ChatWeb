@@ -51,8 +51,15 @@ async function get_all_from_collection(db_name, collection_name){
     const array_of_convs = await conversations.find({}).toArray();
     await client.close()
 
+    var dict_of_convs = {}
 
-    return(array_of_convs);
+    array_of_convs.forEach((element) => {
+  
+      dict_of_convs[element._id.toString()] = element
+  
+    });
+
+    return(dict_of_convs);
 
     
 }

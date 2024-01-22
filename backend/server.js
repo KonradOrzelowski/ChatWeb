@@ -14,7 +14,7 @@ var current_mgs = [];
 async function main(){
 
   var list_of_convs = await get_all_from_collection('ChatWebDB', 'conversations');
-  var list_of_titles = get_list_of_titles(list_of_convs);
+  // var list_of_titles = get_list_of_titles(list_of_convs);
 
   const app = express();
   app.use(express.json());
@@ -44,18 +44,25 @@ async function main(){
     }
   });
 
+app.get('/conversations/:id', (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    res.json({ response: list_of_convs[id] });
+});
 
-  for(let item in list_of_convs){
-    app.get(`/conversations/${list_of_convs[item]._id}`, (req, res) => {
-      res.json({ response: list_of_convs[item] });
-    });
-  }
 
-  app.get('/conversations/list_of_titles', (req, res) => {
-    res.json({ response: list_of_titles });
-  });
 
-  app.get('/conversations/list_of_convs', (req, res) => {
+// for(let item in list_of_convs){
+//   app.get(`/conversations/${list_of_convs[item]._id}`, (req, res) => {
+//     res.json({ response: list_of_convs[item] });
+//   });
+// }
+
+  // app.get('/list/list_of_titles', (req, res) => {
+  //   res.json({ response: list_of_titles });
+  // });
+
+  app.get('/list/list_of_convs', (req, res) => {
     res.json({ response: list_of_convs });
   });
 
@@ -78,7 +85,7 @@ async function main(){
         console.log(`A document was inserted with the _id: ${result.insertedId}`);
         
         list_of_convs = await get_all_from_collection('ChatWebDB', 'conversations');
-        list_of_titles = get_list_of_titles(list_of_convs);
+        // list_of_titles = get_list_of_titles(list_of_convs);
       }catch (error) {
         console.error('Error:', error);
       }
