@@ -1,11 +1,14 @@
 const express = require('express');
 const cors = require('cors');
-const { MongoClient } = require('mongodb');
+
 
 const { runInference } = require('./BotHandler');
 const { get_all_from_collection, get_list_of_titles } = require('./ConversationsHandler');
 
+
+const ConfigurationModule = require('./ConfigurationModule');
 const routing = require('./routes/routing');
+
 
 var current_mgs = [];
 
@@ -30,9 +33,9 @@ async function main(){
 
       console.log(`Received message: ${message}`);
       console.log(`Async message: ${asyncMessage}`);
-
-      current_mgs.push({"speaker": "You", "message": message});
-      current_mgs.push({"speaker": "Bot", "message": asyncMessage});
+      
+      ConfigurationModule.pushCurrentMgs({"speaker": "You", "message": message});
+      ConfigurationModule.pushCurrentMgs({"speaker": "Bot", "message": asyncMessage});
 
       res.json({ receivedMessage: message, asyncMessage });
       

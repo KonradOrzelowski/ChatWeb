@@ -1,26 +1,31 @@
 const express = require('express');
 const router = express.Router();
+const ConfigurationModule = require('../ConfigurationModule');
 
+const { readFileSync } = require('fs');
+const rawConfig = readFileSync('config.json');
+const config = JSON.parse(rawConfig);
+
+const { MongoClient } = require('mongodb');
 
 router.post('/refresh', async (req, res) => {
-    res.json({ response: current_mgs });
+    current_mgs = ConfigurationModule.getCurrentMgs();
 
     if(current_mgs.length > 1){
         const title = current_mgs[0].message;
         const conversation = current_mgs;
-        const client = new MongoClient(url);
+        const client = new MongoClient(config.url);
         try {
             const data = { title, conversation };
 
-            // Connect to the "insertDB" database and access its "haiku" collection
             const database = client.db("ChatWebDB");
             const collection = database.collection("conversations");
 
             const result = await collection.insertOne(data);
             console.log(`A document was inserted with the _id: ${result.insertedId}`);
 
-            list_of_convs = await get_all_from_collection('ChatWebDB', 'conversations');
-            list_of_titles = get_list_of_titles(list_of_convs);
+            // list_of_convs = await get_all_from_collection('ChatWebDB', 'conversations');
+            // list_of_titles = get_list_of_titles(list_of_convs);
         }catch (error) {
             console.error('Error:', error);
         }
