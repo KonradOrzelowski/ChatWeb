@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
+
 const ConfigurationModule = require('../ConfigurationModule');
 
+const { MongoClient } = require('mongodb');
 const { readFileSync } = require('fs');
+
 const rawConfig = readFileSync('config.json');
 const config = JSON.parse(rawConfig);
 
-const { MongoClient } = require('mongodb');
+
 
 router.post('/refresh', async (req, res) => {
     current_mgs = ConfigurationModule.getCurrentMgs();
