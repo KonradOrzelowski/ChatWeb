@@ -40,5 +40,5 @@ async function main(){
     
 
 }
-console.log('Load LoadHistoricalConversations.js')
+
 main();
