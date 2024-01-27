@@ -79,7 +79,7 @@ const sendToServer = async (msg) => {
     }
 };
 
-document.getElementById('chat-input').addEventListener('keydown', (event) => {
+document.getElementById('chatInput').addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         add_div_to_conversation('You', event.target.value)
 
