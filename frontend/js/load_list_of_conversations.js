@@ -16,7 +16,7 @@ async function main(){
         
         link.textContent = value.title;
         li.appendChild(link);
-        li.classList.add('conversation_title');
+        li.classList.add('conversation-title');
 
         let currentValue = value;
 
@@ -33,7 +33,7 @@ async function main(){
             
         });
         
-        document.querySelector(".historical-conversations").appendChild(li);
+        document.querySelector(".list-of-conversations").appendChild(li);
 
 
     }
