@@ -20,6 +20,8 @@
 
     cursor: pointer;
 
+    position: relative
+
 }
    
 .conversation-title:hover{
@@ -30,4 +32,18 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.new-chat{
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottoms{
+    position: absolute;
+    top: 25%;
+    right: 0%;
+    z-index: 2;
+    width: 2.25rem;
+
 }

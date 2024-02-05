@@ -12,10 +12,20 @@ async function main(){
     for (let value of list_of_titles.response) {
 
         let li = document.createElement("li");
-        let link = document.createElement("a");
+        li.innerHTML = `
+            <a>${value.title}</a>
+            <div class = "bottoms">
+                <img src="assets/icons/text-document-add-icon.svg" alt="Icon description" style="max-width: 1.25rem; max-height: 1.25rem;">
+            </div>
         
-        link.textContent = value.title;
-        li.appendChild(link);
+            `
+
+
+
+        // let link = document.createElement("a");
+        
+        // link.textContent = value.title;
+        // li.appendChild(link);
         li.classList.add('conversation-title');
 
         let currentValue = value;
