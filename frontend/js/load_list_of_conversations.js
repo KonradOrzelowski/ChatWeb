@@ -15,7 +15,8 @@ async function main(){
         li.innerHTML = `
             <a>${value.title}</a>
             <div class = "bottoms">
-                <img src="assets/icons/text-document-add-icon.svg" alt="Icon description" style="max-width: 1.25rem; max-height: 1.25rem;">
+                <img src="assets/icons/edit-pen-icon.svg" alt="Icon description">
+                <img src="assets/icons/trash-bin-icon.svg" alt="Icon description">
             </div>
         
             `
