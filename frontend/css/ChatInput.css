@@ -12,7 +12,10 @@
     height: 20vh;
 }
 
-
+.inlineChat {
+    display: inline-block;
+    margin-right: 10px;
+}
 
 #chat-input{
     all: initial;

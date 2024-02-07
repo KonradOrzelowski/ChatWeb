@@ -14,11 +14,14 @@ async function main(){
         let li = document.createElement("li");
         li.innerHTML = `
             <a>${value.title}</a>
-            <div class = "bottoms">
-                <img src="assets/icons/edit-pen-icon.svg" alt="Icon description">
-                <img src="assets/icons/trash-bin-icon.svg" alt="Icon description">
+            <div class = "bottoms-wrapper">
+                <div class = "bottoms-transtion">
+                </div>
+                <div class = "bottoms">
+                    <img src="assets/icons/edit-pen-icon.svg" alt="Icon description">
+                    <img src="assets/icons/trash-bin-icon.svg" alt="Icon description">
+                </div>
             </div>
-        
             `
 
 
@@ -41,8 +44,9 @@ async function main(){
             for(item of conversation.conversation){
                 add_div_to_conversation(item.speaker, item.message, 0)
             }
-            
+
         });
+        // const conversationElement = document.querySelector('.conversation');
         
         document.querySelector(".list-of-conversations").appendChild(li);
 
