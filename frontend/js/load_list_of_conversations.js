@@ -18,18 +18,22 @@ async function main(){
                 <div class = "bottoms-transtion">
                 </div>
                 <div class = "bottoms">
-                    <img src="assets/icons/edit-pen-icon.svg" alt="Icon description">
-                    <img src="assets/icons/trash-bin-icon.svg" alt="Icon description">
+                    <img id="editIcon" src="assets/icons/edit-pen-icon.svg" alt="Icon description">
+                    <img id="deleteIcon" src="assets/icons/trash-bin-icon.svg" alt="Icon description">
                 </div>
             </div>
             `
-
-
-
-        // let link = document.createElement("a");
+        const editIcon = li.querySelector('#editIcon');
+        const deleteIcon = li.querySelector('#deleteIcon');
         
-        // link.textContent = value.title;
-        // li.appendChild(link);
+        editIcon.addEventListener("click", function() {
+            alert(`Edit icon clicked for ${currentValue._id}`);
+        });
+
+        deleteIcon.addEventListener("click", function() {
+            alert(`Trash icon clicked for ${currentValue._id}`);
+        });
+        
         li.classList.add('conversation-title');
 
         let currentValue = value;
@@ -46,7 +50,7 @@ async function main(){
             }
 
         });
-        // const conversationElement = document.querySelector('.conversation');
+
         
         document.querySelector(".list-of-conversations").appendChild(li);
 
