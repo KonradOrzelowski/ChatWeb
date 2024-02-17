@@ -4,20 +4,50 @@ async function get_data(url) {
     return response_json
 }
 
-function showCustomAlert() {
+function showEditAlert(itemID, itemTitle) {
+    console.log(`itemTitle: ${itemTitle}`);
 
-    // document.addEventListener('click', clickHandler);
+    var contentDocument = document.getElementsByClassName("content")[0];
+    let doc = document.createElement('div');
+    doc.id = 'custom-alert';
+    doc.innerHTML = `
+        <p>Enter new title of chat</p>
+        <input type="text" id="inputField" value="${itemTitle}">
+        <button onclick="hideCustomAlert()">Cancel</button>
+        <button>Update</button>
+    `
+    contentDocument.appendChild(doc);
+
     document.getElementById('custom-alert').style.display = 'block';
-    
+}
 
 
-    document.getElementById('custom-alert-message').innerText = 'Edit icon clicked';
+function showDeleteAlert(itemID, itemTitle) {
+    console.log(`itemID: ${itemID}`);
 
+    var contentDocument = document.getElementsByClassName("content")[0];
+    let doc = document.createElement('div');
+    doc.id = 'custom-alert';
+    doc.innerHTML = `
+        <p>Delete chat? </p>
+        <p>This will delete ${itemTitle}.</p>
+        <button onclick="hideCustomAlert()">Cancel</button>
+        <button>Delete</button>
+    `
+    contentDocument.appendChild(doc);
+
+    document.getElementById('custom-alert').style.display = 'block';
     
 }
 
+
+
+
 function hideCustomAlert() {
-    document.getElementById('custom-alert').style.display = 'none';
+    var customAlert = document.getElementById('custom-alert');
+    if (customAlert) {
+        customAlert.remove();
+    }
 }
 
 function clickHandler(event) {
@@ -32,7 +62,6 @@ function clickHandler(event) {
                 
     if ((displayStyle != 'none') & !clickOnCustomAlert & !firstClick) {
         hideCustomAlert();
-        // console.log('hideCustomAlert')
     }
 }
 
@@ -41,6 +70,8 @@ async function main(){
     const list_of_convs = await get_data("http://localhost:3000/lists/list_of_convs");
 
     for (let value of list_of_titles.response) {
+
+        let currentValue = value;
 
         let li = document.createElement("li");
         li.innerHTML = `
@@ -58,16 +89,16 @@ async function main(){
         const deleteIcon = li.querySelector('#deleteIcon');
         
         editIcon.addEventListener("click", function() {
-            showCustomAlert();
+            showEditAlert(currentValue._id, currentValue.title);
         });
 
         deleteIcon.addEventListener("click", function() {
-            alert(`Trash icon clicked for ${currentValue._id}`);
+            showDeleteAlert(currentValue._id, currentValue.title);
         });
         
         li.classList.add('conversation-title');
 
-        let currentValue = value;
+       
 
         li.addEventListener("click", async (event) => {
             console.log("Before get_data:", currentValue._id);
