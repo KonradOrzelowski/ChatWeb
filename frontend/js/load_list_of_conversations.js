@@ -4,6 +4,37 @@ async function get_data(url) {
     return response_json
 }
 
+function showCustomAlert() {
+
+    // document.addEventListener('click', clickHandler);
+    document.getElementById('custom-alert').style.display = 'block';
+    
+
+
+    document.getElementById('custom-alert-message').innerText = 'Edit icon clicked';
+
+    
+}
+
+function hideCustomAlert() {
+    document.getElementById('custom-alert').style.display = 'none';
+}
+
+function clickHandler(event) {
+    displayStyle = document.getElementById('custom-alert').style.display;
+    clickOnCustomAlert = document.getElementById('custom-alert').contains(event.target);
+
+    console.log(`displayStyle: ${displayStyle}
+                clickOnCustomAlert ${clickOnCustomAlert}
+                firstClick ${firstClick}
+                bool ${(displayStyle != 'none') & !clickOnCustomAlert & firstClick}
+                `)
+                
+    if ((displayStyle != 'none') & !clickOnCustomAlert & !firstClick) {
+        hideCustomAlert();
+        // console.log('hideCustomAlert')
+    }
+}
 
 async function main(){
     const list_of_titles = await get_data("http://localhost:3000/lists/list_of_titles");
@@ -27,7 +58,7 @@ async function main(){
         const deleteIcon = li.querySelector('#deleteIcon');
         
         editIcon.addEventListener("click", function() {
-            alert(`Edit icon clicked for ${currentValue._id}`);
+            showCustomAlert();
         });
 
         deleteIcon.addEventListener("click", function() {
