@@ -4,51 +4,11 @@ async function get_data(url) {
     return response_json
 }
 
-function showEditAlert(itemID, itemTitle) {
-    console.log(`itemTitle: ${itemTitle}`);
-
-    var contentDocument = document.getElementsByClassName("content")[0];
-    let doc = document.createElement('div');
-    doc.id = 'custom-alert';
-    doc.innerHTML = `
-        <p>Enter new title of chat</p>
-        <input type="text" id="inputField" value="${itemTitle}">
-        <button onclick="hideCustomAlert()">Cancel</button>
-        <button>Update</button>
-    `
-    contentDocument.appendChild(doc);
-
-    document.getElementById('custom-alert').style.display = 'block';
-}
-
-
-function showDeleteAlert(itemID, itemTitle) {
-    console.log(`itemID: ${itemID}`);
-
-    var contentDocument = document.getElementsByClassName("content")[0];
-    let doc = document.createElement('div');
-    doc.id = 'custom-alert';
-    doc.innerHTML = `
-        <p>Delete chat? </p>
-        <p>This will delete ${itemTitle}.</p>
-        <button onclick="hideCustomAlert()">Cancel</button>
-        <button>Delete</button>
-    `
-    contentDocument.appendChild(doc);
-
-    document.getElementById('custom-alert').style.display = 'block';
-    
-}
 
 
 
 
-function hideCustomAlert() {
-    var customAlert = document.getElementById('custom-alert');
-    if (customAlert) {
-        customAlert.remove();
-    }
-}
+
 
 function clickHandler(event) {
     displayStyle = document.getElementById('custom-alert').style.display;

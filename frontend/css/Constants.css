@@ -1,6 +1,11 @@
 :root {
 
     --background-color: black;
+    --background-second-color: rgb(47, 47, 47);
+
+    --buttom-color-delete: rgb(185,  28, 28);
+    --buttom-color-accept: rgb(16, 163, 127);
+
 
     --text-color: white;
 }
