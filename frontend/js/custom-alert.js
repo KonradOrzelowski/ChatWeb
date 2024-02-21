@@ -18,6 +18,7 @@ function showEditAlert(itemID, itemTitle) {
     <div id = "custom-alert-upper">
         <p>Enter new title of chat</p>
     </div>
+
     <div id = "custom-alert-bottom">   
         <div id = "custom-alert-bottom-upper">
             <input type="text" id="inputField" value="${itemTitle}">
@@ -47,10 +48,21 @@ function showDeleteAlert(itemID, itemTitle) {
     customAlert.id = 'custom-alert';
 
     customAlert.innerHTML = `
+    <div id = "custom-alert-upper">
         <p>Delete chat? </p>
-        <p>This will delete ${itemTitle}.</p>
-        <button onclick="hideCustomAlert()">Cancel</button>
-        <button id="button-delete">Delete</button>
+    </div>
+
+    <div id = "custom-alert-bottom">
+        <div id = "custom-alert-bottom-upper">
+            <p>This will delete <strong>${itemTitle}</strong>.</p>
+            
+        </div>
+
+        <div id = "custom-alert-bottom-bottom">
+            <button onclick="hideCustomAlert()">Cancel</button>
+            <button id="button-delete">Delete</button>
+        </div>
+    </div>
     `
     var customAlertWrapper = getCustomAlertWrapper()
     customAlertWrapper.classList.add('custom-alert-wrapper-delete');
