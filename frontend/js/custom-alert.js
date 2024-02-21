@@ -8,7 +8,6 @@ function getCustomAlertWrapper(){
 
 
 function showEditAlert(itemID, itemTitle) {
-    console.log(`itemTitle: ${itemTitle}`);
 
     var contentDocument = document.getElementsByClassName("content")[0];
     let customAlert = document.createElement('div');
@@ -26,7 +25,7 @@ function showEditAlert(itemID, itemTitle) {
         
         <div id = "custom-alert-bottom-bottom">
             <button onclick="hideCustomAlert('custom-alert-wrapper-edit')">Cancel</button>
-            <button id="button-accept">Update</button>
+            <button onclick="sendEditAlert('custom-alert-wrapper-edit')" id="button-accept">Update</button>
         </div>
 
     </div>
@@ -41,7 +40,7 @@ function showEditAlert(itemID, itemTitle) {
 
 
 function showDeleteAlert(itemID, itemTitle) {
-    console.log(`itemID: ${itemID}`);
+    console.log(`"showDeleteAlert ${itemID}"`)
 
     var contentDocument = document.getElementsByClassName("content")[0];
     let customAlert = document.createElement('div');
@@ -60,7 +59,7 @@ function showDeleteAlert(itemID, itemTitle) {
 
         <div id = "custom-alert-bottom-bottom">
             <button onclick="hideCustomAlert('custom-alert-wrapper-delete')">Cancel</button>
-            <button onclick="sendDeleteAlert('custom-alert-wrapper-delete') id="button-delete">Delete</button>
+            <button onclick="sendDeleteAlert('${itemID}')" id="button-delete">Delete</button>
         </div>
     </div>
     `
@@ -79,6 +78,19 @@ function hideCustomAlert(elementId) {
     if (customAlert) {
         customAlert.remove();
     }
+}
+
+function sendDeleteAlert(itemID){
+    // var customAlert = document.getElementsByClassName(elementId)[0];
+    console.log(itemID);
+
+}
+
+function sendEditAlert(elementId){
+    var customAlert = document.getElementsByClassName(elementId)[0];
+    var childInput = customAlert.querySelector('input');
+    console.log(childInput.value)
+
 }
 
 showDeleteAlert(0, 'Style Delete Alert')

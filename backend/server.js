@@ -48,7 +48,6 @@ async function main(){
 
     app.get('/conversations/:id', (req, res) => {
         const { id } = req.params;
-        console.log(id);
         res.json({ response: list_of_convs[id] });
     });
 
