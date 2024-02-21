@@ -1,7 +1,5 @@
 #custom-alert-wrapper{
     position: absolute;
-    
-    
     color: var(--text-color);
     
     
@@ -36,6 +34,8 @@
     padding-top: 10px;
 }
 #custom-alert-wrapper input {
+    width: 100%;
+
     background-color: var(--background-second-color);
     color: var(--text-color);
 
@@ -73,8 +73,6 @@
 }
 
 .custom-alert-wrapper-edit{
-    /* height: 15vh;
-    width: 25vw; */
     width: 25vw;
 
     top: 10%;
@@ -82,10 +80,6 @@
 }
 
 .custom-alert-wrapper-delete{
-    /* height: 15vh;
-     */
-
-    /* width: 45vw; */
     width: 25vw;
 
     top: 40%;

@@ -25,7 +25,7 @@ function showEditAlert(itemID, itemTitle) {
         </div>
         
         <div id = "custom-alert-bottom-bottom">
-            <button onclick="hideCustomAlert()">Cancel</button>
+            <button onclick="hideCustomAlert('custom-alert-wrapper-edit')">Cancel</button>
             <button id="button-accept">Update</button>
         </div>
 
@@ -59,8 +59,8 @@ function showDeleteAlert(itemID, itemTitle) {
         </div>
 
         <div id = "custom-alert-bottom-bottom">
-            <button onclick="hideCustomAlert()">Cancel</button>
-            <button id="button-delete">Delete</button>
+            <button onclick="hideCustomAlert('custom-alert-wrapper-delete')">Cancel</button>
+            <button onclick="sendDeleteAlert('custom-alert-wrapper-delete') id="button-delete">Delete</button>
         </div>
     </div>
     `
@@ -73,8 +73,9 @@ function showDeleteAlert(itemID, itemTitle) {
     
 }
 
-function hideCustomAlert() {
-    var customAlert = document.getElementById('custom-alert');
+function hideCustomAlert(elementId) {
+    console.log(elementId)
+    var customAlert = document.getElementsByClassName(elementId)[0];
     if (customAlert) {
         customAlert.remove();
     }
