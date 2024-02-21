@@ -15,10 +15,20 @@ function showEditAlert(itemID, itemTitle) {
     customAlert.id = 'custom-alert';
 
     customAlert.innerHTML = `
+    <div id = "custom-alert-upper">
         <p>Enter new title of chat</p>
-        <input type="text" id="inputField" value="${itemTitle}">
-        <button onclick="hideCustomAlert()">Cancel</button>
-        <button id="button-accept">Update</button>
+    </div>
+    <div id = "custom-alert-bottom">   
+        <div id = "custom-alert-bottom-upper">
+            <input type="text" id="inputField" value="${itemTitle}">
+        </div>
+        
+        <div id = "custom-alert-bottom-bottom">
+            <button onclick="hideCustomAlert()">Cancel</button>
+            <button id="button-accept">Update</button>
+        </div>
+
+    </div>
     `
     var customAlertWrapper = getCustomAlertWrapper()
     customAlertWrapper.classList.add('custom-alert-wrapper-edit');
