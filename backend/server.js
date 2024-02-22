@@ -66,6 +66,12 @@ async function main(){
         console.log(`Server is running on port ${port}`);
     });
 
+
+    app.post('/receive', (req, res) => {
+        const message = req.body.message;
+        console.log('Received message:', message);
+        res.send('Rocket launched successfully!');
+    });
 }
 
 main();
