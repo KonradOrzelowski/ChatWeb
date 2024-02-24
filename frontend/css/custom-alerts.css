@@ -45,6 +45,8 @@
     border-radius: 5px;
 }
 
+/**************************************************************/
+
 #custom-alert-wrapper button {
     /* Resetting all styles */
     all: initial;
@@ -58,6 +60,12 @@
     padding: 5px;
 
     cursor: pointer;
+
+    transition: background-color var(--hover-transtion-speed);
+}
+
+#custom-alert-wrapper button:hover{
+    background-color: var(--buttom-color-hover);
 }
 
 #custom-alert-wrapper #button-delete{
@@ -65,13 +73,27 @@
 
     box-shadow: 0 0 2px var(--text-color);
     background-color: var(--buttom-color-delete);
+
+    transition: background-color var(--hover-transtion-speed);
+}
+
+#custom-alert-wrapper #button-delete:hover{
+    background-color: var(--buttom-color-delete-hover);
 }
 
 #custom-alert-wrapper #button-accept{
     border: 0px;
     background-color: var(--buttom-color-accept);
+
+    transition: background-color var(--hover-transtion-speed);
 }
 
+#custom-alert-wrapper #button-accept:hover{
+    background-color: var(--buttom-color-accept-hover);
+}
+
+
+/**************************************************************/
 .custom-alert-wrapper-edit{
     width: 25vw;
 

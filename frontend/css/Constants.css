@@ -6,6 +6,11 @@
     --buttom-color-delete: rgb(185,  28, 28);
     --buttom-color-accept: rgb(16, 163, 127);
 
-
+    --buttom-color-delete-hover: rgb(153, 27, 27);
+    --buttom-color-accept-hover: rgb(26, 127, 100);
+    --buttom-color-hover: rgb(66, 66, 66);
+    
     --text-color: white;
+
+    --hover-transtion-speed: 0.25s;
 }
