@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 
+const { readFileSync } = require('fs');
+const { MongoClient } = require('mongodb');
 
 const { runInference } = require('./BotHandler');
 const { get_all_from_collection, get_list_of_titles } = require('./ConversationsHandler');
@@ -19,6 +21,8 @@ async function main(){
 
     const app = express();
     app.use(express.json());
+
+    // app.use(cors({ origin: 'http://localhost:3000/delete_alert' }));
     app.use(cors());
     
     app.use(routing);
@@ -67,10 +71,34 @@ async function main(){
     });
 
 
-    app.post('/receive', (req, res) => {
+    app.post('/delete_alert', async (req, res) => {
+
         const message = req.body.message;
-        console.log('Received message:', message);
-        res.send('Rocket launched successfully!');
+        console.log(`Try to delete ${message}`);
+
+        const rawConfig = readFileSync('config.json');
+        const config = JSON.parse(rawConfig);
+
+        const mongoUrl = config.url;
+
+        const client = new MongoClient(mongoUrl);
+        
+        try {
+            await client.connect();
+            const db = client.db();
+    
+            await db.collection('conversations').deleteOne({ _id: new ObjectID(message) });
+
+            console.log("Conversation deleted successfully");
+            res.send('Conversation deleted successfully');
+        }catch (err){
+            console.log("Conversation deleted successfully");
+            res.send('Error deleting conversations');
+        }finally {
+            console.log("Close connection");
+            await client.close();
+        }
+        
     });
 }
 

@@ -80,11 +80,7 @@ function hideCustomAlert(elementId) {
     }
 }
 
-function sendDeleteAlert(itemID, elementId){
-    
-    console.log(itemID);
-    hideCustomAlert(elementId)
-}
+
 
 function sendEditAlert(elementId){
 
@@ -95,26 +91,34 @@ function sendEditAlert(elementId){
 
 }
 
-showDeleteAlert(0, 'Style Delete Alert')
-showEditAlert(0, 'Style Delete Alert')
+// showDeleteAlert(0, 'Style Delete Alert')
+// showEditAlert(0, 'Style Delete Alert')
 
+function sendDeleteAlert(itemID, elementId){
+    
+    const uurl = 'http://localhost:3000/delete_alert';
+    const data = { message: itemID };
+    
+    fetch(uurl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Mgs from server: Rocket launched successfully!');
+        } else {
+            console.error('Failed to launched the rocket. Status:', response.status);
+        }
+        response.json()
+    })
 
+    .then(data => { console.log(data) })
 
-const uurl = 'http://localhost:3000/receive';
-const data = { message: 'Rocket launched!' };
+    .catch(error => {
+        console.error('Error occurred while launching the rocket:', error);
+    });
 
-fetch(uurl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-})
-.then(response => {
-    if (response.ok) {
-        console.log('Mgs from server: Rocket launched successfully!');
-    } else {
-        console.error('Failed to launched the rocket. Status:', response.status);
-    }
-})
-.catch(error => {
-    console.error('Error occurred while launching the rocket:', error);
-});
+    hideCustomAlert(elementId)
+}
+
