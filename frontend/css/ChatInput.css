@@ -1,0 +1,31 @@
+.input_div {
+    position: fixed;
+    bottom: 0;
+    width: 80vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    background-color: white;
+    height: 20vh;
+}
+
+.inlineChat {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#chat-input{
+    all: initial;
+
+    color: var(--text-color);
+    background-color: var(--background-color);
+
+    padding: 20px;
+
+    width: 50vw;
+    height: 30px;
+    border-radius: 10px;
+}

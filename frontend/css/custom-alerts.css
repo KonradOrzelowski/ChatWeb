@@ -1,0 +1,112 @@
+#custom-alert-wrapper{
+    position: absolute;
+    color: var(--text-color);
+    
+    
+    z-index: 9999;
+}
+
+#custom-alert-upper{
+    padding: 20px;
+    background-color: var(--background-second-color);
+    border-radius: 5px 5px 0 0;
+
+    border-bottom: 1px solid var(--text-color);
+}
+
+#custom-alert-bottom{
+    padding: 20px;
+    background-color: var(--background-second-color);
+    border-radius: 0 0 5px 5px;
+}
+
+#custom-alert-bottom-upper{
+    display: flex;
+    justify-content: flex-start;
+
+    padding-bottom: 10px;
+}
+
+#custom-alert-bottom-bottom{
+    display: flex;
+    justify-content: flex-end;
+
+    padding-top: 10px;
+}
+#custom-alert-wrapper input {
+    width: 100%;
+
+    background-color: var(--background-second-color);
+    color: var(--text-color);
+
+    border: 1px solid var(--text-color);
+    padding: 2px;
+    outline: none;
+    border-radius: 5px;
+}
+
+/**************************************************************/
+
+#custom-alert-wrapper button {
+    /* Resetting all styles */
+    all: initial;
+
+    color: var(--text-color);
+    border-radius: 5px;
+    
+    border: 1px solid var(--text-color);
+    margin-left: 10px;
+
+    padding: 5px;
+
+    cursor: pointer;
+
+    transition: background-color var(--hover-transtion-speed);
+}
+
+#custom-alert-wrapper button:hover{
+    background-color: var(--buttom-color-hover);
+}
+
+#custom-alert-wrapper #button-delete{
+    border: 2px solid var(--text-color);
+
+    box-shadow: 0 0 2px var(--text-color);
+    background-color: var(--buttom-color-delete);
+
+    transition: background-color var(--hover-transtion-speed);
+}
+
+#custom-alert-wrapper #button-delete:hover{
+    background-color: var(--buttom-color-delete-hover);
+}
+
+#custom-alert-wrapper #button-accept{
+    border: 0px;
+    background-color: var(--buttom-color-accept);
+
+    transition: background-color var(--hover-transtion-speed);
+}
+
+#custom-alert-wrapper #button-accept:hover{
+    background-color: var(--buttom-color-accept-hover);
+}
+
+
+/**************************************************************/
+.custom-alert-wrapper-edit{
+    width: 25vw;
+
+    top: 10%;
+    left: 50%;
+}
+
+.custom-alert-wrapper-delete{
+    width: 25vw;
+
+    top: 40%;
+    left: 50%;
+}
+
+
+

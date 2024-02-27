@@ -1,6 +1,6 @@
 {
     "ignore": ["node_modules/**", "logs/**"],
-    "watch": ["."],
+    "watch": [".", "routes/**"],
     "execMap": {
       "js": "node --inspect"
     },
