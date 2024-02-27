@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const { readFileSync } = require('fs');
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 
 const { runInference } = require('./BotHandler');
 const { get_all_from_collection, get_list_of_titles } = require('./ConversationsHandler');
@@ -72,33 +72,24 @@ async function main(){
 
 
     app.post('/delete_alert', async (req, res) => {
-
-        const message = req.body.message;
-        console.log(`Try to delete ${message}`);
-
         const rawConfig = readFileSync('config.json');
         const config = JSON.parse(rawConfig);
 
         const mongoUrl = config.url;
+        const message = req.body.message;
 
         const client = new MongoClient(mongoUrl);
+        await client.connect();
         
-        try {
-            await client.connect();
-            const db = client.db();
-    
-            await db.collection('conversations').deleteOne({ _id: new ObjectID(message) });
+        const conversations = await client.db('ChatWebDB').collection('conversations');
+        const array_of_convs = await conversations.deleteOne({ _id: new ObjectId(message) });
 
-            console.log("Conversation deleted successfully");
-            res.send('Conversation deleted successfully');
-        }catch (err){
-            console.log("Conversation deleted successfully");
-            res.send('Error deleting conversations');
-        }finally {
-            console.log("Close connection");
-            await client.close();
-        }
-        
+        console.log(array_of_convs)
+
+        await client.close()
+
+        res.json({ response: '1' });
+                
     });
 }
 
