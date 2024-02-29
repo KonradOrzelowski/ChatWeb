@@ -32,9 +32,9 @@ async function main(){
     app.post('/message', async (req, res) => {
         try {
             const message = req.body.message;
+            console.log(message);
 
             const asyncMessage = await runInference(message);
-
 
             console.log(`Received message: ${message}`);
             console.log(`Async message: ${asyncMessage}`);
@@ -79,16 +79,29 @@ async function main(){
         const message = req.body.message;
 
         const client = new MongoClient(mongoUrl);
+
         await client.connect();
+
+        try{
+            
+            const collection = await client.db('ChatWebDB').collection('conversations');
+            const querry_result = await collection.deleteOne({ _id: new ObjectId(message) });
+    
+            console.log(querry_result)
+
+            res.json({ response: true });
+        }catch (error){
+            console.error('Error processing message:', error);
+            
+            res.json({ response: false });
+        }finally{
+            await client.close()
+        }
+
+
         
-        const conversations = await client.db('ChatWebDB').collection('conversations');
-        const array_of_convs = await conversations.deleteOne({ _id: new ObjectId(message) });
 
-        console.log(array_of_convs)
-
-        await client.close()
-
-        res.json({ response: '1' });
+        
                 
     });
 }

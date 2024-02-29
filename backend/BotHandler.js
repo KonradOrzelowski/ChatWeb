@@ -9,8 +9,8 @@ const token = config.token;
 
 const inference = new HfInference(token);
 
-var generated_responses = [];
-var past_user_inputs = [];
+var generated_responses = '';
+var past_user_inputs = '';
 
 /**
  * Runs inference using the conversational model to generate a response based on the given text.
@@ -18,20 +18,28 @@ var past_user_inputs = [];
  * @returns {string} - The generated response text.
  */
 async function runInference(text) {
-    const result = await inference.conversational({
-        model: "facebook/blenderbot-1B-distill",
-        parameters: {},
-        inputs: {
-            generated_responses: generated_responses,
-            past_user_inputs: past_user_inputs,
-            text: text
-        }
-    });
+    console.log(text)
+    const result = await inference.translation({
+        model: 't5-base',
+        inputs: text
+      })
+    console.log(result.translation_text)
 
-    generated_responses = result.conversation.generated_responses.slice(-2);
-    past_user_inputs = result.conversation.past_user_inputs.slice(-2);
+    // const result = await inference.conversational({
+    //     model: "facebook/blenderbot-1B-distill",
+    //     parameters: {},
+    //     inputs: {
+    //         generated_responses: generated_responses,
+    //         past_user_inputs: past_user_inputs,
+    //         text: text
+    //     }
+    // });
 
-    return result.generated_text;
+    // generated_responses = result.conversation.generated_responses.slice(-2);
+    // past_user_inputs = result.conversation.past_user_inputs.slice(-2);
+
+    // return result.generated_text;
+    return result.translation_text
 }
 
 module.exports.runInference = runInference;
