@@ -1,45 +1,14 @@
-const { HfInference } = require("@huggingface/inference");
-const { readFileSync } = require('fs');
-
-
-const rawConfig = readFileSync('config.json');
-const config = JSON.parse(rawConfig);
-
-const token = config.token;
-
-const inference = new HfInference(token);
-
-var generated_responses = '';
-var past_user_inputs = '';
-
 /**
  * Runs inference using the conversational model to generate a response based on the given text.
  * @param {string} text - The input text for the conversation.
  * @returns {string} - The generated response text.
  */
 async function runInference(text) {
-    console.log(text)
-    const result = await inference.translation({
-        model: 't5-base',
-        inputs: text
-      })
-    console.log(result.translation_text)
+    let pipeline = (await import('@xenova/transformers')).pipeline;
+    let poet = await pipeline('text2text-generation', 'Xenova/flan-alpaca-base');
+    let result = await poet(text, { max_length: 128, do_sample: true, top_k: 10, });
 
-    // const result = await inference.conversational({
-    //     model: "facebook/blenderbot-1B-distill",
-    //     parameters: {},
-    //     inputs: {
-    //         generated_responses: generated_responses,
-    //         past_user_inputs: past_user_inputs,
-    //         text: text
-    //     }
-    // });
-
-    // generated_responses = result.conversation.generated_responses.slice(-2);
-    // past_user_inputs = result.conversation.past_user_inputs.slice(-2);
-
-    // return result.generated_text;
-    return result.translation_text
+    return result[0]['generated_text']
 }
 
 module.exports.runInference = runInference;

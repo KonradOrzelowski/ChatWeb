@@ -19,6 +19,7 @@
   "homepage": "https://github.com/KonradOrzelowski/ChatWeb#readme",
   "dependencies": {
     "@huggingface/inference": "^2.6.4",
+    "@xenova/transformers": "^2.15.1",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mongodb": "^6.3.0",
