@@ -1,69 +1,30 @@
 const express = require('express');
 const cors = require('cors');
 
-const { readFileSync } = require('fs');
-const { MongoClient, ObjectId } = require('mongodb');
-
-const { runInference } = require('./BotHandler');
-const { get_all_from_collection, get_list_of_titles } = require('./ConversationsHandler');
 
 
-const ConfigurationModule = require('./ConfigurationModule');
+
 const routing = require('./routes/routing');
 
+const getListsRouting = require('./routes/get_lists_routing');
+const deleteConversationRouting = require('./routes/delete_conversation_routing');
+const conversationsRouting = require('./routes/conversations_routing');
+const incomingMessagesRouting = require('./routes/incoming_messages_routing');
 
-var current_mgs = [];
+
 
 async function main(){
-
-    var list_of_convs = await get_all_from_collection('ChatWebDB', 'conversations');
-    var list_of_titles = get_list_of_titles(list_of_convs);
 
     const app = express();
     app.use(express.json());
 
-    // app.use(cors({ origin: 'http://localhost:3000/delete_alert' }));
     app.use(cors());
-    
     app.use(routing);
-
-
-
-    app.post('/message', async (req, res) => {
-        try {
-            const message = req.body.message;
-            console.log(message);
-
-            const asyncMessage = await runInference(message);
-
-            console.log(`Received message: ${message}`);
-            console.log(`Async message: ${asyncMessage}`);
-
-            ConfigurationModule.pushCurrentMgs({"speaker": "You", "message": message});
-            ConfigurationModule.pushCurrentMgs({"speaker": "Bot", "message": asyncMessage});
-
-            res.json({ receivedMessage: message, asyncMessage });
-
-        } catch (error) {
-            console.error('Error processing message:', error);
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-    });
-
-    app.get('/conversations/:id', (req, res) => {
-        const { id } = req.params;
-        res.json({ response: list_of_convs[id] });
-    });
-
-    app.get('/lists/list_of_titles', (req, res) => {
-        res.json({ response: list_of_titles });
-    });
-
-    app.get('/lists/list_of_convs', (req, res) => {
-        res.json({ response: list_of_convs });
-    });
-
-
+    app.use(getListsRouting);
+    app.use(deleteConversationRouting);
+    app.use(conversationsRouting);
+    app.use(incomingMessagesRouting);
+    
 
     const port = 3000;
     app.listen(port, () => {
@@ -71,39 +32,7 @@ async function main(){
     });
 
 
-    app.post('/delete_alert', async (req, res) => {
-        const rawConfig = readFileSync('config.json');
-        const config = JSON.parse(rawConfig);
 
-        const mongoUrl = config.url;
-        const message = req.body.message;
-
-        const client = new MongoClient(mongoUrl);
-
-        await client.connect();
-
-        try{
-            
-            const collection = await client.db('ChatWebDB').collection('conversations');
-            const querry_result = await collection.deleteOne({ _id: new ObjectId(message) });
-    
-            console.log(querry_result)
-
-            res.json({ response: true });
-        }catch (error){
-            console.error('Error processing message:', error);
-            
-            res.json({ response: false });
-        }finally{
-            await client.close()
-        }
-
-
-        
-
-        
-                
-    });
 }
 
 main();

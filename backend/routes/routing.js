@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const ConfigurationModule = require('../ConfigurationModule');
+const ConfigurationModule = require('../state_manager/messages_managaer');
 
 const { MongoClient } = require('mongodb');
 const { readFileSync } = require('fs');
