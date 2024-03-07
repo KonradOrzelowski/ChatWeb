@@ -96,29 +96,7 @@ function sendEditAlert(elementId){
 
 function sendDeleteAlert(itemID, elementId){
     
-    const uurl = 'http://localhost:3000/delete_alert';
-    const data = { message: itemID };
-    
-    fetch(uurl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    })
-    .then(response => {
-        if (response.ok) {
-            console.log('Mgs from server: Rocket launched successfully!');
-        } else {
-            console.error('Failed to launched the rocket. Status:', response.status);
-        }
-        response.json()
-    })
-
-    .then(data => { console.log(data) })
-
-    .catch(error => {
-        console.error('Error occurred while launching the rocket:', error);
-    });
-
+    deletePost(itemID)
     hideCustomAlert(elementId)
 }
 

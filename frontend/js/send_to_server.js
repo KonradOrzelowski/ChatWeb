@@ -1,5 +1,3 @@
-const url = 'http://localhost:3000/message';
-
 const sendToServer = async (msg) => {
     let data = { message: msg };
 
@@ -16,9 +14,6 @@ const sendToServer = async (msg) => {
             typing_1.classList.remove("typing_1");
             typing_1.classList.add("typing_0");
         }
-    
-    
-        // lastElement_div_text.innerHTML += '.';
     }, 500);
 
     try {
@@ -50,13 +45,9 @@ const sendToServer = async (msg) => {
 
 
 
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
+        
+        data = await fetchData('http://localhost:3000/message');
 
-        data = await response.json();
         // Clear the interval once the response is received
         clearInterval(intervalId);
 
@@ -70,9 +61,6 @@ const sendToServer = async (msg) => {
         var text = data.asyncMessage;
     
         type_text_to_div(lastElement_div_text, text, 50, 0)
-
-
-        // add_div_to_conversation("ChatBot", data.asyncMessage)
 
     } catch (error) {
         console.error('Error:', error);

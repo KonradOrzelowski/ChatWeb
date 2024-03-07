@@ -11,25 +11,6 @@ document.getElementById('chat-input').addEventListener('keydown', (event) => {
     }
 });
 
-// localhost = 'http://localhost:3000/conversations/conv_0';
-function sendNewChatSignal() {
-    const url = 'http://localhost:3000/refresh'; // replace with your server's URL
-    const data = { chatCreated: true }; // replace with the data you want to send
-
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-}
-
 function add_click_to_new_chat() {
     var new_chat = document.getElementsByClassName("new-chat")[0];
 
@@ -47,21 +28,7 @@ add_click_to_new_chat();
 
 
 window.addEventListener('beforeunload', function (event){
-    const url = 'http://localhost:3000/is_closed'; // replace with your server's URL
-    const data = { is_closed: true }; // replace with the data you want to send
-
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+    closeWebsite()
 });
 
 
