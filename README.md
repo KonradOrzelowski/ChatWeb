@@ -12,7 +12,9 @@ The frontend is a simple HTML page styled with CSS. It provides an interface for
 
 - [`frontend/index.html`]: This is the main HTML file.
 - [`frontend/script.js`]: It includes a chat interface where the user can send messages and view the chatbot's responses.
-- [`frontend/style.css`]: This file contains the CSS styles for the HTML page.
+- [`/css/ directory`]: This directory contains CSS files that style the web page.
+- [`/assets/ directory`]: This directory contains static files like images and icons used in the application. It includes a   subdirectory `/icons/` which contains icon files.
+- [`/js/ directory`]: It includes additional JavaScript files that handle various functionalities on the web page
 
 ### Backend
 
