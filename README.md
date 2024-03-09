@@ -20,26 +20,20 @@ The frontend is a simple HTML page styled with CSS. It provides an interface for
 
 The backend is a Node.js server that handles requests from the frontend, interacts with the Hugging Face Inference API, and sends responses back to the frontend. The relevant files are:
 
-- [`backend/main.js`]: This is the main entry point for the backend. It sets up the server and handles the main chat loop.
-- [`backend/server.js`]: This file sets up the Express server and defines the API endpoints.
-## Setup
+- [`ConversationsHandler.js`]: This file handles the retrieval and manipulation of conversation data from the MongoDB database.
+- [`generate_response_from_model.js`]: This file generates responses from a machine learning model.
+- [`init_database.js`]: This file initializes the MongoDB database with conversation data.
+- [`nodemon.json`]: This file contains configuration for Nodemon, a utility that automatically restarts the Node.js application when file changes are detected.
+- [`package.json`]: This file contains metadata about the Node.js application, such as its dependencies.
 
-To set up the project, follow these steps:
-
-1. Clone the repository.
-2. Navigate to the [`backend`] directory.
-3. Run `npm install` to install the necessary dependencies.
-4. Create a [`config.json`] file in the directory with your Hugging Face API token:
-
-```json
-{
-  "token": "your-hugging-face-api-token"
-}
-```
-
-5. Start the server by running `nodemon server.js` in the [`backend`] directory.
-6. Open [`frontend/index.html`] in your web browser to interact with the chatbot.
-
+- [`/routes/`]: This directory contains routing files for the Express.js server. Some of the files include:
+  - [`conversations_routing.js`]: Handles routes related to conversations.
+  - [`delete_conversation_routing.js`]: Handles routes related to deleting conversations.
+  - [`get_lists_routing.js`]: Handles routes related to retrieving lists.
+  - [`incoming_messages_routing.js`]: Handles routes related to incoming messages.
+ 
+- [`server.js`]: This file sets up and starts the Express.js server.
+- [`/state_manager/`]: This directory contains files related to managing the state of the application. It includes a file named messages_manager.js which manages the state of messages in the application.
 
 ## Test Proposals
 
