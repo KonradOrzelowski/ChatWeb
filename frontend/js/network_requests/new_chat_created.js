@@ -1,6 +1,6 @@
 function sendNewChatSignal() {
-    const url = 'http://localhost:3000/refresh'; // replace with your server's URL
-    const data = { chatCreated: true }; // replace with the data you want to send
+    const url = 'http://localhost:3000/refresh';
+    const data = { chatCreated: true };
 
     fetch(url, {
         method: 'POST',

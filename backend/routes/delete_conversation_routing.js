@@ -7,7 +7,6 @@ const { MongoClient, ObjectId } = require('mongodb');
 
 router.post('/delete_alert', async (req, res) => {
     const configPath = path.join(__dirname, '..', 'config.json');
-    console.log(configPath);
 
     const rawConfig = readFileSync(configPath);
 

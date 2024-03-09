@@ -14,11 +14,9 @@ function deletePost(itemID){
         } else {
             console.error('Failed to launched the rocket. Status:', response.status);
         }
-        response.json()
+        console.log(response.json())
+        
     })
-
-    .then(data => { console.log(data) })
-
     .catch(error => {
         console.error('Error occurred while launching the rocket:', error);
     });
