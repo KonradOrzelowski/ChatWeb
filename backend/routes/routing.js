@@ -13,6 +13,7 @@ const config = JSON.parse(rawConfig);
 
 router.post('/refresh', async (req, res) => {
     current_mgs = ConfigurationModule.getCurrentMgs();
+    console.log('Chat is refreshed')
 
     if(current_mgs.length > 1){
         const title = current_mgs[0].message;

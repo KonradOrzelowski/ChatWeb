@@ -10,15 +10,15 @@ router.post('/message', async (req, res) => {
         const message = req.body.message;
         console.log(message);
 
-        const asyncMessage = await generateResponseFromModel(message);
+        const serverResponse = await generateResponseFromModel(message);
 
         console.log(`Received message: ${message}`);
-        console.log(`Async message: ${asyncMessage}`);
+        console.log(`Server response: ${serverResponse}`);
 
         ConfigurationModule.pushCurrentMgs({"speaker": "You", "message": message});
-        ConfigurationModule.pushCurrentMgs({"speaker": "Bot", "message": asyncMessage});
+        ConfigurationModule.pushCurrentMgs({"speaker": "Bot", "message": serverResponse});
 
-        res.json({ receivedMessage: message, asyncMessage });
+        res.json({ receivedMessage: message, serverResponse: serverResponse });
 
     } catch (error) {
         console.error('Error processing message:', error);
