@@ -25,8 +25,9 @@ function add_click_to_new_chat() {
 }
 
 add_click_to_new_chat();
-
+loadConversationTitles();
 
 window.addEventListener('beforeunload', function (event){
     closeWebsite()
 });
+

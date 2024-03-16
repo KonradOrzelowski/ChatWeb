@@ -1,30 +1,49 @@
 const express = require('express');
-const router = express.Router();
-
+const { MongoClient } = require('mongodb');
+const path = require('path');
+const { readFileSync } = require('fs');
 const ConfigurationModule = require('../state_manager/messages_managaer');
 
-router.post('/message', async (req, res) => {
-    currentMgs = ConfigurationModule.getCurrentMgs();
+const router = express.Router();
 
+router.post('/save_conversation', async (req, res) => {
+
+    // Read configuration file
+    const configPath = path.join(__dirname, '..', 'config.json');
+    const rawConfig = readFileSync(configPath);
+    const config = JSON.parse(rawConfig);
+    const mongoUrl = config.url;
+
+    // Get current messages
+    const currentMgs = ConfigurationModule.getCurrentMgs();
     const title = currentMgs[0].message;
     const conversation = currentMgs;
-    const client = new MongoClient(config.url);
 
+    if(currentMgs.length <= 1){
+        return;
+    }
+    
     try {
 
-        const data = { title, conversation };
+        // Connect to MongoDB
+        const client = new MongoClient(mongoUrl);
+        await client.connect();
 
+        // Insert conversation into MongoDB
         const database = client.db("ChatWebDB");
         const collection = database.collection("conversations");
-
+        const data = { title, conversation };
         const result = await collection.insertOne(data);
         console.log(`A document was inserted with the _id: ${result.insertedId}`);
 
     } catch (error) {
+
         console.error('Error:', error);
-    }
-    finally {
-        await client.close();
+
+    } finally {
+
+        await client.close(); // Close MongoDB connection
+
     }
 });
 

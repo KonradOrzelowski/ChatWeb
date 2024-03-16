@@ -1,75 +1,79 @@
+function createTitleItem(currentValue){
+    let titleItem = document.createElement("li");
+    titleItem.innerHTML = `
+        <a>${currentValue.title}</a>
+        <div class = "bottoms-wrapper">
+            <div class = "bottoms-transtion">
+            </div>
+            <div class = "bottoms">
+                <img id="editIcon" src="assets/icons/edit-pen-icon.svg" alt="Icon description">
+                <img id="deleteIcon" src="assets/icons/trash-bin-icon.svg" alt="Icon description">
+            </div>
+        </div>
+        `
+    const editIcon = titleItem.querySelector('#editIcon');
+    const deleteIcon = titleItem.querySelector('#deleteIcon');
+    
+    addEditIconListener(editIcon, currentValue);
+    addDeleteIconListener(deleteIcon, currentValue);
+    
+    titleItem.classList.add('conversation-title');
 
+    addLiClickListener(titleItem, currentValue);
 
-function clickHandler(event) {
-    displayStyle = document.getElementById('custom-alert').style.display;
-    clickOnCustomAlert = document.getElementById('custom-alert').contains(event.target);
-
-    console.log(`displayStyle: ${displayStyle}
-                clickOnCustomAlert ${clickOnCustomAlert}
-                firstClick ${firstClick}
-                bool ${(displayStyle != 'none') & !clickOnCustomAlert & firstClick}
-                `)
-                
-    if ((displayStyle != 'none') & !clickOnCustomAlert & !firstClick) {
-        hideCustomAlert();
-    }
+    return titleItem
 }
 
-async function main(){
-    const list_of_titles = await fetchData("http://localhost:3000/lists/list_of_titles");
-    const list_of_convs = await fetchData("http://localhost:3000/lists/list_of_convs");
+function addEditIconListener(editIcon, currentValue) {
+    editIcon.addEventListener("click", function() {
+        showEditAlert(currentValue._id, currentValue.title);
+    });
+}
 
-    for (let value of list_of_titles.response) {
+function addDeleteIconListener(deleteIcon, currentValue) {
+    deleteIcon.addEventListener("click", function() {
+        showDeleteAlert(currentValue._id, currentValue.title);
+    });
+}
 
-        let currentValue = value;
-
-        let li = document.createElement("li");
-        li.innerHTML = `
-            <a>${value.title}</a>
-            <div class = "bottoms-wrapper">
-                <div class = "bottoms-transtion">
-                </div>
-                <div class = "bottoms">
-                    <img id="editIcon" src="assets/icons/edit-pen-icon.svg" alt="Icon description">
-                    <img id="deleteIcon" src="assets/icons/trash-bin-icon.svg" alt="Icon description">
-                </div>
-            </div>
-            `
-        const editIcon = li.querySelector('#editIcon');
-        const deleteIcon = li.querySelector('#deleteIcon');
+function addLiClickListener(li, currentValue) {
+    li.addEventListener("click", async (event) => {
+        console.log("Before fetchData:", currentValue._id);
+        clear_conversation();
         
-        editIcon.addEventListener("click", function() {
-            showEditAlert(currentValue._id, currentValue.title);
-        });
+        let conversation = await fetchData(`http://localhost:3000/conversations/${currentValue._id}`);
+        conversation = conversation.response;
+        console.log(currentValue._id)
+        for(item of conversation.conversation){
+            add_div_to_conversation(item.speaker, item.message, 0)
+        }
 
-        deleteIcon.addEventListener("click", function() {
-            showDeleteAlert(currentValue._id, currentValue.title);
-        });
+    });
+}
+
+function clearConversationTitle(className, childSave){
+    const parent = document.getElementsByClassName(className)[0];
+    console.log(parent)
+    const children = parent.children;
+    for (let i = children.length - 1; i >= 0; i--) {
+        const child = children[i];
+        if (!child.classList.contains(childSave)) {
+          parent.removeChild(child);
+        }
+      }
+}
+
+async function loadConversationTitles(){
+    const conversationTitles = await fetchData("http://localhost:3000/lists/list_of_titles");
+    // Remove all items from the list
+    clearConversationTitle("list-of-conversations", "new-chat")
+
+    for (let value of conversationTitles.response) {
         
-        li.classList.add('conversation-title');
-
-       
-
-        li.addEventListener("click", async (event) => {
-            console.log("Before fetchData:", currentValue._id);
-            clear_conversation();
-            
-            let conversation = await fetchData(`http://localhost:3000/conversations/${currentValue._id}`);
-            conversation = conversation.response;
-            console.log(currentValue._id)
-            for(item of conversation.conversation){
-                add_div_to_conversation(item.speaker, item.message, 0)
-            }
-
-        });
-
+        let titleItem = createTitleItem(value)      
+        document.querySelector(".list-of-conversations").appendChild(titleItem);
         
-        document.querySelector(".list-of-conversations").appendChild(li);
-
-
     }
     
 
 }
-
-main();

@@ -37,13 +37,6 @@ function get_list_of_titles(list_of_convs){
   return list_of_titles;
 };
 
-
-// async function main(){
-//     var list_of_convs = await get_all_from_collection('ChatWebDB', 'conversations');
-
-// }
-// main();
-
 module.exports.url = url;
 module.exports.get_all_from_collection = get_all_from_collection;
 module.exports.get_list_of_titles = get_list_of_titles;

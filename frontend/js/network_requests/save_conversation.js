@@ -18,4 +18,5 @@ function saveConversation() {
     .catch((error) => {
         console.error('Error:', error);
     });
+    loadConversationTitles();
 }
