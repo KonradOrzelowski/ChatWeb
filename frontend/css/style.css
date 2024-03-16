@@ -100,3 +100,25 @@ img{
     max-width: 1.25rem;
     max-height: 1.25rem;
 }
+
+
+.save-button-wrapper {
+    position: fixed;
+    top: 0vh;
+    right: 0vw;
+
+    margin: 20px;
+
+    width: 10vw;
+    height: 20vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    color: var(--text-color);
+    background-color: var(--background-color);
+
+}
