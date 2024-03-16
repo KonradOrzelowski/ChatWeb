@@ -8,6 +8,7 @@ const deleteConversationRouting = require('./routes/delete_conversation_routing'
 const conversationsRouting = require('./routes/conversations_routing');
 const incomingMessagesRouting = require('./routes/incoming_messages_routing');
 const saveConversation = require('./routes/save_conversation');
+const updateConversation = require('./routes/update_conversation');
 
 
 async function main(){
@@ -22,6 +23,7 @@ async function main(){
     app.use(conversationsRouting);
     app.use(incomingMessagesRouting);
     app.use(saveConversation);
+    app.use(updateConversation);
     
 
     const port = 3000;

@@ -1,17 +1,15 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
-const path = require('path');
-const { readFileSync } = require('fs');
+
 const ConfigurationModule = require('../state_manager/messages_managaer');
+const getConfig = require('../get_config');
 
 const router = express.Router();
 
 router.post('/save_conversation', async (req, res) => {
 
     // Read configuration file
-    const configPath = path.join(__dirname, '..', 'config.json');
-    const rawConfig = readFileSync(configPath);
-    const config = JSON.parse(rawConfig);
+    const config = getConfig()
     const mongoUrl = config.url;
 
     // Get current messages

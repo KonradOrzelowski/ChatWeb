@@ -38,12 +38,10 @@ function addDeleteIconListener(deleteIcon, currentValue) {
 
 function addLiClickListener(li, currentValue) {
     li.addEventListener("click", async (event) => {
-        console.log("Before fetchData:", currentValue._id);
         clear_conversation();
         
         let conversation = await fetchData(`http://localhost:3000/conversations/${currentValue._id}`);
         conversation = conversation.response;
-        console.log(currentValue._id)
         for(item of conversation.conversation){
             add_div_to_conversation(item.speaker, item.message, 0)
         }
@@ -53,7 +51,7 @@ function addLiClickListener(li, currentValue) {
 
 function clearConversationTitle(className, childSave){
     const parent = document.getElementsByClassName(className)[0];
-    console.log(parent)
+
     const children = parent.children;
     for (let i = children.length - 1; i >= 0; i--) {
         const child = children[i];

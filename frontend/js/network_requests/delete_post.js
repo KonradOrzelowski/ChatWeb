@@ -10,6 +10,7 @@ function deletePost(itemID){
     })
     .then(response => {
         if (response.ok) {
+            loadConversationTitles();
             console.log('Mgs from server: Rocket launched successfully!');
         } else {
             console.error('Failed to launched the rocket. Status:', response.status);

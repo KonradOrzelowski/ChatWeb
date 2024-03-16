@@ -25,7 +25,7 @@ function showEditAlert(itemID, itemTitle) {
         
         <div id = "custom-alert-bottom-bottom">
             <button onclick="hideCustomAlert('custom-alert-wrapper-edit')">Cancel</button>
-            <button onclick="sendEditAlert('custom-alert-wrapper-edit')" id="button-accept">Update</button>
+            <button onclick="sendEditAlert('${itemID}', 'custom-alert-wrapper-edit')" id="button-accept">Update</button>
         </div>
 
     </div>
@@ -82,11 +82,13 @@ function hideCustomAlert(elementId) {
 
 
 
-function sendEditAlert(elementId){
+function sendEditAlert(itemID, elementId){
 
     var customAlert = document.getElementsByClassName(elementId)[0];
     var childInput = customAlert.querySelector('input');
     console.log(childInput.value)
+    
+    updateConversationTitle(itemID, childInput.value)
     hideCustomAlert(elementId)
 
 }
