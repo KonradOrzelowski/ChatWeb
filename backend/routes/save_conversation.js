@@ -22,12 +22,14 @@ router.post('/save_conversation', async (req, res) => {
     if(currentMgs.length <= 1){
         return;
     }
+
+    const client = new MongoClient(mongoUrl);
+    // Connect to MongoDB
+    await client.connect();
     
     try {
 
-        // Connect to MongoDB
-        const client = new MongoClient(mongoUrl);
-        await client.connect();
+
 
         // Insert conversation into MongoDB
         const database = client.db("ChatWebDB");
@@ -36,6 +38,7 @@ router.post('/save_conversation', async (req, res) => {
         const result = await collection.insertOne(data);
         console.log(`A document was inserted with the _id: ${result.insertedId}`);
 
+        res.json({ response: true });
     } catch (error) {
 
         console.error('Error:', error);

@@ -13,10 +13,12 @@ function saveConversation() {
         },
         body: JSON.stringify(data),
     })
-    .then(response => response.json())
-    .then(data => console.log(data))
+    .then(response => {
+        response.json()
+        loadConversationTitles();
+    })
     .catch((error) => {
         console.error('Error:', error);
     });
-    loadConversationTitles();
+    
 }
