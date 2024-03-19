@@ -9,19 +9,18 @@ jobs:
   setup-mongodb:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+        - name: Checkout repository
+          uses: actions/checkout@v2
 
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v1
+        - name: Set up Docker
+          uses: docker/setup-buildx-action@v1
 
-      - name: Start MongoDB container
-        run: docker run --name my-mongodb -p 27017:27017 -d mongo:latest
+        - name: Start MongoDB container
+          run: docker run --name my-mongodb -p 27017:27017 -d mongo:latest
 
-      - name: Create 'ChatWebDB' database and 'conversations' collection
-        run: |
-          docker exec my-mongodb mongo --eval "db.getSiblingDB('ChatWebDB').createCollection('conversations')"
-        timeout-minutes: 5
+        - name: Run Node.js script to initialize database
+          run: node backend\init_database.js
+
   add-data-to-mongodb:
     needs: setup-mongodb
     runs-on: ubuntu-latest
