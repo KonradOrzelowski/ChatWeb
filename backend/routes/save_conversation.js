@@ -1,15 +1,15 @@
-const express = require('express');
-const { MongoClient } = require('mongodb');
+const express = require("express");
+const { MongoClient } = require("mongodb");
 
-const ConfigurationModule = require('../state_manager/messages_managaer');
-const getConfig = require('../get_config');
+const ConfigurationModule = require("../state_manager/messages_managaer");
+const getConfig = require("../get_config");
 
 const router = express.Router();
 
-router.post('/save_conversation', async (req, res) => {
+router.post("/save_conversation", async (req, res) => {
 
     // Read configuration file
-    const config = getConfig()
+    const config = getConfig();
     const mongoUrl = config.url;
 
     // Get current messages
@@ -39,7 +39,7 @@ router.post('/save_conversation', async (req, res) => {
         res.json({ response: true });
     } catch (error) {
 
-        console.error('Error:', error);
+        console.error("Error:", error);
 
     } finally {
 

@@ -4,11 +4,11 @@
  * @returns {string} - The generated response text.
  */
 async function generateResponseFromModel(text) {
-    let transformersPipeline = (await import('@xenova/transformers')).pipeline;
-    let textGenerator = await transformersPipeline('text2text-generation', 'Xenova/flan-alpaca-base');
+    let transformersPipeline = (await import("@xenova/transformers")).pipeline;
+    let textGenerator = await transformersPipeline("text2text-generation", "Xenova/flan-alpaca-base");
     let generatedResponse = await textGenerator(text, { max_length: 128, do_sample: true, top_k: 10, });
 
-    return generatedResponse[0]['generated_text']
+    return generatedResponse[0]["generated_text"];
 }
 
 module.exports.generateResponseFromModel = generateResponseFromModel;

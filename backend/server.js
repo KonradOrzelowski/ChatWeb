@@ -1,13 +1,13 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 
 
-const getListsRouting = require('./routes/get_lists_routing');
-const deleteConversationRouting = require('./routes/delete_conversation_routing');
-const conversationsRouting = require('./routes/conversations_routing');
-const incomingMessagesRouting = require('./routes/incoming_messages_routing');
-const saveConversation = require('./routes/save_conversation');
-const updateConversation = require('./routes/update_conversation');
+const getListsRouting = require("./routes/get_lists_routing");
+const deleteConversationRouting = require("./routes/delete_conversation_routing");
+const conversationsRouting = require("./routes/conversations_routing");
+const incomingMessagesRouting = require("./routes/incoming_messages_routing");
+const saveConversation = require("./routes/save_conversation");
+const updateConversation = require("./routes/update_conversation");
 
 
 async function main(){
@@ -24,8 +24,8 @@ async function main(){
     app.use(saveConversation);
     app.use(updateConversation);
 
-    app.get('/', (req, res) => {
-        res.status(200).send('Server is running');
+    app.get("/", (req, res) => {
+        res.status(200).send("Server is running");
     });
     
     const port = 3000;

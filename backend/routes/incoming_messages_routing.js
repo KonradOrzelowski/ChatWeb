@@ -1,11 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 
-const { generateResponseFromModel } = require('../generate_response_from_model');
-const ConfigurationModule = require('../state_manager/messages_managaer');
+const { generateResponseFromModel } = require("../generate_response_from_model");
+const ConfigurationModule = require("../state_manager/messages_managaer");
 
-router.post('/message', async (req, res) => {
+router.post("/message", async (req, res) => {
     try {
         const message = req.body.message;
         console.log(message);
@@ -21,8 +21,8 @@ router.post('/message', async (req, res) => {
         res.json({ response:{receivedMessage: message, serverResponse: serverResponse} });
 
     } catch (error) {
-        console.error('Error processing message:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        console.error("Error processing message:", error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
 

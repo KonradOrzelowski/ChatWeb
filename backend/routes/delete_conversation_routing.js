@@ -1,10 +1,10 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const { getConfig } = require('../get_config');
-const { MongoClient, ObjectId } = require('mongodb');
+const { getConfig } = require("../get_config");
+const { MongoClient, ObjectId } = require("mongodb");
 
-router.post('/delete_alert', async (req, res) => {
+router.post("/delete_alert", async (req, res) => {
     const config = getConfig();
 
     const mongoUrl = config.url;
@@ -16,18 +16,18 @@ router.post('/delete_alert', async (req, res) => {
 
     try{
         
-        const collection = await client.db('ChatWebDB').collection('conversations');
+        const collection = await client.db("ChatWebDB").collection("conversations");
         const querry_result = await collection.deleteOne({ _id: new ObjectId(message) });
 
-        console.log(querry_result)
+        console.log(querry_result);
 
         res.json({ response: true });
     }catch (error){
-        console.error('Error processing message:', error);
+        console.error("Error processing message:", error);
         
         res.json({ response: false });
     }finally{
-        await client.close()
+        await client.close();
     }   
 });
 
