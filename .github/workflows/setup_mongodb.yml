@@ -1,0 +1,41 @@
+name: Setup MongoDB
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  setup-mongodb:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v1
+
+      - name: Start MongoDB container
+        run: docker run --name my-mongodb -p 27017:27017 -d mongo:latest
+
+      - name: Wait for MongoDB to start
+        run: docker exec my-mongodb mongo --eval "printjson(db.serverStatus())" > /dev/null
+        timeout-minutes: 2
+
+      - name: Create 'ChatWebDB' database and 'conversations' collection
+        run: |
+          docker exec my-mongodb mongo --eval "db.getSiblingDB('ChatWebDB').createCollection('conversations')"
+        timeout-minutes: 5
+  add-data-to-mongodb:
+    needs: setup-mongodb
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v1
+
+      - name: Import conversation data
+        run: |
+          docker exec -i my-mongodb mongoimport --uri mongodb://127.0.0.1:27017/ChatWebDB --collection conversations --type json --file backend/conversations.json --jsonArray
