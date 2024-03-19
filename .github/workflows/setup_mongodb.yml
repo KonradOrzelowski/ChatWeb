@@ -18,10 +18,6 @@ jobs:
       - name: Start MongoDB container
         run: docker run --name my-mongodb -p 27017:27017 -d mongo:latest
 
-      - name: Wait for MongoDB to start
-        run: docker exec my-mongodb mongo --eval "printjson(db.serverStatus())" > /dev/null
-        timeout-minutes: 2
-
       - name: Create 'ChatWebDB' database and 'conversations' collection
         run: |
           docker exec my-mongodb mongo --eval "db.getSiblingDB('ChatWebDB').createCollection('conversations')"
