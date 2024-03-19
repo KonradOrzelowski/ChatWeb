@@ -18,7 +18,7 @@ router.post('/message', async (req, res) => {
         ConfigurationModule.pushCurrentMgs({"speaker": "You", "message": message});
         ConfigurationModule.pushCurrentMgs({"speaker": "Bot", "message": serverResponse});
 
-        res.json({ receivedMessage: message, serverResponse: serverResponse });
+        res.json({ response:{receivedMessage: message, serverResponse: serverResponse} });
 
     } catch (error) {
         console.error('Error processing message:', error);

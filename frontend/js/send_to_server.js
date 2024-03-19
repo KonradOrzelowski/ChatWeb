@@ -49,7 +49,7 @@ const sendToServer = async (msg) => {
     let data = { message: msg };
     const response = await postData('http://localhost:3000/message', data)
     
-    const text = await response.json();
+    const text = await response.response.json();
     const serverResponse = text.serverResponse;
 
 

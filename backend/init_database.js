@@ -72,42 +72,42 @@ async function insert_collection_into_db(client, dir, collection) {
 const { readFileSync } = require('fs');
 
 async function main(){
-  const rawConfig = readFileSync('config.json');
-  const config = JSON.parse(rawConfig);
+    const rawConfig = readFileSync('config.json');
+    const config = JSON.parse(rawConfig);
 
-  const url = config.url;
+    const url = config.url;
+    console.log(url)
+    const reuslt = await checkDatabases(url);
+    if (!reuslt) {
+        console.log("Database is not connected");
+        return false;
+    }
 
-  const reuslt = await checkDatabases(url);
-  if (!reuslt) {
-      console.log("Database is not connected");
-      return false;
-  }
+    const client = new MongoClient(url);
+    await client.connect();
 
-  const client = new MongoClient(url);
-  await client.connect();
+    var name_db = 'ChatWebDB'
+    var db_exist = false;
 
-  var name_db = 'ChatWebDB'
-  var db_exist = false;
-
-  const list_of_databases = await client.db('admin').admin().listDatabases();
-  list_of_databases.databases.forEach(
-      db => {
-          if(db.name == name_db) db_exist = true;
-      }
-  );
-  if (!db_exist) {
+    const list_of_databases = await client.db('admin').admin().listDatabases();
+    list_of_databases.databases.forEach(
+        db => {
+            if(db.name == name_db) db_exist = true;
+        }
+    );
+    if (!db_exist) {
     client.db('ChatWebDB').createCollection("conversations");
-  }
+    }
 
-  const conversations = await client.db('ChatWebDB').collection('conversations');
-  const array_of_convs = await conversations.find({}).toArray();
-  const len_convs = array_of_convs.length;
-  console.log(`There are ${len_convs} collection in database`);
+    const conversations = await client.db('ChatWebDB').collection('conversations');
+    const array_of_convs = await conversations.find({}).toArray();
+    const len_convs = array_of_convs.length;
+    console.log(`There are ${len_convs} collection in database`);
 
-  if ( len_convs == 0) {
-      await insert_collection_into_db(client, 'conversations', 'conversations');  
-  }
-  await client.close()
+    if ( len_convs == 0) {
+        await insert_collection_into_db(client, 'conversations', 'conversations');  
+    }
+    await client.close()
 }
 
 main()
