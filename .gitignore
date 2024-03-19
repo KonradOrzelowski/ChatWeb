@@ -3,6 +3,6 @@ backend/package-lock.json
 
 backend/docker-mongodb/*
 backend/node_modules/*
-backend/conversations/*
+
 
 *.zip
