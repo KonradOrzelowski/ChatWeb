@@ -64,7 +64,7 @@ async function insert_collection_into_db(client, dir, collection) {
     const list_of_convs = get_list_of_files(dir);
 
     await client.db("ChatWebDB").collection(collection)
-        .insertMany(list_of_convs, function(err) {
+        .insertMany(list_of_convs, function() {
         });
 }
 

@@ -25,3 +25,8 @@ jobs:
         run: |
           cd backend  
           npm install
+
+      - name: Lint with ESLint
+        run: |
+          cd backend
+          npx eslint .
