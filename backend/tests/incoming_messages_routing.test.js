@@ -1,5 +1,5 @@
+/* eslint-disable no-undef */
 const request = require("supertest");
-const { describe, it, expect } = require("mocha");
 
 describe("POST /message", () => {
     it("responds with a string response", async () => {

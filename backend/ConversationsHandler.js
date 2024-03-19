@@ -29,7 +29,7 @@ async function get_all_from_collection(db_name, collection_name){
 
 function get_list_of_titles(list_of_convs){
     var list_of_titles = [];
-    for (var [_, value] of Object.entries(list_of_convs)) {
+    for (var [, value] of Object.entries(list_of_convs)) {
     
         list_of_titles.push({"title": value.title, "_id": value._id});
 
