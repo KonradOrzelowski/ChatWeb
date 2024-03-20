@@ -72,8 +72,6 @@ async function insert_collection_into_db(client, dir, collection) {
 const { readFileSync } = require("fs");
 
 async function main(){
-    const rawConfig = readFileSync("config.json");
-    const config = JSON.parse(rawConfig);
 
     const url = "mongodb://127.0.0.1:27017";
     console.log(url);
