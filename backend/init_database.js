@@ -75,7 +75,7 @@ async function main(){
     const rawConfig = readFileSync("config.json");
     const config = JSON.parse(rawConfig);
 
-    const url = config.url;
+    const url = "mongodb://127.0.0.1:27017";
     console.log(url);
     const reuslt = await checkDatabases(url);
     if (!reuslt) {

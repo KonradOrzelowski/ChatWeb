@@ -19,5 +19,7 @@ jobs:
     - name: Start MongoDB Docker container
       run: docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:latest
 
-    - name: Wait for MongoDB to start
-      run: docker exec mongodb bash -c 'while ! nc -z localhost 27017; do sleep 1; done'
+    - name: Init database
+      run: |
+        cd backend
+        node init_database.js
