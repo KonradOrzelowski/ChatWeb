@@ -1,0 +1,23 @@
+name: Initialize MongoDB Docker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  initialize-mongodb:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Start MongoDB Docker container
+      run: docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:latest
+
+    - name: Wait for MongoDB to start
+      run: docker exec mongodb bash -c 'while ! nc -z localhost 27017; do sleep 1; done'
