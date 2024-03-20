@@ -19,28 +19,40 @@ jobs:
     - name: Start MongoDB Docker container
       run: docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:latest
 
+    - name: Wait for MongoDB to initialize
+      run: sleep 15s  # Adjust as needed depending on MongoDB startup time
+
     - name: Init database
       run: |
         cd backend
-        npm install -cl
+        npm install
         node init_database.js
-        
+
   init-server:
     name: Initialize Server
     runs-on: ubuntu-latest
     needs: initialize-mongodb
+
     steps:
-      - name: Init server
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Start server
         run: |
           cd backend
+          npm install
           node server.js
-          
-          
-   test-responses:
-   needs: init-server
+
+  test-responses:
+    name: Test Responses
+    needs: init-server
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Init server
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run tests
         run: |
           cd backend
           npm test
-
