@@ -22,4 +22,5 @@ jobs:
     - name: Init database
       run: |
         cd backend
+        npm install .
         node init_database.js
