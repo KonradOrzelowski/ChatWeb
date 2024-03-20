@@ -22,5 +22,25 @@ jobs:
     - name: Init database
       run: |
         cd backend
-        npm install .
+        npm install -cl
         node init_database.js
+        
+  init-server:
+    name: Initialize Server
+    runs-on: ubuntu-latest
+    needs: initialize-mongodb
+    steps:
+      - name: Init server
+        run: |
+          cd backend
+          node server.js
+          
+          
+   test-responses:
+   needs: init-server
+    steps:
+      - name: Init server
+        run: |
+          cd backend
+          npm test
+
