@@ -20,13 +20,24 @@ jobs:
       run: docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:latest
 
     - name: Wait for MongoDB to initialize
-      run: sleep 15s  # Adjust as needed depending on MongoDB startup time
+      run: sleep 15s
 
     - name: Init database
       run: |
         cd backend
         npm install
         node init_database.js
+
+  generate-config:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Generate JSON Config
+        run: |
+          cd backend
+          echo '{"url": "mongodb://127.0.0.1:27017"}' > config.json
 
   init-server:
     name: Initialize Server
