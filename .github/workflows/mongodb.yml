@@ -9,9 +9,20 @@ on:
       - main
 
 jobs:
+  generate-config:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Generate JSON Config
+        run: |
+          cd backend
+          echo '{"url": "mongodb://127.0.0.1:27017"}' > config.json
+
   initialize-mongodb:
     runs-on: ubuntu-latest
-
+    needs: generate-config
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -28,16 +39,6 @@ jobs:
         npm install
         node init_database.js
 
-  generate-config:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Generate JSON Config
-        run: |
-          cd backend
-          echo '{"url": "mongodb://127.0.0.1:27017"}' > config.json
 
   init-server:
     name: Initialize Server
