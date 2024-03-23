@@ -15,10 +15,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Debug directory contents
+        run: |
+          ls -l
+          ls -l backend
+
       - name: Generate JSON Config
         run: |
           cd backend
           echo '{"url": "mongodb://127.0.0.1:27017"}' > config.json
+
+      - name: Debug after generating config.json
+        run: |
+          ls -l
+          ls -l backend
 
   initialize-mongodb:
     runs-on: ubuntu-latest
