@@ -1,4 +1,4 @@
-const getConfig = require("./get_config");
+const { getConfig } = require("./get_config");
 
 const config = getConfig();
 const url = config.url;
