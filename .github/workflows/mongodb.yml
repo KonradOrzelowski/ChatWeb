@@ -33,6 +33,9 @@ jobs:
     needs: generate-config
 
     steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
+
         - name: Start MongoDB Docker container
           run: docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:latest
 
@@ -44,9 +47,6 @@ jobs:
             cd backend
             npm install
             node init_database.js
-
-        - name: Checkout repository
-          uses: actions/checkout@v2
 
         - name: Download config.json
           uses: actions/download-artifact@v2
