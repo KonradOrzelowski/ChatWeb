@@ -28,28 +28,34 @@ jobs:
         npm install
         node init_database.js
 
-  init-server:
-    name: Initialize Server
+  generate-config:
     runs-on: ubuntu-latest
-
+    needs: initialize-mongodb
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Debug directory contents
+        run: |
+          ls -l
+          ls -l backend
+
       - name: Generate JSON Config
         run: |
           cd backend
           echo '{"url": "mongodb://127.0.0.1:27017"}' > config.json
 
-      - name: Upload config.json
-        uses: actions/upload-artifact@v2
-        with:
-          name: config
-          path: backend/config.json
+      - name: Debug after generating config.json
+        run: |
+          ls -l
+          ls -l backend
 
-      - name: Download config.json
-        uses: actions/download-artifact@v2
-        with:
-          name: config
-          path: backend
-          
+  init-server:
+    name: Initialize Server
+    runs-on: ubuntu-latest
+    needs: generate-config
+
+    steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
