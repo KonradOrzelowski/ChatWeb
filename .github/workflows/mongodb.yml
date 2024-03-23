@@ -60,7 +60,7 @@ jobs:
         with:
           name: config
           path: backend
-          
+
       - name: Start server
         run: |
           cd backend
@@ -79,4 +79,5 @@ jobs:
       - name: Run tests
         run: |
           cd backend
+          npm install --save-dev jest
           npm test
