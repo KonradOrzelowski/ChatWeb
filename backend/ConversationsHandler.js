@@ -1,8 +1,6 @@
-const fs = require("fs");
+const getConfig = require("../get_config");
 
-const rawConfig = fs.readFileSync("config.json");
-const config = JSON.parse(rawConfig);
-
+const config = getConfig();
 const url = config.url;
 
 const { MongoClient } = require("mongodb");
