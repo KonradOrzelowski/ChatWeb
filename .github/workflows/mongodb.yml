@@ -72,3 +72,7 @@ jobs:
           cd backend
           npm install --save-dev jest supertest
           npm test
+
+      - name: Stop server
+        run: |
+          pkill -f "node server.js"

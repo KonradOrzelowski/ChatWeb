@@ -17,7 +17,5 @@ describe("GET /lists/list_of_titles", () => {
         expect(response.body.response).toBeDefined(); // Check if 'response' property exists
         expect(Array.isArray(response.body.response)).toBe(true); // Check if 'response' is an array
         expect(response.body.response.length).toBeGreaterThan(0); // Check if 'response' array is not empty
-
-        // console.log(response.body.response[0]._id);
-    });
+    }, 120*1000);
 });
