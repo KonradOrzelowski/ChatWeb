@@ -47,10 +47,10 @@ const sendToServer = async (msg) => {
     document.querySelector(".conversation").appendChild(divConv);
 
     let data = { message: msg };
-    const response = await postData('http://localhost:3000/message', data)
-    
-    const text = await response.response.json();
-    const serverResponse = text.serverResponse;
+    const postResponse = await postData('http://localhost:3000/message', data)
+    const text = await postResponse.json();
+    console.log(text.response.serverResponse);
+    const serverResponse = text.response.serverResponse;
 
 
 

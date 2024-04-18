@@ -2,7 +2,7 @@ const express = require("express");
 const { MongoClient } = require("mongodb");
 
 const ConfigurationModule = require("../state_manager/messages_managaer");
-const getConfig = require("../get_config");
+const { getConfig } = require("../get_config");
 
 const router = express.Router();
 
