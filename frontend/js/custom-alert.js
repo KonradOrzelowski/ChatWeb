@@ -34,8 +34,8 @@ function showEditAlert(itemID, itemTitle) {
     customAlertWrapper.classList.add('custom-alert-wrapper-edit');
 
     customAlertWrapper.appendChild(customAlert)
-    contentDocument.appendChild(customAlertWrapper);
 
+    document.body.appendChild(customAlertWrapper);
 }
 
 

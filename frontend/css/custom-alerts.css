@@ -1,5 +1,12 @@
 #custom-alert-wrapper{
-    position: absolute;
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+    width: 25vw;
+
+    z-index: 9999;
+    transform: translate(-50%, -50%);
     color: var(--text-color);
     
     
@@ -95,17 +102,19 @@
 
 /**************************************************************/
 .custom-alert-wrapper-edit{
+
+/* 
     width: 25vw;
 
-    top: 10%;
-    left: 50%;
+    z-index: 9999; */
 }
 
 .custom-alert-wrapper-delete{
+    /* position: fixed;
     width: 25vw;
-
-    top: 40%;
+    top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%); */
 }
 
 
