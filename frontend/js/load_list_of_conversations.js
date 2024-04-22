@@ -36,18 +36,32 @@ function addDeleteIconListener(deleteIcon, currentValue) {
     });
 }
 
+/**
+ * Adds a click event listener to the specified list item (li) element.
+ * This listener fetches conversation data from the server and populates the conversation area.
+ * @param {HTMLElement} li - The list item element to which the click listener will be added.
+ * @param {Object} currentValue - The current value associated with the list item, typically containing an '_id' property.
+ */
 function addLiClickListener(li, currentValue) {
     li.addEventListener("click", async (event) => {
+
+        // Fetch conversation data from the server
+        let conversation = await fetchData(`http://localhost:3000/conversations/${currentValue._id}`);
+
+        // Clear existing conversation content
         clear_conversation();
         
-        let conversation = await fetchData(`http://localhost:3000/conversations/${currentValue._id}`);
+        // Extract conversation from response
         conversation = conversation.response;
-        for(item of conversation.conversation){
-            add_div_to_conversation(item.speaker, item.message, 0)
+
+        // Populate conversation area with fetched data
+        for (item of conversation.conversation) {
+            add_div_to_conversation(item.speaker, item.message, 0);
         }
 
     });
 }
+
 
 function clearConversationTitle(className, childSave){
     const parent = document.getElementsByClassName(className)[0];
