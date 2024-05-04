@@ -9,11 +9,14 @@ services:
 
   chat_web_database:
     image: mongodb/mongodb-community-server:latest
+    container_name: chat_web_database_container
+    networks:
+      my_network:
+        ipv4_address: 172.19.0.10
     ports:
       - "27017:27017"
     volumes:
       - /database/mongod.conf:/etc/mongod.conf
-    container_name: chat_web_database_container
     restart: unless-stopped
 
   chat_web_frontend:
@@ -21,3 +24,10 @@ services:
     ports:
       - "8080:80"
     container_name: chat_web_frontend_container
+
+networks:
+  my_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.19.0.0/16
