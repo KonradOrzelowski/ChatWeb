@@ -5,13 +5,10 @@ FROM node:20
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
-COPY backend/package*.json ./
+COPY . .
 
 # Install the application dependencies
 RUN npm install
-
-# Copy the rest of the application code to the working directory
-COPY backend/ ./
 
 # Expose port 3000 for the application
 EXPOSE 3000

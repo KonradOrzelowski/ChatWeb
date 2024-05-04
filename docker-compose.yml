@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  chat_web_backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    container_name: chat_web_backend_container
+
+  chat_web_database:
+    image: mongodb/mongodb-community-server:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - /database/mongod.conf:/etc/mongod.conf
+    container_name: chat_web_database_container
+    restart: unless-stopped
+
+  chat_web_frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    container_name: chat_web_frontend_container
