@@ -1,33 +1,22 @@
 version: '3'
-
 services:
   chat_web_backend:
     build: ./backend
     ports:
       - "3000:3000"
     container_name: chat_web_backend_container
-
+    environment:
+      - DATABASE_URL=mongodb://chat_web_database_container:27017
   chat_web_database:
     image: mongodb/mongodb-community-server:latest
     container_name: chat_web_database_container
-    networks:
-      my_network:
-        ipv4_address: 172.19.0.10
     ports:
       - "27017:27017"
     volumes:
       - /database/mongod.conf:/etc/mongod.conf
     restart: unless-stopped
-
   chat_web_frontend:
     build: ./frontend
     ports:
       - "8080:80"
     container_name: chat_web_frontend_container
-
-networks:
-  my_network:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.19.0.0/16

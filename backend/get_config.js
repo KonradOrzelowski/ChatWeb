@@ -8,7 +8,12 @@ function getConfig(){
 
     const rawConfig = readFileSync(configPath);
 
-    const config = JSON.parse(rawConfig);
+    let config = JSON.parse(rawConfig);
+
+    // Override the url property with the DATABASE_URL environment variable if it's available
+    if (process.env.DATABASE_URL) {
+        config.url = process.env.DATABASE_URL;
+    }
 
     return config;
 }
