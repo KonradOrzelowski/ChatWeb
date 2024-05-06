@@ -1,19 +1,22 @@
 version: '3'
 services:
+  chat_web_database:
+    image: mongodb/mongodb-community-server:latest
+    container_name: chat_web_database_container
+    ports:
+      - "7017:27017"
+    volumes:
+      - /database/mongod.conf:/etc/mongod.conf
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=pass
   chat_web_backend:
     build: ./backend
     ports:
       - "3000:3000"
     container_name: chat_web_backend_container
-    environment:
-      - DATABASE_URL=mongodb://chat_web_database_container:27017
-  chat_web_database:
-    image: mongodb/mongodb-community-server:latest
-    container_name: chat_web_database_container
-    ports:
-      - "27017:27017"
-    volumes:
-      - /database/mongod.conf:/etc/mongod.conf
+    depends_on:
+      - chat_web_database
     restart: unless-stopped
   chat_web_frontend:
     build: ./frontend
