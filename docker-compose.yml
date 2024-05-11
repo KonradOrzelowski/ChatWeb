@@ -7,6 +7,7 @@ services:
       - "7017:27017"
     volumes:
       - /database/mongod.conf:/etc/mongod.conf
+      - ./database/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     environment:
       - MONGO_INITDB_ROOT_USERNAME=user
       - MONGO_INITDB_ROOT_PASSWORD=pass
