@@ -19,8 +19,12 @@ services:
     depends_on:
       - chat_web_database
     restart: unless-stopped
+    volumes:
+      - ./backend:/app
   chat_web_frontend:
     build: ./frontend
     ports:
       - "8080:80"
     container_name: chat_web_frontend_container
+    volumes:
+      - ./frontend:/usr/share/nginx/html
