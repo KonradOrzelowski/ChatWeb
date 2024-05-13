@@ -1,6 +1,6 @@
 function deletePost(itemID){
-
-    const uurl = 'http://localhost:3000/delete_alert';
+    const HOST_NAME = process.env.HOST_NAME;
+    const uurl = `http://${HOST_NAME}:3000/delete_alert`;
     const data = { message: itemID };
 
     fetch(uurl, {

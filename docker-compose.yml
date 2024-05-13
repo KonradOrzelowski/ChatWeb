@@ -32,5 +32,3 @@ services:
       - ./frontend:/usr/share/nginx/html
     environment:
       - HOST_NAME=${HOST_NAME}
-
-    

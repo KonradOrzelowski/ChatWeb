@@ -4,7 +4,8 @@ const request = require("supertest");
 describe("POST /message", () => {
     it("responds with a string response", async () => {
         const message = "Hello";
-        const response = await request("http://localhost:3000").post("/message").send({ message });
+        const HOST_NAME = process.env.HOST_NAME; // Load HOST_NAME from environment
+        const response = await request(`http://${HOST_NAME}:3000`).post("/message").send({ message });
         const body_responce = response.body.response;
 
         expect(response.status).toBe(200);
@@ -12,4 +13,3 @@ describe("POST /message", () => {
         expect(typeof body_responce.serverResponse).toBe("string");
     }, 120*1000);
 });
-
