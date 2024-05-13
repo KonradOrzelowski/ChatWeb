@@ -8,7 +8,7 @@ function getConfig(){
 
     const rawConfig = readFileSync(configPath);
 
-    const config = JSON.parse(rawConfig);
+    let config = JSON.parse(rawConfig);
 
     return config;
 }

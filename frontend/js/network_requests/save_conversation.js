@@ -1,7 +1,7 @@
 function saveConversation() {
 
-
-    const url = 'http://localhost:3000/save_conversation';
+    const HOST_NAME = process.env.HOST_NAME;
+    const url = `http://${HOST_NAME}:3000/save_conversation`;
     const data = { saveConversation: true };
 
     console.log(data)

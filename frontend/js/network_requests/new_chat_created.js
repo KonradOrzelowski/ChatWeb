@@ -1,5 +1,6 @@
 function sendNewChatSignal() {
-    const url = 'http://localhost:3000/refresh';
+    const HOST_NAME = process.env.HOST_NAME;
+    const url = `http://${HOST_NAME}:3000/refresh`;
     const data = { chatCreated: true };
 
     fetch(url, {
