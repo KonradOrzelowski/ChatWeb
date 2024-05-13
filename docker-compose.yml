@@ -21,6 +21,8 @@ services:
     restart: unless-stopped
     volumes:
       - ./backend:/app
+    environment:
+      - HOST_NAME=${HOST_NAME}
   chat_web_frontend:
     build: ./frontend
     ports:
@@ -28,3 +30,7 @@ services:
     container_name: chat_web_frontend_container
     volumes:
       - ./frontend:/usr/share/nginx/html
+    environment:
+      - HOST_NAME=${HOST_NAME}
+
+    
