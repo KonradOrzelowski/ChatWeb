@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const { getConfig } = require("../get_config");
+
 const { MongoClient, ObjectId } = require("mongodb");
 
 router.post("/delete_alert", async (req, res) => {
     const config = getConfig();
 
-    const mongoUrl = config.url;
+    const mongoUrl = process.env.MONGODB_URL
     const message = req.body.message;
 
     const client = new MongoClient(mongoUrl);

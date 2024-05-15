@@ -2,15 +2,13 @@ const express = require("express");
 const { MongoClient } = require("mongodb");
 
 const ConfigurationModule = require("../state_manager/messages_managaer");
-const { getConfig } = require("../get_config");
+
 
 const router = express.Router();
 
 router.post("/save_conversation", async (req, res) => {
 
-    // Read configuration file
-    const config = getConfig();
-    const mongoUrl = config.url;
+    const mongoUrl = process.env.MONGODB_URL;
 
     // Get current messages
     const currentMgs = ConfigurationModule.getCurrentMgs();

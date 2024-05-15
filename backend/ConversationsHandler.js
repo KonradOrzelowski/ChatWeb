@@ -1,12 +1,7 @@
-const { getConfig } = require("./get_config");
-
-const config = getConfig();
-const url = config.url;
-
 const { MongoClient } = require("mongodb");
 
 async function get_all_from_collection(db_name, collection_name){
-    const client = new MongoClient(url);
+    const client = new MongoClient(process.env.MONGODB_URL);
     await client.connect();
     const conversations = await client.db(db_name).collection(collection_name);
     const array_of_convs = await conversations.find({}).toArray();
@@ -21,7 +16,6 @@ async function get_all_from_collection(db_name, collection_name){
     });
 
     return(dict_of_convs);
-
     
 }
 
@@ -35,6 +29,5 @@ function get_list_of_titles(list_of_convs){
     return list_of_titles;
 }
 
-module.exports.url = url;
 module.exports.get_all_from_collection = get_all_from_collection;
 module.exports.get_list_of_titles = get_list_of_titles;

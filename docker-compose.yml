@@ -23,6 +23,7 @@ services:
     volumes:
       - ./backend:/app
     environment:
+      - MONGODB_URL="mongodb://user:pass@chat_web_database_container:27017"
       - HOST_NAME=${HOST_NAME}
   chat_web_frontend:
     build: ./frontend
