@@ -37,6 +37,8 @@ router.post("/save_conversation", async (req, res) => {
         console.log(`A document was inserted with the _id: ${result.insertedId}`);
 
         res.json({ response: true });
+
+        ConfigurationModule.setCurrentMgs([]);
     } catch (error) {
 
         console.error("Error:", error);
