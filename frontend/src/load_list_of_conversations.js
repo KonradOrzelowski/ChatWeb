@@ -1,3 +1,5 @@
+import { fetchData } from './network_requests/fetch_data.js';
+
 function createTitleItem(currentValue){
     let titleItem = document.createElement("li");
     titleItem.innerHTML = `
@@ -90,3 +92,4 @@ async function loadConversationTitles(){
     
 
 }
+module.exports = {loadConversationTitles}
