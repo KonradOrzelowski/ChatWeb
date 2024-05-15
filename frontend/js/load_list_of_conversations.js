@@ -78,7 +78,6 @@ function clearConversationTitle(className, childSave){
 
 async function loadConversationTitles(){
     clearConversationTitle("list-of-conversations", "new-chat");
-    const HOST_NAME = process.env.HOST_NAME;
     const conversationTitles = await fetchData(`http://${HOST_NAME}:3000/lists/list_of_titles`);
     // Remove all items from the list
     

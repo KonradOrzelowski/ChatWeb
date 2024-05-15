@@ -28,6 +28,8 @@ async function main(){
         res.status(200).send("Server is running");
     });
     
+    console.log(`${process.env.HOST_NAME} is the host name`);
+
     const port = 3000;
     app.listen(port, () => {
         console.log(`Server is running on port ${port}`);
