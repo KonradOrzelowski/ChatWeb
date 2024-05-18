@@ -10,3 +10,4 @@ backend/node_modules/*
 *.zip
 *.bak
 backend/test_db.js
+backend/temp.js
