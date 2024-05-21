@@ -8,6 +8,7 @@ services:
     volumes:
       - /database/mongod.conf:/etc/mongod.conf
       - ./database/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - mongo-data:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=user
       - MONGO_INITDB_ROOT_PASSWORD=pass
@@ -18,7 +19,6 @@ services:
     container_name: chat_web_backend_container
     depends_on:
       - chat_web_database
-    restart: unless-stopped
     volumes:
       - ./backend:/app
     environment:
@@ -45,3 +45,5 @@ services:
       - ME_CONFIG_MONGODB_SERVER=chat_web_database
     depends_on:
       - chat_web_database
+volumes:
+  mongo-data:
