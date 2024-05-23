@@ -2,33 +2,32 @@ const express = require("express");
 const { MongoClient } = require("mongodb");
 
 const ConfigurationModule = require("../state_manager/messages_managaer");
-const { getConfig } = require("../get_config");
+
 
 const router = express.Router();
 
 router.post("/save_conversation", async (req, res) => {
 
-    // Read configuration file
-    const config = getConfig();
-    const mongoUrl = config.url;
+    const mongoUrl = process.env.MONGODB_URL;
 
-    // Get current messages
+    
     const currentMgs = ConfigurationModule.getCurrentMgs();
-    const title = currentMgs[0].message;
-    const conversation = currentMgs;
-
-    if(currentMgs.length <= 1){
+    
+    try{
+        currentMgs[0].message;
+    }catch(e){
+        console.log("No messages to save");
         return;
     }
 
+    
+    const title = currentMgs[0].message;
+    const conversation = currentMgs;
+
     const client = new MongoClient(mongoUrl);
-    // Connect to MongoDB
     await client.connect();
     
     try {
-
-
-
         // Insert conversation into MongoDB
         const database = client.db("ChatWebDB");
         const collection = database.collection("conversations");
@@ -37,13 +36,15 @@ router.post("/save_conversation", async (req, res) => {
         console.log(`A document was inserted with the _id: ${result.insertedId}`);
 
         res.json({ response: true });
+
+        ConfigurationModule.setCurrentMgs([]);
     } catch (error) {
 
         console.error("Error:", error);
 
     } finally {
 
-        await client.close(); // Close MongoDB connection
+        await client.close();
 
     }
 });

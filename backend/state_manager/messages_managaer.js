@@ -8,7 +8,12 @@ function pushCurrentMgs(newValue) {
     current_mgs.push(newValue);
 }
 
+function setCurrentMgs(newValue) {
+    current_mgs = newValue;
+}
+
 module.exports = {
     getCurrentMgs,
+    setCurrentMgs,
     pushCurrentMgs,
 };

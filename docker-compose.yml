@@ -23,6 +23,7 @@ services:
       - ./backend:/app
     environment:
       - HOST_NAME=${HOST_NAME}
+      - MONGODB_URL=${MONGODB_URL}
   chat_web_frontend:
     build: ./frontend
     ports:
