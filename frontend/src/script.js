@@ -1,4 +1,4 @@
-import {loadConversationTitles } from './js/load_list_of_conversations.js';
+import {loadConversationTitles } from './load_list_of_conversations.js';
 
 document.getElementById('chat-input').addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
