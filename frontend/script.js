@@ -1,3 +1,5 @@
+import {loadConversationTitles } from './js/load_list_of_conversations.js';
+
 document.getElementById('chat-input').addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         add_div_to_conversation('You', event.target.value)
