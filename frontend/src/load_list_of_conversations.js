@@ -42,6 +42,7 @@ function addDeleteIconListener(deleteIcon, currentValue) {
  * @param {HTMLElement} li - The list item element to which the click listener will be added.
  * @param {Object} currentValue - The current value associated with the list item, typically containing an '_id' property.
  */
+import { clear_conversation } from './utils.js';
 function addLiClickListener(li, currentValue) {
     li.addEventListener("click", async (event) => {
 
@@ -74,6 +75,9 @@ function clearConversationTitle(className, childSave){
         }
       }
 }
+
+import { fetchData } from './network_requests/fetch_data.js';
+
 export const loadConversationTitles = async function() {
 
     clearConversationTitle("list-of-conversations", "new-chat");
