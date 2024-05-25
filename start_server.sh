@@ -10,4 +10,4 @@ else
 fi
 
 cd backend
-node server.js
+nodemon server.js

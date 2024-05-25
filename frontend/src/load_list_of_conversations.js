@@ -1,3 +1,4 @@
+import { fetchData } from './network_requests/fetch_data.js';
 function createTitleItem(currentValue){
     let titleItem = document.createElement("li");
     titleItem.innerHTML = `
@@ -42,8 +43,10 @@ function addDeleteIconListener(deleteIcon, currentValue) {
  * @param {HTMLElement} li - The list item element to which the click listener will be added.
  * @param {Object} currentValue - The current value associated with the list item, typically containing an '_id' property.
  */
+
 import { clear_conversation } from './utils.js';
 import { add_div_to_conversation } from './utils.js';
+
 function addLiClickListener(li, currentValue) {
     li.addEventListener("click", async (event) => {
 
@@ -57,6 +60,7 @@ function addLiClickListener(li, currentValue) {
         conversation = conversation.response;
 
         // Populate conversation area with fetched data
+
         for (let item of conversation.conversation) {
             add_div_to_conversation(item.speaker, item.message, 0);
         }
@@ -77,10 +81,10 @@ function clearConversationTitle(className, childSave){
       }
 }
 
+
 import { fetchData } from './network_requests/fetch_data.js';
 
 export const loadConversationTitles = async function() {
-
     clearConversationTitle("list-of-conversations", "new-chat");
     const conversationTitles = await fetchData(`http://${HOST_NAME}:3000/lists/list_of_titles`);
     // Remove all items from the list
@@ -92,6 +96,5 @@ export const loadConversationTitles = async function() {
         document.querySelector(".list-of-conversations").appendChild(titleItem);
         
     }
-    
-
 }
+

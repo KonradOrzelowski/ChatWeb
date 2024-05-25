@@ -1,5 +1,4 @@
 import { loadConversationTitles } from "../load_list_of_conversations";
-
 function deletePost(itemID){
 
     const uurl = `http://${HOST_NAME}:3000/delete_alert`;

@@ -1,10 +1,16 @@
 .env
 
 backend/config.json
-backend/package-lock.json
+
 
 backend/docker-mongodb/*
+
+
 backend/node_modules/*
+backend/package-lock.json
+
+frontend/node_modules/*
+frontend/package-lock.json
 
 frontend/package-lock.json
 frontend/node_modules/*
