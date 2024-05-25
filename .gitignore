@@ -12,7 +12,10 @@ backend/package-lock.json
 frontend/node_modules/*
 frontend/package-lock.json
 
+frontend/package-lock.json
+frontend/node_modules/*
 
 *.zip
 *.bak
 backend/test_db.js
+backend/temp.js

@@ -1,7 +1,7 @@
 /**
  * Clears the conversation by removing all child elements from the conversation container.
  */
-function clear_conversation(){
+export const clear_conversation = function(){
     var divs = document.getElementsByClassName("conversation");
 
     for (var i = divs.length - 1; i >= 0; i--) {
@@ -37,13 +37,12 @@ function type_text_to_div(element, text, time, counter) {
  * @param {string} text - The text content to be displayed in the div.
  * @param {number} [time=50] - Optional time delay in milliseconds for typing effect.
  */
-function add_div_to_conversation(speaker_class, text, time = 50) {
+export const add_div_to_conversation = function(speaker_class, text, time = 50){
     const div_conv = document.createElement("div");
 
+    var speaker_div = 'div_chatbot';
     if(speaker_class == 'You'){
         speaker_div = 'div_you'
-    }else{
-        speaker_div = 'div_chatbot'
     }
     
     div_conv.innerHTML = 
