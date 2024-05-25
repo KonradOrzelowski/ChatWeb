@@ -1,10 +1,13 @@
-async function fetchData(url) {
+
+export const fetchData = async function(url){
+
     const response = await fetch(url);
     const response_json = await response.json();
     return response_json
 }
 
-async function postData(url, data) {
+export const postData = async function(url, data){
+
     
     const response = await fetch(url, {
         method: 'POST',
@@ -14,5 +17,3 @@ async function postData(url, data) {
 
     return response
 }
-
-module.exports = { fetchData, postData };

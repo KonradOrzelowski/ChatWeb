@@ -10,8 +10,8 @@ services:
       - ./database/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       - mongo-data:/data/db
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=user
-      - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
   chat_web_backend:
     build: ./backend
     ports:
@@ -19,12 +19,11 @@ services:
     container_name: chat_web_backend_container
     depends_on:
       - chat_web_database
-    restart: unless-stopped
     volumes:
       - ./backend:/app
     environment:
-      - MONGODB_URL="mongodb://user:pass@chat_web_database_container:27017"
       - HOST_NAME=${HOST_NAME}
+      - MONGODB_URL=${MONGODB_URL}
   chat_web_frontend:
     build: ./frontend
     ports:
@@ -34,5 +33,18 @@ services:
       - ./frontend:/usr/share/nginx/html
     environment:
       - HOST_NAME=${HOST_NAME}
+  mongo_express:
+    image: mongo-express
+    container_name: mongo_express_container
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${ME_CONFIG_MONGODB_ADMINUSERNAME}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${ME_CONFIG_MONGODB_ADMINPASSWORD}
+      - ME_CONFIG_BASICAUTH_USERNAME=${ME_CONFIG_BASICAUTH_USERNAME}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${ME_CONFIG_BASICAUTH_PASSWORD}
+      - ME_CONFIG_MONGODB_SERVER=${ME_CONFIG_MONGODB_SERVER}
+    depends_on:
+      - chat_web_database
 volumes:
   mongo-data:

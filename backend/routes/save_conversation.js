@@ -10,23 +10,24 @@ router.post("/save_conversation", async (req, res) => {
 
     const mongoUrl = process.env.MONGODB_URL;
 
-    // Get current messages
+    
     const currentMgs = ConfigurationModule.getCurrentMgs();
-    const title = currentMgs[0].message;
-    const conversation = currentMgs;
-
-    if(currentMgs.length <= 1){
+    
+    try{
+        currentMgs[0].message;
+    }catch(e){
+        console.log("No messages to save");
         return;
     }
 
+    
+    const title = currentMgs[0].message;
+    const conversation = currentMgs;
+
     const client = new MongoClient(mongoUrl);
-    // Connect to MongoDB
     await client.connect();
     
     try {
-
-
-
         // Insert conversation into MongoDB
         const database = client.db("ChatWebDB");
         const collection = database.collection("conversations");
@@ -43,7 +44,7 @@ router.post("/save_conversation", async (req, res) => {
 
     } finally {
 
-        await client.close(); // Close MongoDB connection
+        await client.close();
 
     }
 });
