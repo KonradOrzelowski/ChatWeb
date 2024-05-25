@@ -80,10 +80,6 @@ function clearConversationTitle(className, childSave){
         }
       }
 }
-
-
-import { fetchData } from './network_requests/fetch_data.js';
-
 export const loadConversationTitles = async function() {
     clearConversationTitle("list-of-conversations", "new-chat");
     const conversationTitles = await fetchData(`http://${HOST_NAME}:3000/lists/list_of_titles`);

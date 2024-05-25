@@ -1,4 +1,4 @@
-function sendNewChatSignal() {
+export const sendNewChatSignal = function() {
     const url = `http://${HOST_NAME}:3000/refresh`;
     const data = { chatCreated: true };
 

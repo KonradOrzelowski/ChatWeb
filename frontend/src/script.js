@@ -13,7 +13,8 @@ document.getElementById('chat-input').addEventListener('keydown', (event) => {
 
     }
 });
-
+import {sendNewChatSignal} from './network_requests/new_chat_created.js';
+import {clear_conversation} from './utils.js';
 function add_click_to_new_chat() {
     var new_chat = document.getElementsByClassName("new-chat")[0];
 
