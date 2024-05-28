@@ -20,3 +20,5 @@ function saveConversation() {
     });
     
 }
+// Define the saveConversation function in the global scope
+window.saveConversation = saveConversation;
