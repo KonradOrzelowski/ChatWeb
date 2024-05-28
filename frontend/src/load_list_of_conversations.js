@@ -45,7 +45,7 @@ function addDeleteIconListener(deleteIcon, currentValue) {
  */
 
 import { clear_conversation } from './utils.js';
-import { add_div_to_conversation } from './utils.js';
+import { addDiv2Conversation } from './utils.js';
 
 function addLiClickListener(li, currentValue) {
     li.addEventListener("click", async (event) => {
@@ -62,7 +62,7 @@ function addLiClickListener(li, currentValue) {
         // Populate conversation area with fetched data
 
         for (let item of conversation.conversation) {
-            add_div_to_conversation(item.speaker, item.message, 0);
+            addDiv2Conversation(item.speaker, item.message, 0);
         }
 
     });

@@ -19,12 +19,12 @@ export const clear_conversation = function(){
  * @param {number} time - The delay between typing each character (in milliseconds).
  * @param {number} counter - The current index of the character being typed.
  */
-function type_text_to_div(element, text, time, counter) {
+export const typeTextToDiv = function(element, text, time, counter){
     if (counter < text.length) {
         element.innerHTML += text.charAt(counter);
         counter++;
         setTimeout(function () {
-            type_text_to_div(element, text, time, counter);
+            typeTextToDiv(element, text, time, counter);
         }, time);
         
     }
@@ -37,7 +37,7 @@ function type_text_to_div(element, text, time, counter) {
  * @param {string} text - The text content to be displayed in the div.
  * @param {number} [time=50] - Optional time delay in milliseconds for typing effect.
  */
-export const add_div_to_conversation = function(speaker_class, text, time = 50){
+export const addDiv2Conversation = function(speaker_class, text, time = 50){
     const div_conv = document.createElement("div");
 
     var speaker_div = 'div_chatbot';
@@ -67,7 +67,7 @@ export const add_div_to_conversation = function(speaker_class, text, time = 50){
     if(time == 0){
         lastElement_div_text.innerHTML = text;
     }else if(speaker_class == "ChatBot"){
-        type_text_to_div(lastElement_div_text, text, time, 0)
+        typeTextToDiv(lastElement_div_text, text, time, 0)
     }else{
         lastElement_div_text.innerHTML = text;
     }

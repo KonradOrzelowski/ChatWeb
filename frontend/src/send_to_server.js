@@ -39,11 +39,13 @@ function makeDivConv(speakerClass, speakerDiv){
 
     return div_conv;
 }
+import {postData} from './network_requests/fetch_data.js';
+import {typeTextToDiv} from './utils.js';
 
-const sendToServer = async (msg) => {
+export const sendToServer = async function(msg) {
     const intervalId = initIntervalId();
 
-    const divConv = makeDivConv(speakerClass = 'ChatBot', speakerDiv = 'div_chatbot')
+    const divConv = makeDivConv('ChatBot', 'div_chatbot')
     document.querySelector(".conversation").appendChild(divConv);
 
     let data = { message: msg };
@@ -64,6 +66,6 @@ const sendToServer = async (msg) => {
     var lastElement_div_text = lastElement.getElementsByClassName('div_text')[0];
     lastElement_div_text.innerHTML = '';
 
-    type_text_to_div(lastElement_div_text, serverResponse, 50, 0)
+    typeTextToDiv(lastElement_div_text, serverResponse, 50, 0)
 
 };
