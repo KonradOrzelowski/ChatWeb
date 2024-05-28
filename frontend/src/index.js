@@ -16,3 +16,5 @@ import './send_to_server.js';
 // Other scripts
 import './load_list_of_conversations.js';
 import './script.js';
+
+console.log('HOST_NAME: ', process.env.HOST_NAME);
