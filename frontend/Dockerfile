@@ -7,5 +7,11 @@ WORKDIR /usr/share/nginx/html
 # Copy all files and directories from your frontend directory to the container
 COPY . .
 
+# Install required packages for building the frontend code
+RUN apk update && \
+    apk add --no-cache nodejs npm && \
+    npm install && \
+    npm run build
+
 # Expose port 80 (nginx default)
 EXPOSE 80
