@@ -1,4 +1,5 @@
 export const sendNewChatSignal = function() {
+    const HOST_NAME = process.env.HOST_NAME;
     const url = `http://${HOST_NAME}:3000/refresh`;
     const data = { chatCreated: true };
 

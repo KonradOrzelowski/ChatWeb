@@ -1,5 +1,5 @@
 function updateConversationTitle(itemID, newTitle) {
-
+    const HOST_NAME = process.env.HOST_NAME;
     const url = `http://${HOST_NAME}:3000/update`;
     const data = { updateTitle: true, itemID: itemID, newTitle: newTitle };
     console.log(data);

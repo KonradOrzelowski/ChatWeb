@@ -1,4 +1,7 @@
 // index.js
+const HOST_NAME = process.env.HOST_NAME;
+console.log('HOST_NAME: ', HOST_NAME);
+
 
 // Network requests
 import './network_requests/new_chat_created.js';
@@ -17,4 +20,5 @@ import './send_to_server.js';
 import './load_list_of_conversations.js';
 import './script.js';
 
-console.log('HOST_NAME: ', process.env.HOST_NAME);
+
+

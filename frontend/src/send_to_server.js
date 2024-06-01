@@ -49,6 +49,9 @@ export const sendToServer = async function(msg) {
     document.querySelector(".conversation").appendChild(divConv);
 
     let data = { message: msg };
+
+    const HOST_NAME = process.env.HOST_NAME;
+
     const postResponse = await postData(`http://${HOST_NAME}:3000/message`, data);
     const text = await postResponse.json();
     console.log(text.response.serverResponse);
