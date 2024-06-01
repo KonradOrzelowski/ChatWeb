@@ -19,3 +19,4 @@ frontend/node_modules/*
 *.bak
 backend/test_db.js
 backend/temp.js
+frontend/dist/main.js
