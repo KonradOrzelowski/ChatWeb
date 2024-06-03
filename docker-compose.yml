@@ -12,6 +12,8 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    networks:
+      - chat_network
   chat_web_backend:
     build: ./backend
     ports:
@@ -24,6 +26,8 @@ services:
     environment:
       - HOST_NAME=${HOST_NAME}
       - MONGODB_URL=${MONGODB_URL}
+    networks:
+      - chat_network
   chat_web_frontend:
     build: ./frontend
     ports:
@@ -33,6 +37,8 @@ services:
       - ./frontend:/usr/share/nginx/html
     environment:
       - HOST_NAME=${HOST_NAME}
+    networks:
+      - chat_network
   mongo_express:
     image: mongo-express
     container_name: mongo_express_container
@@ -46,5 +52,10 @@ services:
       - ME_CONFIG_MONGODB_SERVER=${ME_CONFIG_MONGODB_SERVER}
     depends_on:
       - chat_web_database
+    networks:
+      - chat_network
 volumes:
   mongo-data:
+
+networks:
+  chat_network:

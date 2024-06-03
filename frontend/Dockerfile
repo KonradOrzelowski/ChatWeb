@@ -9,7 +9,7 @@ COPY . .
 
 # Install required packages for building the frontend code
 RUN apk update && \
-    apk add --no-cache nodejs npm && \
+    apk add --no-cache nodejs npm curl && \
     npm install && \
     npm run build
 
