@@ -23,8 +23,12 @@ app.use(saveConversation);
 app.use(updateConversation);
 app.use(refresh);
 
+var counter = 0;
+
 app.get("/", (req, res) => {
-  res.status(200).send("Server is running");
+    counter++;
+    console.log(`Server is running. Counter: ${counter}`);
+    res.status(200).send("Server is running");
 });
 
 const port = 3000;
@@ -32,5 +36,5 @@ const port = 3000;
 const server = http.createServer(app);
 
 server.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on port ${port}`);
 });
