@@ -13,5 +13,3 @@ RUN apk update && \
     npm install && \
     npm run build
 
-# Expose port 80 (nginx default)
-EXPOSE 80
