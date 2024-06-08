@@ -1,5 +1,5 @@
-# Use a lightweight image as a base
-FROM nginx:alpine AS build
+# Use a lightweight image as a base for building the frontend
+FROM node:alpine AS build
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -8,13 +8,14 @@ WORKDIR /app
 COPY . .
 
 # Install required packages for building the frontend code
-RUN apk update && \
-    apk add --no-cache nodejs npm && \
-    npm install && \
+RUN npm install && \
     npm run build
 
+# Use a lightweight image as a base for serving the frontend
 FROM nginx:alpine
 
+# Copy everything from the /app directory in the build stage to the NGINX web root directory
+COPY --from=build /app /usr/share/nginx/html
 
 # Expose the port
 EXPOSE 80
