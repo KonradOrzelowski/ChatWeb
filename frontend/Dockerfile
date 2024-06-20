@@ -20,5 +20,8 @@ COPY --from=build /app /usr/share/nginx/html
 # Expose the port
 EXPOSE 80
 
+# Echo the value of the variable 'HOST_NAME'
+RUN echo $HOST_NAME
+
 # Start NGINX server
 CMD ["nginx", "-g", "daemon off;"]
