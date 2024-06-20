@@ -2,7 +2,6 @@
 const HOST_NAME = process.env.HOST_NAME;
 console.log('HOST_NAME: ', HOST_NAME);
 
-
 // Network requests
 import './network_requests/new_chat_created.js';
 import './network_requests/fetch_data.js';
