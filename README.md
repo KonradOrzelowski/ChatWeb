@@ -1,6 +1,6 @@
 # ChatWeb
 
-ChatWeb is a simple chatbot application that uses the Hugging Face Inference API to generate responses to user inputs. The application consists of a MongoDB database, a backend built with Node.js and a frontend built with HTML and CSS.
+ChatWeb is a simple chatbot application that uses the Hugging Face Inference API to generate responses to user inputs. The application consists of a MongoDB database, the backend of the ChatWeb application is built with Node.js and Express.js and the frontend of the ChatWeb application is built with HTML, CSS, and JavaScript.
 
 ## Project Structure
 The project is divided into three main components: the database, the frontend, and the backend. Each component runs in its own Docker container. The project is ready for deployment on platforms like Railway and can also be set up using Docker Compose.
@@ -14,7 +14,7 @@ The directory contains files related to the MongoDB database setup.
 
 ### Backend
 
-The backend of the ChatWeb application is built with Node.js and Express.js. It handles requests from the frontend, interacts with database, interacts with the Hugging Face Inference API, and sends responses back to the frontend. Here are the relevant files and their descriptions:
+It handles requests from the frontend, interacts with database, interacts with the Hugging Face Inference API, and sends responses back to the frontend. Here are the relevant files and their descriptions:
 
 - [`server.js`]: This file sets up and starts the Express.js server.
 - [`ConversationsHandler.js`]: This file handles the retrieval and manipulation of conversation data from the MongoDB database.
@@ -28,7 +28,7 @@ The backend of the ChatWeb application is built with Node.js and Express.js. It 
 
 ### Frontend
 
-The frontend of the ChatWeb application is built with HTML, CSS, and JavaScript. It provides an interface for the user to interact with the chatbot. 
+It provides an interface for the user to interact with the chatbot. 
 - [`/css/`]: This directory contains CSS files that style the web page. It includes files like `constants.css`, `style.css`, `list-of-conversations.css`, `chat-input.css`, and `custom-alerts.css`.
 - [`/assets/`]: This directory contains static files like images and icons used in the application. It includes a subdirectory `/icons/` which contains icon files.
 - [`/src/`]:
