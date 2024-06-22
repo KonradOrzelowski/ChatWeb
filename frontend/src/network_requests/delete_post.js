@@ -1,5 +1,6 @@
 import { loadConversationTitles } from "../load_list_of_conversations";
-function deletePost(itemID){
+
+export const deletePost = function(itemID){ 
     const HOST_NAME = process.env.HOST_NAME;
     const uurl = `https://${HOST_NAME}/delete_alert`;
     const data = { message: itemID };

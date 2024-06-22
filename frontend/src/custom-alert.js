@@ -1,5 +1,5 @@
 import { updateConversationTitle } from './network_requests/update_conversation_title.js';
-
+import { deletePost } from './network_requests/delete_post.js';
 function getCustomAlertWrapper(){
     let customAlertWrapper = document.createElement('div');
     customAlertWrapper.id = 'custom-alert-wrapper';
