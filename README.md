@@ -9,6 +9,15 @@ The project is divided into two main parts: the frontend and the backend.
 ### Frontend
 
 The frontend of the ChatWeb application is built with HTML, CSS, and JavaScript. It provides an interface for the user to interact with the chatbot. 
+- [`/css/`]: This directory contains CSS files that style the web page. It includes files like `constants.css`, `style.css`, `list-of-conversations.css`, `chat-input.css`, and `custom-alerts.css`.
+- [`/assets/`]: This directory contains static files like images and icons used in the application. It includes a subdirectory `/icons/` which contains icon files.
+- ['/src/']:
+  - [`script.js`]: Handles the chat interface, including sending messages and viewing responses. It also sets up event listeners for the chat input and the 'New chat' button.
+  - [`index.js`]: Imports and initializes the network requests and utility functions used in the application.
+  - [`load_list_of_conversations.js`]: Responsible for loading the list of conversation titles.
+  - [`utils.js`]: Contains utility functions used across the application, such as `clear_conversation` and `addDiv2Conversation`.
+  - [`send_to_server.js`]: Handles sending user input to the server.
+  - [`custom-alert.js`]: Contains functions related to custom alerts in the application.
 
 - [`frontend/index.html`]: This is the main HTML file. It sets up the structure of the web page and includes links to the CSS and JavaScript files.
 - [`frontend/src/script.js`]: This JavaScript file handles the chat interface where the user can send messages and view the chatbot's responses. It also includes event listeners for the chat input and the 'New chat' button.
@@ -16,9 +25,8 @@ The frontend of the ChatWeb application is built with HTML, CSS, and JavaScript.
 
 
 
-- [`/css/`]: This directory contains CSS files that style the web page. It includes files like `constants.css`, `style.css`, `list-of-conversations.css`, `chat-input.css`, and `custom-alerts.css`.
-- [`/assets/`]: This directory contains static files like images and icons used in the application. It includes a subdirectory `/icons/` which contains icon files.
-- ['/dist/']
+
+
 ### Backend
 
 The backend of the ChatWeb application is built with Node.js and Express.js. It handles requests from the frontend, interacts with database, interacts with the Hugging Face Inference API, and sends responses back to the frontend. Here are the relevant files and their descriptions:
