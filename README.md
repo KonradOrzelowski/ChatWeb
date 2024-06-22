@@ -63,7 +63,7 @@ The frontend of the ChatWeb application is built with HTML, CSS, and JavaScript.
 
 ## Tests
 - [ ] Tests
-- [ ] 
+
 ## Test Proposals
 
 ### 1. `backend/main.js`
