@@ -5,9 +5,7 @@ function getCustomAlertWrapper(){
 }
 
 
-
-
-function showEditAlert(itemID, itemTitle) {
+export const showEditAlert = function(itemID, itemTitle){ 
 
     var contentDocument = document.getElementsByClassName("content")[0];
     let customAlert = document.createElement('div');
