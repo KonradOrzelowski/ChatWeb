@@ -1,4 +1,5 @@
-function closeWebsite(){
+export const closeWebsite = async function() {
+
     const HOST_NAME = process.env.HOST_NAME;
     const url = `https://${HOST_NAME}/is_closed`; // replace with your server's URL
     const data = { is_closed: true }; // replace with the data you want to send

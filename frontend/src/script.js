@@ -1,6 +1,7 @@
 import {loadConversationTitles } from './load_list_of_conversations.js';
 import {clear_conversation, addDiv2Conversation} from './utils.js';
 import {sendToServer} from './send_to_server.js';
+import {closeWebsite} from './network_requests/close_website.js';
 
 document.getElementById('chat-input').addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
