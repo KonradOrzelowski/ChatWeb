@@ -28,6 +28,15 @@ export const showEditAlert = function(itemID, itemTitle){
 
     </div>
     `
+
+
+    var customAlertWrapper = getCustomAlertWrapper()
+    customAlertWrapper.classList.add('custom-alert-wrapper-edit');
+
+    customAlertWrapper.appendChild(customAlert)
+
+    document.body.appendChild(customAlertWrapper);
+
     let cancelButton = customAlert.querySelector('#button-cancel');
     let updateButton = customAlert.querySelector('#button-accept');
 
@@ -39,13 +48,6 @@ export const showEditAlert = function(itemID, itemTitle){
         sendEditAlert(itemID, 'custom-alert-wrapper-edit');
     });
 
-
-    var customAlertWrapper = getCustomAlertWrapper()
-    customAlertWrapper.classList.add('custom-alert-wrapper-edit');
-
-    customAlertWrapper.appendChild(customAlert)
-
-    document.body.appendChild(customAlertWrapper);
 }
 
 export const showDeleteAlert = function(itemID, itemTitle){ 
