@@ -22,12 +22,24 @@ export const showEditAlert = function(itemID, itemTitle){
         </div>
         
         <div id = "custom-alert-bottom-bottom">
-            <button onclick="hideCustomAlert('custom-alert-wrapper-edit')">Cancel</button>
-            <button onclick="sendEditAlert('${itemID}', 'custom-alert-wrapper-edit')" id="button-accept">Update</button>
+            <button id="button-cancel">Cancel</button>
+            <button id="button-accept">Update</button>
         </div>
 
     </div>
     `
+    let cancelButton = customAlert.querySelector('#button-cancel');
+    let updateButton = customAlert.querySelector('#button-accept');
+
+    cancelButton.addEventListener('click', function() {
+        hideCustomAlert('custom-alert-wrapper-edit');
+    });
+
+    updateButton.addEventListener('click', function() {
+        sendEditAlert(itemID, 'custom-alert-wrapper-edit');
+    });
+
+
     var customAlertWrapper = getCustomAlertWrapper()
     customAlertWrapper.classList.add('custom-alert-wrapper-edit');
 
