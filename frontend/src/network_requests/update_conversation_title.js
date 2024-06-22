@@ -1,4 +1,5 @@
-function updateConversationTitle(itemID, newTitle) {
+export const updateConversationTitle = function(itemID, itemTitle){ 
+
     const HOST_NAME = process.env.HOST_NAME;
     const url = `https://${HOST_NAME}/update`;
     const data = { updateTitle: true, itemID: itemID, newTitle: newTitle };

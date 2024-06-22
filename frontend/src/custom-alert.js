@@ -1,3 +1,5 @@
+import { updateConversationTitle } from './network_requests/update_conversation_title.js';
+
 function getCustomAlertWrapper(){
     let customAlertWrapper = document.createElement('div');
     customAlertWrapper.id = 'custom-alert-wrapper';
