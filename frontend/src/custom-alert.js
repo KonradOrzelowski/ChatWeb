@@ -83,14 +83,14 @@ export const showDeleteAlert = function(itemID, itemTitle){
     contentDocument.appendChild(customAlertWrapper);
 
     let cancelButton = customAlert.querySelector('#button-cancel');
-    let updateButton = customAlert.querySelector('#button-accept');
+    let deleteButton = customAlert.querySelector('#button-delete');
 
     cancelButton.addEventListener('click', function() {
-        hideCustomAlert('custom-alert-wrapper-edit');
+        hideCustomAlert('custom-alert-wrapper-delete');
     });
 
-    updateButton.addEventListener('click', function() {
-        sendEditAlert(itemID, 'custom-alert-wrapper-edit');
+    deleteButton.addEventListener('click', function() {
+        sendDeleteAlert(itemID, 'custom-alert-wrapper-delete');
     });
 
     
@@ -116,9 +116,6 @@ function sendEditAlert(itemID, elementId){
     hideCustomAlert(elementId)
 
 }
-
-// showDeleteAlert(0, 'Style Delete Alert')
-// showEditAlert(0, 'Style Delete Alert')
 
 function sendDeleteAlert(itemID, elementId){
     
