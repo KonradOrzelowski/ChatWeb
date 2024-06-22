@@ -52,7 +52,7 @@ function addLiClickListener(li, currentValue) {
 
         // Fetch conversation data from the server
         const HOST_NAME = process.env.HOST_NAME;
-        let conversation = await fetchData(`https://${HOST_NAME}:3000/conversations/${currentValue._id}`);
+        let conversation = await fetchData(`https://${HOST_NAME}/conversations/${currentValue._id}`);
 
         // Clear existing conversation content
         clear_conversation();
