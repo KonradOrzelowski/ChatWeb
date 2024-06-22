@@ -1,10 +1,30 @@
 # ChatWeb
 
-ChatWeb is a simple chatbot application that uses the Hugging Face Inference API to generate responses to user inputs. The application consists of a frontend built with HTML and CSS, and a backend built with Node.js.
+ChatWeb is a simple chatbot application that uses the Hugging Face Inference API to generate responses to user inputs. The application consists of a frontend built with HTML and CSS, a backend built with Node.js and a MongoDB database.
 
 ## Project Structure
+The project is divided into three main components: the database, the frontend, and the backend. Each component runs in its own Docker container. The project is ready for deployment on platforms like Railway and can also be set up using Docker Compose.
 
-The project is divided into two main parts: the frontend and the backend.
+### Database
+
+The directory contains files related to the MongoDB database setup.
+
+- [`mongo-init.js`]: This file is likely used to initialize your MongoDB database with necessary collections and documents.
+- [`mongod.conf`]: This is a configuration file for MongoDB. It can contain settings like the port number, bind IP, and path to the data directory.
+
+### Backend
+
+The backend of the ChatWeb application is built with Node.js and Express.js. It handles requests from the frontend, interacts with database, interacts with the Hugging Face Inference API, and sends responses back to the frontend. Here are the relevant files and their descriptions:
+
+- [`server.js`]: This file sets up and starts the Express.js server.
+- [`ConversationsHandler.js`]: This file handles the retrieval and manipulation of conversation data from the MongoDB database.
+- [`generate_response_from_model.js`]: This file generates responses from a machine learning model.
+- [`/state_manager/`]: This directory contains files related to managing the state of the application. It includes a file named messages_manager.js which manages the state of messages in the application.
+- [`/routes/`]: This directory contains routing files for the Express.js server. Some of the files include:
+  - [`conversations_routing.js`]: Handles routes related to conversations.
+  - [`delete_conversation_routing.js`]: Handles routes related to deleting conversations.
+  - [`get_lists_routing.js`]: Handles routes related to retrieving lists.
+  - [`incoming_messages_routing.js`]: Handles routes related to incoming messages.
 
 ### Frontend
 
@@ -25,24 +45,6 @@ The frontend of the ChatWeb application is built with HTML, CSS, and JavaScript.
     - [`delete_post.js`]: Contains the function to delete a post.
     - [`save_conversation.js`]: Contains the function to save a conversation.
     - [`update_conversation_title.js`]: Contains the function to update the title of a conversation.
-
-
-
-
-
-### Backend
-
-The backend of the ChatWeb application is built with Node.js and Express.js. It handles requests from the frontend, interacts with database, interacts with the Hugging Face Inference API, and sends responses back to the frontend. Here are the relevant files and their descriptions:
-
-- [`server.js`]: This file sets up and starts the Express.js server.
-- [`ConversationsHandler.js`]: This file handles the retrieval and manipulation of conversation data from the MongoDB database.
-- [`generate_response_from_model.js`]: This file generates responses from a machine learning model.
-- [`/state_manager/`]: This directory contains files related to managing the state of the application. It includes a file named messages_manager.js which manages the state of messages in the application.
-- [`/routes/`]: This directory contains routing files for the Express.js server. Some of the files include:
-  - [`conversations_routing.js`]: Handles routes related to conversations.
-  - [`delete_conversation_routing.js`]: Handles routes related to deleting conversations.
-  - [`get_lists_routing.js`]: Handles routes related to retrieving lists.
-  - [`incoming_messages_routing.js`]: Handles routes related to incoming messages.
  
 
 
