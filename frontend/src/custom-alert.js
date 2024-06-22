@@ -36,8 +36,7 @@ export const showEditAlert = function(itemID, itemTitle){
     document.body.appendChild(customAlertWrapper);
 }
 
-
-function showDeleteAlert(itemID, itemTitle) {
+export const showDeleteAlert = function(itemID, itemTitle){ 
     console.log(`"showDeleteAlert ${itemID}"`)
 
     var contentDocument = document.getElementsByClassName("content")[0];

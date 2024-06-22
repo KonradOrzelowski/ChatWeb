@@ -1,5 +1,7 @@
 import { fetchData } from './network_requests/fetch_data.js';
 import { showEditAlert } from './custom-alert.js';
+import { showDeleteAlert } from './custom-alert.js';
+
 function createTitleItem(currentValue){
     let titleItem = document.createElement("li");
     titleItem.innerHTML = `
