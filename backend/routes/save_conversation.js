@@ -39,9 +39,8 @@ router.post("/save_conversation", async (req, res) => {
 
         ConfigurationModule.setCurrentMgs([]);
     } catch (error) {
-
-        console.error("Error:", error);
-
+        console.error("Error processing message:", error);
+        res.status(500).json({ error: "Internal Server Error" });
     } finally {
 
         await client.close();
