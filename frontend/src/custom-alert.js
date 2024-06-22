@@ -71,8 +71,8 @@ export const showDeleteAlert = function(itemID, itemTitle){
         </div>
 
         <div id = "custom-alert-bottom-bottom">
-            <button onclick="hideCustomAlert('custom-alert-wrapper-delete')">Cancel</button>
-            <button onclick="sendDeleteAlert('${itemID}', 'custom-alert-wrapper-delete')"id="button-delete">Delete</button>
+            <button id="button-cancel">Cancel</button>
+            <button id="button-delete">Delete</button>
         </div>
     </div>
     `
@@ -81,6 +81,17 @@ export const showDeleteAlert = function(itemID, itemTitle){
 
     customAlertWrapper.appendChild(customAlert)
     contentDocument.appendChild(customAlertWrapper);
+
+    let cancelButton = customAlert.querySelector('#button-cancel');
+    let updateButton = customAlert.querySelector('#button-accept');
+
+    cancelButton.addEventListener('click', function() {
+        hideCustomAlert('custom-alert-wrapper-edit');
+    });
+
+    updateButton.addEventListener('click', function() {
+        sendEditAlert(itemID, 'custom-alert-wrapper-edit');
+    });
 
     
 }
