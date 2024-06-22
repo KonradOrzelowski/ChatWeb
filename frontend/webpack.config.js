@@ -13,7 +13,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.HOST_NAME': JSON.stringify(process.env.HOST_NAME)
+      'process.env.HOST_NAME': JSON.stringify(process.env.RAILWAY_SERVICE_BACKEND_URL)
     })
   ]
 };

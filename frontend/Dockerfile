@@ -5,9 +5,9 @@ FROM node:alpine AS build
 WORKDIR /app
 
 # Specify the variable you need
-ARG HOST_NAME
+ARG RAILWAY_SERVICE_BACKEND_URL
 # Use the varible
-RUN echo $HOST_NAME
+RUN echo $RAILWAY_SERVICE_BACKEND_URL
 
 # Copy all files and directories from your frontend directory to the container
 COPY . .
@@ -15,7 +15,7 @@ COPY . .
 # Install required packages for building the frontend code
 RUN npm install
 # Set the HOST_NAME environment variable and run build
-RUN HOST_NAME=$HOST_NAME npm run build
+RUN HOST_NAME=$RAILWAY_SERVICE_BACKEND_URL npm run build
 
 # Use a lightweight image as a base for serving the frontend
 FROM nginx:alpine

@@ -52,7 +52,7 @@ function addLiClickListener(li, currentValue) {
 
         // Fetch conversation data from the server
         const HOST_NAME = process.env.HOST_NAME;
-        let conversation = await fetchData(`http://${HOST_NAME}:3000/conversations/${currentValue._id}`);
+        let conversation = await fetchData(`https://${HOST_NAME}:3000/conversations/${currentValue._id}`);
 
         // Clear existing conversation content
         clear_conversation();
@@ -84,7 +84,7 @@ function clearConversationTitle(className, childSave){
 export const loadConversationTitles = async function() {
     clearConversationTitle("list-of-conversations", "new-chat");
     const HOST_NAME = process.env.HOST_NAME;
-    const conversationTitles = await fetchData(`http://${HOST_NAME}:3000/lists/list_of_titles`);
+    const conversationTitles = await fetchData(`https://${HOST_NAME}:3000/lists/list_of_titles`);
     // Remove all items from the list
     
 

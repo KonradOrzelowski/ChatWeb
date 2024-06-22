@@ -48,11 +48,12 @@ export const sendToServer = async function(msg) {
     const divConv = makeDivConv('ChatBot', 'div_chatbot')
     document.querySelector(".conversation").appendChild(divConv);
 
-    let data = { message: msg };
+    let data = { "message": msg };
 
     const HOST_NAME = process.env.HOST_NAME;
 
-    const postResponse = await postData(`http://${HOST_NAME}:3000/message`, data);
+    const postResponse = await postData(`https://${HOST_NAME}/message`, data);
+    console.log(`https://${HOST_NAME}/message`);
     const text = await postResponse.json();
     console.log(text.response.serverResponse);
     const serverResponse = text.response.serverResponse;

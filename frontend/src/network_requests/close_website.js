@@ -1,6 +1,6 @@
 function closeWebsite(){
     const HOST_NAME = process.env.HOST_NAME;
-    const url = `http://${HOST_NAME}:3000/is_closed`; // replace with your server's URL
+    const url = `https://${HOST_NAME}/is_closed`; // replace with your server's URL
     const data = { is_closed: true }; // replace with the data you want to send
 
     fetch(url, {
