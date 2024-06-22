@@ -18,22 +18,19 @@ The frontend is a simple HTML page styled with CSS. It provides an interface for
 
 ### Backend
 
-The backend is a Node.js server that handles requests from the frontend, interacts with the Hugging Face Inference API, and sends responses back to the frontend. The relevant files are:
+The backend of the ChatWeb application is built with Node.js and Express.js. It handles requests from the frontend, interacts with database, interacts with the Hugging Face Inference API, and sends responses back to the frontend. Here are the relevant files and their descriptions:
 
+- [`server.js`]: This file sets up and starts the Express.js server.
 - [`ConversationsHandler.js`]: This file handles the retrieval and manipulation of conversation data from the MongoDB database.
 - [`generate_response_from_model.js`]: This file generates responses from a machine learning model.
-- [`init_database.js`]: This file initializes the MongoDB database with conversation data.
-- [`nodemon.json`]: This file contains configuration for Nodemon, a utility that automatically restarts the Node.js application when file changes are detected.
-- [`package.json`]: This file contains metadata about the Node.js application, such as its dependencies.
-
+- [`/state_manager/`]: This directory contains files related to managing the state of the application. It includes a file named messages_manager.js which manages the state of messages in the application.
 - [`/routes/`]: This directory contains routing files for the Express.js server. Some of the files include:
   - [`conversations_routing.js`]: Handles routes related to conversations.
   - [`delete_conversation_routing.js`]: Handles routes related to deleting conversations.
   - [`get_lists_routing.js`]: Handles routes related to retrieving lists.
   - [`incoming_messages_routing.js`]: Handles routes related to incoming messages.
  
-- [`server.js`]: This file sets up and starts the Express.js server.
-- [`/state_manager/`]: This directory contains files related to managing the state of the application. It includes a file named messages_manager.js which manages the state of messages in the application.
+
 
 ## Test Proposals
 
