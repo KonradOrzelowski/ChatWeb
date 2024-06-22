@@ -1,3 +1,5 @@
+import { loadConversationTitles } from '../load_list_of_conversations.js';
+
 export const updateConversationTitle = function(itemID, newTitle){ 
     const HOST_NAME = process.env.HOST_NAME;
     const url = `https://${HOST_NAME}/update`;
