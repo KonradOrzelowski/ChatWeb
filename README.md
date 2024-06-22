@@ -1,6 +1,6 @@
 # ChatWeb
 
-ChatWeb is a simple chatbot application that uses the Hugging Face Inference API to generate responses to user inputs. The application consists of a frontend built with HTML and CSS, a backend built with Node.js and a MongoDB database.
+ChatWeb is a simple chatbot application that uses the Hugging Face Inference API to generate responses to user inputs. The application consists of a MongoDB database, a backend built with Node.js and a frontend built with HTML and CSS.
 
 ## Project Structure
 The project is divided into three main components: the database, the frontend, and the backend. Each component runs in its own Docker container. The project is ready for deployment on platforms like Railway and can also be set up using Docker Compose.
