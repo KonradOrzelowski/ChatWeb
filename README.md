@@ -47,7 +47,23 @@ The frontend of the ChatWeb application is built with HTML, CSS, and JavaScript.
     - [`update_conversation_title.js`]: Contains the function to update the title of a conversation.
  
 
+# To-Do List
 
+## Database
+- [ ]  Database
+
+## Backend 
+- [ ] Backend
+
+## Frontend
+- [ ] Frontend
+
+## Deployments
+- [ ] Deployments
+
+## Tests
+- [ ] Tests
+- [ ] 
 ## Test Proposals
 
 ### 1. `backend/main.js`
