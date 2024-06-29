@@ -46,7 +46,19 @@ main {
     margin-bottom: 25vh;
 }
 
+#navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
+    width: 80vw;
+    height: 10vh;
+
+    top: 50vh;
+    position: absolute;
+    background-color: rebeccapurple;
+    color: var(--text-color);
+}
 
 .owner{
     display: flex;
