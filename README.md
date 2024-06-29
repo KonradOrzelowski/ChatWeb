@@ -56,7 +56,9 @@ It provides an interface for the user to interact with the chatbot.
 - [ ] Backend
 
 ## Frontend
-- [ ] Frontend
+- [ ] Add dark/light mode.
+- [ ] Replace functions that create HTML elements with React components.
+- [ ] Add responsive design for mobile views.
 
 ## Deployments
 - [ ] Deployments
