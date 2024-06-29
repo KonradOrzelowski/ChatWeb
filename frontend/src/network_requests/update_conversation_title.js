@@ -1,8 +1,17 @@
 import { loadConversationTitles } from '../load_list_of_conversations.js';
 
 export const updateConversationTitle = function(itemID, newTitle){ 
+    const MODE = process.env.MODE;
     const HOST_NAME = process.env.HOST_NAME;
-    const url = `https://${HOST_NAME}/update`;
+    const PORT = process.env.PORT;
+    console.log(MODE);
+
+    if (MODE == 'development'){
+        const url = `http://${HOST_NAME}:${PORT}/update`;
+    }else{
+        const url = `https://${HOST_NAME}/update`;
+    }
+
     const data = { updateTitle: true, itemID: itemID, newTitle: newTitle };
     console.log(data);
     fetch(url, {

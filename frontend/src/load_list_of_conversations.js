@@ -1,6 +1,7 @@
 import { fetchData } from './network_requests/fetch_data.js';
 import { showEditAlert } from './custom-alert.js';
 import { showDeleteAlert } from './custom-alert.js';
+import { getUrl } from './get_url.js';
 
 function createTitleItem(currentValue){
     let titleItem = document.createElement("li");
@@ -55,7 +56,10 @@ function addLiClickListener(li, currentValue) {
 
         // Fetch conversation data from the server
         const HOST_NAME = process.env.HOST_NAME;
-        let conversation = await fetchData(`https://${HOST_NAME}/conversations/${currentValue._id}`);
+
+        const endpointUrl = getUrl(`conversations/${currentValue._id}`);
+
+        let conversation = await fetchData(endpointUrl);
 
         // Clear existing conversation content
         clear_conversation();
@@ -86,8 +90,9 @@ function clearConversationTitle(className, childSave){
 }
 export const loadConversationTitles = async function() {
     clearConversationTitle("list-of-conversations", "new-chat");
-    const HOST_NAME = process.env.HOST_NAME;
-    const conversationTitles = await fetchData(`https://${HOST_NAME}/lists/list_of_titles`);
+    const endpointUrl = getUrl('lists/list_of_titles');
+
+    const conversationTitles = await fetchData(endpointUrl);
     // Remove all items from the list
     
 
