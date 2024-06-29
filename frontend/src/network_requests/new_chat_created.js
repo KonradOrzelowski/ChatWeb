@@ -1,14 +1,14 @@
-export const sendNewChatSignal = function() {
-    const HOST_NAME = process.env.HOST_NAME;
-    const url = `https://${HOST_NAME}/refresh`;
-    const data = { chatCreated: true };
+import { getUrl } from "../get_url";
 
-    fetch(url, {
+export const sendNewChatSignal = function() {
+    const endpointUrl = getUrl('refresh');
+
+    fetch(endpointUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ chatCreated: true }),
     })
     .then(response => response.json())
     .then(data => console.log(data))

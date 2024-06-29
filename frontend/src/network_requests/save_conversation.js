@@ -1,18 +1,14 @@
 import { loadConversationTitles } from "../load_list_of_conversations";
-
+import { getUrl } from "../get_url";
 function saveConversation() {
-    const HOST_NAME = process.env.HOST_NAME;
-    const url = `https://${HOST_NAME}/save_conversation`;
-    const data = { saveConversation: true };
+    const endpointUrl = getUrl('save_conversation');
 
-    console.log(data)
-
-    fetch(url, {
+    fetch(endpointUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ saveConversation: true }),
     })
     .then(response => {
         response.json()

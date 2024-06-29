@@ -1,3 +1,5 @@
+import { getUrl } from './get_url.js';
+
 function initIntervalId(){
     const intervalId = setInterval(() => {
         var elements = document.getElementsByClassName('div_conv');
@@ -43,20 +45,18 @@ import {postData} from './network_requests/fetch_data.js';
 import {typeTextToDiv} from './utils.js';
 
 export const sendToServer = async function(msg) {
+    const endpointUrl = getUrl('message');
+    const postResponse = await postData(endpointUrl, { "message": msg });
+    
+    const text = await postResponse.json();
+    const serverResponse = text.response.serverResponse;
+
     const intervalId = initIntervalId();
 
     const divConv = makeDivConv('ChatBot', 'div_chatbot')
     document.querySelector(".conversation").appendChild(divConv);
 
-    let data = { "message": msg };
 
-    const HOST_NAME = process.env.HOST_NAME;
-
-    const postResponse = await postData(`https://${HOST_NAME}/message`, data);
-    console.log(`https://${HOST_NAME}/message`);
-    const text = await postResponse.json();
-    console.log(text.response.serverResponse);
-    const serverResponse = text.response.serverResponse;
 
 
 
