@@ -81,8 +81,8 @@ It provides an interface for the user to interact with the chatbot.
 
 ## Test
 - [ ] Add tests for the [API](https://www.youtube.com/watch?v=qquIJ1Ivusg).
-- [ ] Test the frontend.
-- [ ] Use GitHub Actions.
+- [ ] Tests the frontend.
+- [ ] 🔴 Use GitHub Actions.
 - [ ] Add end-to-end tests using tools like [Cypress](https://sentry.io/welcome/).
 - [ ] Set up test coverage reports with high coverage.
 - [ ] Implement load testing to ensure the application can handle high traffic.
