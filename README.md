@@ -49,20 +49,44 @@ It provides an interface for the user to interact with the chatbot.
 
 # To-Do List
 
+## Overal
+- [ ] 🟡 Add [central logger](https://youtu.be/6cxgasCDJgA?si=cGsZWgCirJA8vB1k) which will track all logs from each Docker container.
+- [ ] 🟢 Add [web analytics](https://plausible.io/).
+- [ ] 🟢 Add error tracking and monitoring tools like [Sentry](https://sentry.io/welcome/).
+
 ## Database
-- [ ]  Database
+- [ ] 🔴 Ensure each user has a unique ID.
+- [ ] 🔴 Each conversation should store user ID.
 
 ## Backend 
-- [ ] Backend
+### API
+- [ ] Improve [API design](https://www.youtube.com/watch?v=_gQaygjm_hg).
+- [ ] Introduce [API security](https://www.youtube.com/watch?v=6WZ6S-qmtqY).
+- [ ] 🟡 Allow multiple calls for APIs.
+- [ ] 🟢 Make API documentation using tools like Swagger or Postman.
+- [ ] 🟢 Add rate limiting to your API for better security and performance.
+### Model
+- [ ] Add second model.
+- [ ] Add initial instructions for each prompt.
 
 ## Frontend
-- [ ] Frontend
+- [ ] 🟡 Add dark/light mode.
+- [ ] 🟢 Replace functions that create HTML elements with React components.
+- [ ] 🔴 Add responsive design for mobile views.
+- [ ] 🟢 Fix refresh and close signal.
+- [ ] 🟡 Add messages to existing conversations.
+- [ ] 🟡 Replace save button with logic.
+- [ ] 🟡 Sort conversation by last use.
+- [ ] 🟢 Add Content Delivery Network (CDN) for Static Assets
 
-## Deployments
-- [ ] Deployments
+## Test
+- [ ] Add tests for the [API](https://www.youtube.com/watch?v=qquIJ1Ivusg).
+- [ ] Tests the frontend.
+- [ ] 🔴 Use GitHub Actions.
+- [ ] Add end-to-end tests using tools like [Cypress](https://sentry.io/welcome/).
+- [ ] Set up test coverage reports with high coverage.
+- [ ] Implement load testing to ensure the application can handle high traffic.
 
-## Tests
-- [ ] Tests
 
 ## Test Proposals
 
