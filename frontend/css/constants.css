@@ -1,16 +1,25 @@
 :root {
 
-    --background-color: black;
-    --background-second-color: rgb(47, 47, 47);
+    --background-color: rgb(249,249,249);
+    --background-second-color: rgb(255, 255, 255);
 
     --buttom-color-delete: rgb(185,  28, 28);
     --buttom-color-accept: rgb(16, 163, 127);
 
     --buttom-color-delete-hover: rgb(153, 27, 27);
     --buttom-color-accept-hover: rgb(26, 127, 100);
+    --buttom-color-hover: rgba(249,249,249,255);
+    
+    --text-color: rgb(0, 0, 0);
+
+    --hover-transtion-speed: 0.25s;
+}
+
+.dark-mode {
+    --background-color: rgb(0, 0, 0);
+    --background-second-color: rgb(47, 47, 47);
+
     --buttom-color-hover: rgb(66, 66, 66);
     
     --text-color: white;
-
-    --hover-transtion-speed: 0.25s;
 }

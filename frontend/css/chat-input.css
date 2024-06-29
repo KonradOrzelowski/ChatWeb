@@ -8,7 +8,7 @@
     align-items: center;
 
 
-    background-color: white;
+    background-color: var(--background-second-color);
     height: 20vh;
 }
 

@@ -2,6 +2,17 @@
 const HOST_NAME = process.env.HOST_NAME;
 console.log('HOST_NAME: ', HOST_NAME);
 
+import { createRoot } from 'react-dom/client';
+
+function NavigationBar() {
+  // TODO: Actually implement a navigation bar
+  return <h1>Hello from React!</h1>;
+}
+
+const domNode = document.getElementById('navigation');
+const root = createRoot(domNode);
+root.render(<NavigationBar />);
+
 // Network requests
 import './network_requests/new_chat_created.js';
 import './network_requests/fetch_data.js';
