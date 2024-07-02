@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { DarkModeButton } from './components/DarkModeButton/DarkModeButton.js';
+import { DarkModeButton } from './components/DarkModeButton/DarkModeButton.jsx';
 
 
 export function loadReactDom() {
