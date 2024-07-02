@@ -19,16 +19,8 @@ import './send_to_server.js';
 // Other scripts
 import './load_list_of_conversations.js';
 import './script.js';
-import React from 'react';
-import ReactDOM from 'react-dom';
 
-// ... your other imports ...
+import { createReactDom } from './react_dom.js';
+createReactDom();
 
-function NavigationBar() {
-    // TODO: Actually implement a navigation bar
-    return <h1>Hello from React!</h1>;
-}
-
-const domNode = document.getElementById('navigation');
-ReactDOM.createRoot(domNode).render(<NavigationBar />);
 

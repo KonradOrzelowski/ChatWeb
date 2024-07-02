@@ -46,18 +46,18 @@ main {
     margin-bottom: 25vh;
 }
 
-#navigation {
+#dark-mode-button {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    width: 80vw;
-    height: 10vh;
-
-    top: 50vh;
+    right: 10vw;
+    bottom: 10vh;
+    
     position: absolute;
-    background-color: rebeccapurple;
+    background-color: var(--background-color);
     color: var(--text-color);
+    border-radius: 50%; /* Add this line to make it a circle */
 }
 
 .owner{
