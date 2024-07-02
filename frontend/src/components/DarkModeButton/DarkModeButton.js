@@ -6,5 +6,7 @@ function darkMode() {
 }
 
 export function DarkModeButton() {
-    return <button onClick={darkMode}>o</button>;
+    return <button onClick={darkMode}>
+        <img id="darkModeIcon" src="assets/icons/dark-mode.svg" alt="Icon description"></img>
+    </button>;
 }
