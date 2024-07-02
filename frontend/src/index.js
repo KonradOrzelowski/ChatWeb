@@ -23,4 +23,5 @@ import './script.js';
 import { createReactDom } from './react_dom.js';
 createReactDom();
 
+import './loadStyles';
 
