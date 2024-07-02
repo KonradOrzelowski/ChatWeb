@@ -1,6 +1,3 @@
-// index.js
-const HOST_NAME = process.env.HOST_NAME;
-console.log('HOST_NAME: ', HOST_NAME);
 
 
 // Network requests
@@ -20,8 +17,10 @@ import './send_to_server.js';
 import './load_list_of_conversations.js';
 import './script.js';
 
-import { createReactDom } from './react_dom.js';
-createReactDom();
+// Load React components
+import { loadReactDom } from './loadReactDom.js';
+loadReactDom();
 
-import './loadStyles';
+// Load styles
+import './loadStyles.js';
 
