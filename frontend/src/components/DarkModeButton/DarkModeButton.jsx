@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
-
-function darkMode() {
-    var element = document.body;
-    element.classList.toggle("dark-mode");
-}
+import './DarkModeButton.css';
 
 export function DarkModeButton() {
-    // return isDarkMode equal to false and function setIsDarkMode which is use to set value of isDarkMode and trigger a re-render
+    // useState returns the state variable isDarkMode initialized to false,
+    // and the function setIsDarkMode which updates isDarkMode and triggers a re-render
     const [isDarkMode, setIsDarkMode] = useState(false);
 
-    // get document.body and set value of isDarkMode.
-    // It will re render stuff if "dark-mode" is on
+    // useEffect runs once after the initial render to check if the body element has the 'dark-mode' class
+    // and sets isDarkMode accordingly
     useEffect(() => {
         const element = document.body;
         setIsDarkMode(element.classList.contains("dark-mode"));
     }, []);
 
-    // This just check 
+    // useEffect runs every time isDarkMode changes to add or remove the 'dark-mode' class on the body element
     useEffect(() => {
         const element = document.body;
         if (isDarkMode) {
@@ -26,11 +23,12 @@ export function DarkModeButton() {
         }
     }, [isDarkMode]);
 
+    // toggleDarkMode toggles the value of isDarkMode between true and false
     const toggleDarkMode = () => {
-        darkMode();
         setIsDarkMode(prevMode => !prevMode);
     };
 
+    // Depending on isDarkMode, set asset to 'light-mode.svg' or 'dark-mode.svg'
     const asset = isDarkMode ? "assets/icons/light-mode.svg" : "assets/icons/dark-mode.svg";
 
     return (

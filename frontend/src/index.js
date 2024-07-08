@@ -1,5 +1,3 @@
-
-
 // Network requests
 import './network_requests/new_chat_created.js';
 import './network_requests/fetch_data.js';
@@ -21,6 +19,4 @@ import './script.js';
 import { loadReactDom } from './loadReactDom.js';
 loadReactDom();
 
-// Load styles
-import './loadStyles.js';
 
