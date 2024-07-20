@@ -15,6 +15,13 @@
     scrollbar-width: none; /* Firefox */
 }
 
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+}
 
 /* Left side styles */
 .left-side {
@@ -29,11 +36,10 @@
 /* Main styles */
 main {
     padding-left: 20vw;
-    /* width: 80vw; */
+    padding-right: 20vw;
     height: 100vh;
     background-color: var(--background-second-color);
 }
-
 
 .conversation {
     display: flex;
@@ -112,26 +118,6 @@ img{
 }
 
 
-.save-button-wrapper {
-    position: fixed;
-    top: 0vh;
-    right: 0vw;
-
-    margin: 20px;
-
-    width: 10vw;
-    height: 20vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    cursor: pointer;
-
-    color: var(--text-color);
-    background-color: var(--background-color);
-
-}
 
 
 
