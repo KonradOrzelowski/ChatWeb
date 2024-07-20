@@ -1,11 +1,12 @@
 import { loadConversationTitles } from "../load_list_of_conversations";
+import { getUrl } from "../get_url"; 
 
 export const deletePost = function(itemID){ 
-    const HOST_NAME = process.env.HOST_NAME;
-    const uurl = `https://${HOST_NAME}/delete_alert`;
+
+    const endpointUrl = getUrl('delete_alert');
     const data = { message: itemID };
 
-    fetch(uurl, {
+    fetch(endpointUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
