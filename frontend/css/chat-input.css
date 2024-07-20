@@ -1,11 +1,11 @@
 .input_div {
     position: fixed;
     bottom: 0;
-    width: 80vw;
+    width: inherit;
 
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 
 
     background-color: var(--background-second-color);

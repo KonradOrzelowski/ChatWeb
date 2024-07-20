@@ -17,16 +17,15 @@
 
 .content{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
     flex-direction: row;
 
 }
 
 /* Left side styles */
 .left-side {
-    position: fixed;
-    left: 0;
+
     color: var(--text-color);
     background-color: var(--background-color);
     height: 100vh;
@@ -35,10 +34,18 @@
 
 /* Main styles */
 main {
-    padding-left: 20vw;
-    padding-right: 20vw;
+
+    width: 80vw;
     height: 100vh;
     background-color: var(--background-second-color);
+}
+
+.main-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
 }
 
 .conversation {
