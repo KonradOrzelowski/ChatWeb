@@ -1,19 +1,25 @@
 
-#dark-mode-button {
+.dark-mode-button {
 
     right: 10vw;
     bottom: 10vh;
 
-    position: absolute;
+    /* position: absolute; */
 }
 
 
-#dark-mode-button button{
-    padding: 0;
+.dark-mode-button button{
+    background: transparent;
     border: none;
-    background: none;
-
-    cursor: pointer;
+    padding: 0;
+    margin: 0;
 
 }
 
+
+.dark-mode-button img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+
+}

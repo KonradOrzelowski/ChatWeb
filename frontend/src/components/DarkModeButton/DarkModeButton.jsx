@@ -32,8 +32,11 @@ export function DarkModeButton() {
     const asset = isDarkMode ? "assets/icons/light-mode.svg" : "assets/icons/dark-mode.svg";
 
     return (
-        <button onClick={toggleDarkMode}>
-            <img id="darkModeIcon" src={asset} alt="Icon description" />
-        </button>
+        <div className="dark-mode-button">
+            <button onClick={toggleDarkMode}>
+                <img id="darkModeIcon" src={asset} alt="Icon description" />
+            </button>
+        </div>
+
     );
 }
