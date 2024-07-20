@@ -1,6 +1,7 @@
 import { loadConversationTitles } from "../load_list_of_conversations";
 import { getUrl } from "../get_url";
-function saveConversation() {
+
+export const saveConversation = function(){
     const endpointUrl = getUrl('save_conversation');
 
     fetch(endpointUrl, {
