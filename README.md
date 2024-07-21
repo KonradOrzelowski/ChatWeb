@@ -60,14 +60,14 @@ It provides an interface for the user to interact with the chatbot.
 
 ## Backend 
 ### API
-- [ ] Improve [API design](https://www.youtube.com/watch?v=_gQaygjm_hg).
-- [ ] Introduce [API security](https://www.youtube.com/watch?v=6WZ6S-qmtqY).
+- [ ] 🟢 Improve [API design](https://www.youtube.com/watch?v=_gQaygjm_hg).
+- [ ] 🟢 Introduce [API security](https://www.youtube.com/watch?v=6WZ6S-qmtqY).
 - [ ] 🟡 Allow multiple calls for APIs.
 - [ ] 🟢 Make API documentation using tools like Swagger or Postman.
 - [ ] 🟢 Add rate limiting to your API for better security and performance.
 ### Model
-- [ ] Add second model.
-- [ ] Add initial instructions for each prompt.
+- [ ] 🟢 Add second model.
+- [ ] 🟢 Add initial instructions for each prompt.
 
 ## Frontend
 - [x] 🟡 Add dark/light mode.
@@ -80,29 +80,9 @@ It provides an interface for the user to interact with the chatbot.
 - [ ] 🟢 Add Content Delivery Network (CDN) for Static Assets
 
 ## Test
-- [ ] Add tests for the [API](https://www.youtube.com/watch?v=qquIJ1Ivusg).
-- [ ] Tests the frontend.
+- [ ] 🟡 Add tests for the [API](https://www.youtube.com/watch?v=qquIJ1Ivusg).
+- [ ] 🟡 Tests the frontend.
 - [ ] 🔴 Use GitHub Actions.
-- [ ] Add end-to-end tests using tools like [Cypress](https://sentry.io/welcome/).
-- [ ] Set up test coverage reports with high coverage.
-- [ ] Implement load testing to ensure the application can handle high traffic.
-
-
-## Test Proposals
-
-### 1. `backend/main.js`
-- Test the `askQuestion` function to ensure it correctly prompts and retrieves user input.
-- Test the `runInference` function to ensure it correctly interacts with the Hugging Face API and returns the expected results.
-- Test the `mainLoop` function to ensure it correctly orchestrates the conversation flow and handles the 'exit' command. 
-
-### 2. `backend/server.js`
-- Test the server setup to ensure it correctly applies middleware and starts listening on the correct port.
-- Test the `runInference` function similar to the one in [`main.js`](command:_github.copilot.openSymbolInFile?%5B%22frontend%2Findex.html%22%2C%22main.js%22%5D "frontend/index.html").
-- Test the server's response to various API requests, ensuring it correctly handles and responds to valid and invalid requests.
-
-### 3. `frontend/index.html`
-- Test the user interface to ensure it correctly displays conversations and handles user input.
-- Test the fetch request to ensure it correctly interacts with the backend server and updates the conversation display.
-
-### 4. `frontend/style.css`
-- Test the styles to ensure they are correctly applied to the HTML elements.
+- [ ] 🟢 Add end-to-end tests using tools like [Cypress](https://sentry.io/welcome/).
+- [ ] 🟡 Set up test coverage reports with high coverage.
+- [ ] 🟡 Implement load testing to ensure the application can handle high traffic.
