@@ -1,0 +1,10 @@
+#open-left-side{
+    display: none;
+}
+
+@media (max-width: 600px) {
+    #open-left-side{
+        display: block;
+    }
+
+}

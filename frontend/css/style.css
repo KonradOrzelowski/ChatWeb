@@ -25,11 +25,19 @@
 
 /* Left side styles */
 .left-side {
+    display: flex;
+
+    flex-direction: row;
 
     color: var(--text-color);
-    background-color: var(--background-color);
+    
     height: 100vh;
+    
+}
+
+.div-list-of-conversations{
     width: 20vw;
+    background-color: var(--background-color);
 }
 
 /* Main styles */
@@ -125,6 +133,12 @@ img{
 }
 
 
-
-
-
+@media (max-width: 600px) {
+    .div-list-of-conversations{
+        display: none;
+    }
+    main {
+        width: 100vw;
+        padding: 0;
+    }
+}
