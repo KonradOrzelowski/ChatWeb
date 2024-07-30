@@ -132,7 +132,6 @@ img{
     max-height: 1.25rem;
 }
 
-
 @media (max-width: 600px) {
     .div-list-of-conversations{
         display: none;
