@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './OpenLeftSideButton.css';
+
+import { fetchData } from '../..//network_requests/fetch_data.js';
+import { getUrl } from '../../get_url.js';
 
 const children = [
     <a href="#">Link 1</a>,
@@ -29,6 +32,25 @@ function GetList({ isOpen }){
 
 export function OpenLeftSideButton() {
     const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        const getConversation = async () => {
+            const endpointUrl = getUrl('lists/list_of_titles');
+            const conversationTitles = await fetchData(endpointUrl);
+
+            console.log(conversationTitles)
+        }
+
+        getConversation();
+
+    },[]);
+
+
+
+
+
+
+    // console.log(conversationTitles)
 
     return (
         <>
