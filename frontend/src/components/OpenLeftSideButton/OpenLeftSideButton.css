@@ -1,10 +1,13 @@
 #open-left-side{
     display: none;
+
+    flex-direction: row;
+    
 }
 
 @media (max-width: 600px) {
     #open-left-side{
-        display: block;
+        display: flex;
     }
 
 }

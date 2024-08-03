@@ -1,28 +1,39 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState } from 'react';
 import './OpenLeftSideButton.css';
 
+const children = [
+    <a href="#">Link 1</a>,
+    <a href="#">Link 2</a>,
+    <a href="#">Link 3</a>
+];
+
+function GetChildren() {
+    return React.Children.map(children, child => (
+        <div className="dropdown-item">
+            {child}
+        </div>
+    ))
+}
+
+function GetList({ isOpen }){
+    if (isOpen) {
+        return (
+            <div className="dropdown-menu">
+                {GetChildren()}
+            </div>
+        )
+    }else{
+        return null;
+    }
+}
+
 export function OpenLeftSideButton() {
-    const [isMobileView, setMobileView] = useState(false);
-    
-    useEffect(() => {
-        const width = document.body.scrollWidth;
-        if (width <= 600) {
-            setMobileView(true);
-        }
-    }, []);
-
-
-    const showListOfConv = () => {
-        
-        var element = document.getElementsByClassName("div-list-of-conversations")[0];
-        
-    };
+    const [open, setOpen] = useState(false);
 
     return (
-
-        <div>
-            <button onClick={showListOfConv}>Click me!</button>
-        </div>
-    )
+        <>
+            <button onClick={() => setOpen(!open)}>Click me!</button>
+            <GetList isOpen={open} />
+        </>
+    );
 }
