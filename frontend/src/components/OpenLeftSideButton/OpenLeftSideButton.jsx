@@ -4,25 +4,20 @@ import './OpenLeftSideButton.css';
 import { fetchData } from '../..//network_requests/fetch_data.js';
 import { getUrl } from '../../get_url.js';
 
-const children = [
-    <a href="#">Link 1</a>,
-    <a href="#">Link 2</a>,
-    <a href="#">Link 3</a>
-];
 
-function GetChildren() {
-    return React.Children.map(children, child => (
+function GetChildren({data}) {
+    return React.Children.map(data, child => (
         <div className="dropdown-item">
-            {child}
+            <p>{child}</p>
         </div>
     ))
 }
 
-function GetList({ isOpen }){
+function GetList({ isOpen, data }){
     if (isOpen) {
         return (
             <div className="dropdown-menu">
-                {GetChildren()}
+                {GetChildren(data)}
             </div>
         )
     }else{
@@ -32,30 +27,22 @@ function GetList({ isOpen }){
 
 export function OpenLeftSideButton() {
     const [open, setOpen] = useState(false);
+    const [data, setData] = useState(null);
 
     useEffect(() => {
         const getConversation = async () => {
             const endpointUrl = getUrl('lists/list_of_titles');
-            const conversationTitles = await fetchData(endpointUrl);
-
-            console.log(conversationTitles)
+            let conversationTitles = await fetchData(endpointUrl);
+            conversationTitles = conversationTitles.response
+            setData(conversationTitles);
         }
-
         getConversation();
-
     },[]);
-
-
-
-
-
-
-    // console.log(conversationTitles)
-
+    console.log(`This is data ${data}`)
     return (
         <>
             <button onClick={() => setOpen(!open)}>Click me!</button>
-            <GetList isOpen={open} />
+            <GetList isOpen={open} data={data} />
         </>
     );
 }
