@@ -132,7 +132,30 @@ img{
     max-height: 1.25rem;
 }
 
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 10vw;
+    width: 90vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.overlay.active{
+    display: block;
+}
+
+@media (min-width: 600px) {
+    .overlay.active{
+        display: none;
+    }
+}
+
 @media (max-width: 600px) {
+
+
     .div-list-of-conversations{
         display: none;
     }
