@@ -1,4 +1,5 @@
 #open-left-side{
+    width: 20vw;
 
     background-color: var(--background-color);
     display: none;
@@ -19,8 +20,7 @@
 }
 
 .test-list{
-    width: 20vw;
-    
+
     display: flex;
     flex-direction: column;
     justify-content: left;

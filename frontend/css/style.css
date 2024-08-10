@@ -26,14 +26,13 @@
 /* Left side styles */
 .left-side {
     display: flex;
-
     flex-direction: row;
 
-    color: var(--text-color);
-    /* background-color: red; */
-    
+    width: 20vw;
     height: 100vh;
-    /* width: 20vw; */
+    
+    color: var(--text-color);
+    background-color: var(--background-color);
 }
 
 .div-list-of-conversations{
@@ -50,7 +49,7 @@ main {
 
     width: 80vw;
     height: 100vh;
-    
+
     background-color: var(--background-second-color);
 }
 
