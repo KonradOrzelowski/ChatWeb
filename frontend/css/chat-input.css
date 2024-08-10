@@ -1,15 +1,15 @@
 .input_div {
-    position: fixed;
+    left: 30vw;
+
+    height: 20vh;
+
     bottom: 0;
+
+    position: fixed;
     width: inherit;
 
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-
-
     background-color: var(--background-second-color);
-    height: 20vh;
+    
 }
 
 .inlineChat {

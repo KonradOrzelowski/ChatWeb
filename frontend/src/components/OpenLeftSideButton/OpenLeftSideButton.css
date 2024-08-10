@@ -1,10 +1,12 @@
 #open-left-side{
+
+    background-color: var(--background-color);
     display: none;
 
     flex-direction: row;
-
-    background-color: var(--background-color);
-    transition: width 0.5s;
+    
+    
+    transition: width 0.1s;
     z-index: 1000;
     
 }
@@ -17,12 +19,12 @@
 }
 
 .test-list{
+    width: 20vw;
+    
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
     justify-content: left;
-    transition: width 0.5s;
-    width: 10vw;
-
+    transition: width 0.1s;
     
 
 
