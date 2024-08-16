@@ -65,7 +65,7 @@ function GetList({ isOpen }){
 }
 
 export function OpenLeftSideButton() {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
 
     let menuRef = useRef(null);
     
@@ -79,10 +79,18 @@ export function OpenLeftSideButton() {
         document.addEventListener('mousedown', handler);
         if(open){
             document.getElementById('open-left-side').style.width = '20vw';
+            
+            // // open left side change background color
+            document.getElementById('open-left-side').style.backgroundColor = 'var(--background-color)';
+
             document.getElementsByClassName('test-list')[0].style.width = '20vw';
             document.getElementsByClassName('overlay')[0].classList.add('active');
         }else{
             document.getElementById('open-left-side').style.width = '10vw';
+
+            // open left side change background color
+            document.getElementById('open-left-side').style.backgroundColor = 'transparent';
+
             document.getElementsByClassName('test-list')[0].style.width = '10vw';
             document.getElementsByClassName('overlay')[0].classList.remove('active');
             
