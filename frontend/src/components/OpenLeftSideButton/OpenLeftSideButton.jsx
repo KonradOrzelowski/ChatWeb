@@ -89,8 +89,6 @@ export function OpenLeftSideButton() {
         }
     });
 
-    var data = ['title1', 'title2', 'title3', 'title4', 'title5', 'title6', 'title7', 'title8', 'title9', 'title10'];
-
     return (<div className="test-list" ref={menuRef}>
             <button className='test-button' onClick={() => setOpen(!open)}>Click me!</button>
             <GetList isOpen={open} data={data} />
