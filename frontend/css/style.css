@@ -162,7 +162,7 @@ img{
 
 @media (max-width: 600px) {
     .left-side {
-        background-color: transparent;
+        background-color: var(--background-second-color);
     }
 
     .div-list-of-conversations{

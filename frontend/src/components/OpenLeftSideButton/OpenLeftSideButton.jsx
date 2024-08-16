@@ -9,10 +9,10 @@ const ChildComponent = ({ title  }) => {
     return (
       <div className='conversation-title'>
         <a>{title}</a>
-        <div class = "bottoms-wrapper">
-            <div class = "bottoms-transtion">
+        <div className = "bottoms-wrapper">
+            <div className = "bottoms-transtion">
             </div>
-            <div class = "bottoms">
+            <div className = "bottoms">
                 <img id="editIcon" src="assets/icons/edit-pen-icon.svg" alt="Icon description"/>
                 <img id="deleteIcon" src="assets/icons/trash-bin-icon.svg" alt="Icon description"/>
             </div>
@@ -79,7 +79,7 @@ export function OpenLeftSideButton() {
             document.getElementById('open-left-side').style.width = '10vw';
 
             // open left side change background color
-            document.getElementById('open-left-side').style.backgroundColor = 'transparent';
+            document.getElementById('open-left-side').style.backgroundColor = 'var(--background-second-color)';
 
             document.getElementsByClassName('test-list')[0].style.width = '10vw';
             document.getElementsByClassName('overlay')[0].classList.remove('active');
