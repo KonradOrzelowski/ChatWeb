@@ -32,7 +32,7 @@ const ChildComponent = ({ title  }) => {
     );
   };
 
-function GetList({ isOpen, data }){
+function GetList({ isOpen }){
     const [conversationTitles, setConversationTitles] = useState(null);
 
     useEffect(() => {
@@ -91,6 +91,6 @@ export function OpenLeftSideButton() {
 
     return (<div className="test-list" ref={menuRef}>
             <button className='test-button' onClick={() => setOpen(!open)}>Click me!</button>
-            <GetList isOpen={open} data={data} />
+            <GetList isOpen={open}/>
         </div>);
 }

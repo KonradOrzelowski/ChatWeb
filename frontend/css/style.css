@@ -161,7 +161,9 @@ img{
 }
 
 @media (max-width: 600px) {
-
+    .left-side {
+        background-color: transparent;
+    }
 
     .div-list-of-conversations{
         display: none;

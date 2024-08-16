@@ -9,4 +9,11 @@
     color: var(--text-color);
     background-color: var(--background-color);
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.save-button{
+    text-align: center;
 }
