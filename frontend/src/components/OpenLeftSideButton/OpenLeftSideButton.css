@@ -22,12 +22,17 @@
 .test-list{
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     justify-content: left;
     transition: width 0.1s;
     
 
 
+}
+.dropdown-menu{
+
+    min-width: 250px;
+    background-color: var(--background-color);
 }
 
 

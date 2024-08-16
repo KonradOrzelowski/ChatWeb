@@ -5,20 +5,10 @@ import { fetchData } from '../..//network_requests/fetch_data.js';
 import { getUrl } from '../../get_url.js';
 
 
-// function GetChildren(data) {
-//     console.log(`Data in GetChildren: ${data[0].title}`);
-
-//     return React.Children.map(data, (title, _id) => (
-//         <div className="dropdown-item">
-//             <p>{title}</p>
-//         </div>
-//     ))
-// }
-
 const ChildComponent = ({ title  }) => {
     return (
-      <div>
-        <a>${title}</a>
+      <div className='conversation-title'>
+        <a>{title}</a>
         <div class = "bottoms-wrapper">
             <div class = "bottoms-transtion">
             </div>
@@ -65,7 +55,7 @@ function GetList({ isOpen }){
 }
 
 export function OpenLeftSideButton() {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
 
     let menuRef = useRef(null);
     

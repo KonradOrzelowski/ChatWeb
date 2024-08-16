@@ -11,6 +11,7 @@
     line-height: 1.25rem;
 
     height: 2.5rem;
+    min-width: 200px;
 
     border-radius: .5rem;
     padding: .5rem;
