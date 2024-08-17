@@ -78,15 +78,20 @@ function addLiClickListener(li, currentValue) {
 
 
 function clearConversationTitle(className, childSave){
-    const parent = document.getElementsByClassName(className)[0];
+    try{
+        const parent = document.getElementsByClassName(className)[0];
 
-    const children = parent.children;
-    for (let i = children.length - 1; i >= 0; i--) {
-        const child = children[i];
-        if (!child.classList.contains(childSave)) {
-          parent.removeChild(child);
-        }
-      }
+        const children = parent.children;
+        for (let i = children.length - 1; i >= 0; i--) {
+            const child = children[i];
+            if (!child.classList.contains(childSave)) {
+              parent.removeChild(child);
+            }
+          }
+    }catch{
+        console.log("Error clearConversationTitle");
+    }
+
 }
 export const loadConversationTitles = async function() {
     clearConversationTitle("list-of-conversations", "new-chat");

@@ -13,8 +13,8 @@ export function loadReactDom() {
     const rightSideNode = document.getElementById('right-side');
     ReactDOM.createRoot(rightSideNode).render(<RightSide />);
 
-    const openLeftSideButtonNode = document.getElementById('open-left-side');
-    ReactDOM.createRoot(openLeftSideButtonNode).render(<OpenLeftSideButton />);
+    // const openLeftSideButtonNode = document.getElementById('open-left-side');
+    // ReactDOM.createRoot(openLeftSideButtonNode).render(<OpenLeftSideButton />);
 
 }
 
