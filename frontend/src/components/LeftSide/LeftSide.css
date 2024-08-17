@@ -8,3 +8,8 @@
     color: var(--text-color);
     background-color: var(--background-color);
 }
+
+.div-list-of-conversations{
+    width: 20vw;
+    background-color: var(--background-color);
+}
