@@ -34,7 +34,7 @@ export function LeftSide() {
 
                 <div className="dropdown-menu">
                     {conversationTitles.map((item, index) => (
-                        <ConversationTitle key={index} title={item.title} />
+                        <ConversationTitle key={index} title={item.title} id={item._id} />
                     ))}
                 </div>
             </div>
