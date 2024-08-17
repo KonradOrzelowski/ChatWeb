@@ -1,0 +1,4 @@
+.new-chat{
+    display: flex;
+    justify-content: space-between;
+}

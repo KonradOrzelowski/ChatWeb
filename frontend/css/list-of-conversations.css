@@ -35,10 +35,7 @@
     white-space: nowrap;
 }
 
-.new-chat{
-    display: flex;
-    justify-content: space-between;
-}
+
 .bottoms-wrapper{
     opacity: 0;
 }

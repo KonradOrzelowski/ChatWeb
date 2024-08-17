@@ -1,25 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './LeftSide.css';
 
+import { AddNewChat } from '../AddNewChat/AddNewChat.jsx';
+import { ConversationTitle } from '../ConversationTitle/ConversationTitle.jsx';
+
 import { fetchData } from '../..//network_requests/fetch_data.js';
 import { getUrl } from '../../get_url.js';
-
-const ConversationTitle = ({ title  }) => {
-    return (
-      <div className='conversation-title'>
-        <a>{title}</a>
-        <div className = "bottoms-wrapper">
-            <div className = "bottoms-transtion">
-            </div>
-            <div className = "bottoms">
-                <img id="editIcon" src="assets/icons/edit-pen-icon.svg" alt="Icon description"/>
-                <img id="deleteIcon" src="assets/icons/trash-bin-icon.svg" alt="Icon description"/>
-            </div>
-        </div>
-      </div>
-
-    );
-  };
 
 export function LeftSide() {
 
@@ -44,12 +30,14 @@ export function LeftSide() {
     return (
         
         <div className='div-list-of-conversations'>
-            <div className="dropdown-menu" >
-                {conversationTitles.map((item, index) => (
-                    <ConversationTitle key={index} title={item.title}/>
-                ))}
+                <AddNewChat/>
+
+                <div className="dropdown-menu">
+                    {conversationTitles.map((item, index) => (
+                        <ConversationTitle key={index} title={item.title} />
+                    ))}
+                </div>
             </div>
-        </div>
     )
 
 }
