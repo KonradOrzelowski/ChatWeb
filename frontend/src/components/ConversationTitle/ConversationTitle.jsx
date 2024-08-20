@@ -5,6 +5,9 @@ import './ConversationTitle.css';
 
 import { updateConversationTitle } from '../..//network_requests/update_conversation_title.js';
 import { deletePost } from '../..//network_requests/delete_post.js';
+import { getUrl } from '../../get_url.js';
+import { fetchData } from '../../network_requests/fetch_data.js';
+import { clear_conversation, addDiv2Conversation } from '../../utils.js';
 
 function getCustomAlertWrapper(){
     let customAlertWrapper = document.createElement('div');
@@ -129,16 +132,31 @@ function sendDeleteAlert(itemID, elementId){
     hideCustomAlert(elementId)
 }
 
+async function test(conversationID){
+        // Fetch conversation data from the server
+        const HOST_NAME = process.env.HOST_NAME;
 
+        const endpointUrl = getUrl(`conversations/${conversationID}`);
 
+        let conversation = await fetchData(endpointUrl);
 
+        // Clear existing conversation content
+        clear_conversation();
+        
+        // Extract conversation from response
+        conversation = conversation.response;
 
+        // Populate conversation area with fetched data
 
+        for (let item of conversation.conversation) {
+            addDiv2Conversation(item.speaker, item.message, 0);
+        }
+}
 
 export function ConversationTitle({ title, id  }){
 
     return (
-      <div className='conversation-title'>
+      <div className='conversation-title' onClick={async () => await test(id)}>
         <a>{title}</a>
         <div className = "bottoms-wrapper">
             <div className = "bottoms-transtion">
