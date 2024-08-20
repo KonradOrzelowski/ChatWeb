@@ -132,7 +132,7 @@ function sendDeleteAlert(itemID, elementId){
     hideCustomAlert(elementId)
 }
 
-async function test(conversationID){
+async function displayConversation(conversationID){
         // Fetch conversation data from the server
         const HOST_NAME = process.env.HOST_NAME;
 
@@ -156,7 +156,9 @@ async function test(conversationID){
 export function ConversationTitle({ title, id  }){
 
     return (
-      <div className='conversation-title' onClick={async () => await test(id)}>
+      <div className='conversation-title' onClick={
+            async () => await displayConversation(id)
+        }>
         <a>{title}</a>
         <div className = "bottoms-wrapper">
             <div className = "bottoms-transtion">
