@@ -7,9 +7,22 @@ import { ConversationTitle } from '../ConversationTitle/ConversationTitle.jsx';
 import { fetchData } from '../..//network_requests/fetch_data.js';
 import { getUrl } from '../../get_url.js';
 
+const ConversationDropdown = ({ conversationTitles, key, onCancel }) => (
+    <div className="dropdown-menu">
+        {conversationTitles.map((item, index) => (
+            <ConversationTitle key={index} title={item.title} id={item._id} onCancel={onCancel}/>
+        ))}
+    </div>
+);
+
 export function LeftSide() {
 
     const [conversationTitles, setConversationTitles] = useState(null);
+    const [reloadKey, setReloadKey] = useState(0);
+
+    const handleCancel = () => {
+        setReloadKey(prevKey => prevKey + 1);
+      };
 
     useEffect(() => {
         const fetchTitles = async () => {
@@ -31,12 +44,7 @@ export function LeftSide() {
         
         <div className='div-list-of-conversations'>
                 <AddNewChat/>
-
-                <div className="dropdown-menu">
-                    {conversationTitles.map((item, index) => (
-                        <ConversationTitle key={index} title={item.title} id={item._id} />
-                    ))}
-                </div>
+                <ConversationDropdown conversationTitles={conversationTitles} key={reloadKey} onCancel={handleCancel}/>
             </div>
     )
 

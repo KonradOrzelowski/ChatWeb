@@ -7,7 +7,7 @@ import { updateConversationTitle } from '../..//network_requests/update_conversa
 import { deletePost } from '../..//network_requests/delete_post.js';
 import { getUrl } from '../../get_url.js';
 import { fetchData } from '../../network_requests/fetch_data.js';
-import { clear_conversation, addDiv2Conversation } from '../../utils.js';
+import { clearConversation, addDiv2Conversation } from '../../utils.js';
 
 function getCustomAlertWrapper(){
     let customAlertWrapper = document.createElement('div');
@@ -16,7 +16,7 @@ function getCustomAlertWrapper(){
 }
 
 
-const showEditAlert = function(itemTitle, itemID){ 
+const showEditAlert = function(itemTitle, itemID, onCancel){ 
 
     var contentDocument = document.getElementsByClassName("content")[0];
     let customAlert = document.createElement('div');
@@ -52,16 +52,18 @@ const showEditAlert = function(itemTitle, itemID){
     let updateButton = customAlert.querySelector('#button-accept');
 
     cancelButton.addEventListener('click', function() {
+        
         hideCustomAlert('custom-alert-wrapper-edit');
     });
 
     updateButton.addEventListener('click', function() {
         sendEditAlert(itemID, 'custom-alert-wrapper-edit');
+        onCancel();
     });
 
 }
 
-const showDeleteAlert = function(itemTitle, itemID){ 
+const showDeleteAlert = function(itemTitle, itemID, onCancel){ 
     console.log(`"showDeleteAlert ${itemID}"`)
 
     var contentDocument = document.getElementsByClassName("content")[0];
@@ -100,6 +102,7 @@ const showDeleteAlert = function(itemTitle, itemID){
 
     deleteButton.addEventListener('click', function() {
         sendDeleteAlert(itemID, 'custom-alert-wrapper-delete');
+        onCancel();
     });
 
     
@@ -139,7 +142,7 @@ async function displayConversation(conversationID){
         let conversation = await fetchData(endpointUrl);
 
         // Clear existing conversation content
-        clear_conversation();
+        clearConversation();
         
         // Extract conversation from response
         conversation = conversation.response;
@@ -150,7 +153,7 @@ async function displayConversation(conversationID){
         }
 }
 
-export function ConversationTitle({ title, id  }){
+export function ConversationTitle({ title, id, onCancel}){
 
     return (
       <div className='conversation-title' onClick={
@@ -167,14 +170,14 @@ export function ConversationTitle({ title, id  }){
                     id="editIcon"
                     src="assets/icons/edit-pen-icon.svg"
                     alt="Icon description"
-                    onClick={() => showEditAlert(title, id)} 
+                    onClick={() => showEditAlert(title, id, onCancel)} 
                 />
 
                 <img
                     id="deleteIcon"
                     src="assets/icons/trash-bin-icon.svg"
                     alt="Icon description"
-                    onClick={() => showDeleteAlert(title, id)} 
+                    onClick={() => showDeleteAlert(title, id, onCancel)} 
                 />
                 
             </div>
