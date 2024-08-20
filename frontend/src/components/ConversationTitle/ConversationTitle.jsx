@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react';
 import './ConversationTitle.css';
 
 
-// import { updateConversationTitle } from './network_requests/update_conversation_title.js';
-// import { deletePost } from './network_requests/delete_post.js';
+import { updateConversationTitle } from '../..//network_requests/update_conversation_title.js';
+import { deletePost } from '../..//network_requests/delete_post.js';
+
 function getCustomAlertWrapper(){
     let customAlertWrapper = document.createElement('div');
     customAlertWrapper.id = 'custom-alert-wrapper';
@@ -117,14 +118,14 @@ function sendEditAlert(itemID, elementId){
     var childInput = customAlert.querySelector('input');
     console.log(childInput.value)
     
-    // updateConversationTitle(itemID, childInput.value)
+    updateConversationTitle(itemID, childInput.value)
     hideCustomAlert(elementId)
 
 }
 
 function sendDeleteAlert(itemID, elementId){
     
-    // deletePost(itemID)
+    deletePost(itemID)
     hideCustomAlert(elementId)
 }
 
