@@ -113,8 +113,6 @@ function hideCustomAlert(elementId) {
     }
 }
 
-
-
 function sendEditAlert(itemID, elementId){
 
     var customAlert = document.getElementsByClassName(elementId)[0];
@@ -147,7 +145,6 @@ async function displayConversation(conversationID){
         conversation = conversation.response;
 
         // Populate conversation area with fetched data
-
         for (let item of conversation.conversation) {
             addDiv2Conversation(item.speaker, item.message, 0);
         }
@@ -159,6 +156,7 @@ export function ConversationTitle({ title, id  }){
       <div className='conversation-title' onClick={
             async () => await displayConversation(id)
         }>
+
         <a>{title}</a>
         <div className = "bottoms-wrapper">
             <div className = "bottoms-transtion">
