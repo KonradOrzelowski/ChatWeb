@@ -48,7 +48,7 @@ function addDeleteIconListener(deleteIcon, currentValue) {
  * @param {Object} currentValue - The current value associated with the list item, typically containing an '_id' property.
  */
 
-import { clear_conversation } from './utils.js';
+import { clearConversation } from './utils.js';
 import { addDiv2Conversation } from './utils.js';
 
 function addLiClickListener(li, currentValue) {
@@ -62,7 +62,7 @@ function addLiClickListener(li, currentValue) {
         let conversation = await fetchData(endpointUrl);
 
         // Clear existing conversation content
-        clear_conversation();
+        clearConversation();
         
         // Extract conversation from response
         conversation = conversation.response;
