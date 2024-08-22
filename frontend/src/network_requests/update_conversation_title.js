@@ -25,13 +25,5 @@ export const updateConversationTitle = function(itemID, newTitle){
         }
         return response.json(); // Assuming response is JSON
     })
-    // .then(data => {
-    //     if(data.response == true){
-    //         loadConversationTitles();
-    //     }
-    // })
-    // .catch((error) => {
-    //     console.error('Error:', error);
-    // })
     ;
 }
