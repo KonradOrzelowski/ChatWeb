@@ -20,7 +20,7 @@ export function LeftSide() {
     const [conversationTitles, setConversationTitles] = useState(null);
     const [reloadKey, setReloadKey] = useState(0);
 
-    const handleCancel = () => {
+    const reloadLeftSide = () => {
         setReloadKey(prevKey => prevKey + 1);
       };
 
@@ -34,7 +34,7 @@ export function LeftSide() {
         };
 
         fetchTitles();
-    }, []);
+    }, [reloadKey]);
 
     if (!conversationTitles) {
         return <div>Loading...</div>;
@@ -44,7 +44,7 @@ export function LeftSide() {
         
         <div className='div-list-of-conversations'>
                 <AddNewChat/>
-                <ConversationDropdown conversationTitles={conversationTitles} key={reloadKey} onCancel={handleCancel}/>
+                <ConversationDropdown conversationTitles={conversationTitles} key={reloadKey} onCancel={reloadLeftSide}/>
             </div>
     )
 
