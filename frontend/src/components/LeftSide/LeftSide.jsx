@@ -43,9 +43,15 @@ export function LeftSide() {
     return (
         
         <div className='div-list-of-conversations'>
-                <AddNewChat/>
-                <ConversationDropdown conversationTitles={conversationTitles} key={reloadKey} onCancel={reloadLeftSide}/>
-            </div>
+            <AddNewChat/>
+            
+            <ConversationDropdown
+                conversationTitles={conversationTitles}
+                key={reloadKey}
+                onCancel={reloadLeftSide}
+            />
+            
+        </div>
     )
 
 }
