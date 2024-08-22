@@ -20,6 +20,12 @@ const ConversationDropdown = ({ conversationTitles, reloadLeftSide }) => (
     </div>
 );
 
+function RedSquare() {
+    return(
+        <div style={{width: '10vw', height: '10vh', backgroundColor: 'red'}}></div>
+    )
+}
+
 export function LeftSide() {
 
     const [conversationTitles, setConversationTitles] = useState(null);
@@ -57,10 +63,13 @@ export function LeftSide() {
                 />
             </div>
             
-            <button className='test-button'
+            
+            {/* <button className='pop-conversation-dropdown'
                 onClick={() => setOpen(!open)}>
                     Click me!
-            </button>
+            </button> */}
+
+            
         
         </>
 
