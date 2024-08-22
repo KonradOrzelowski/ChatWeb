@@ -88,24 +88,42 @@ function clearConversationTitle(className, childSave){
               parent.removeChild(child);
             }
           }
-    }catch{
-        console.log("Error clearConversationTitle");
+    } catch (error) {
+        console.error('An error occurred during clearConversationTitle: ', error);
     }
 
 }
 export const loadConversationTitles = async function() {
-    clearConversationTitle("list-of-conversations", "new-chat");
-    const endpointUrl = getUrl('lists/list_of_titles');
+    try {
+        clearConversationTitle("list-of-conversations", "new-chat");
+        const endpointUrl = getUrl('lists/list_of_titles');
 
-    const conversationTitles = await fetchData(endpointUrl);
-    // Remove all items from the list
-    
+        let conversationTitles;
+        try {
+            conversationTitles = await fetchData(endpointUrl);
+        } catch (error) {
+            console.error('Failed to fetch data: ', error);
+            return;
+        }
 
-    for (let value of conversationTitles.response) {
-        
-        let titleItem = createTitleItem(value)      
-        document.querySelector(".list-of-conversations").appendChild(titleItem);
-        
+        // Remove all items from the list
+        for (let value of conversationTitles.response) {
+            let titleItem;
+            try {
+                titleItem = createTitleItem(value);
+            } catch (error) {
+                console.error('Failed to create title item: ', error);
+                continue;
+            }
+
+            try {
+                document.querySelector(".list-of-conversations").appendChild(titleItem);
+            } catch (error) {
+                console.error('Failed to append child: ', error);
+            }
+        }
+    } catch (error) {
+        console.error('An error occurred: ', error);
     }
 }
 

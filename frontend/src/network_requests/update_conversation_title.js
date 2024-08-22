@@ -1,7 +1,13 @@
-import { loadConversationTitles } from '../load_list_of_conversations.js';
 import { getUrl } from '../get_url.js';
-export const updateConversationTitle = function(itemID, newTitle){
 
+/**
+ * Updates the title of a conversation.
+ *
+ * @param {string} itemID - The ID of the item to update.
+ * @param {string} newTitle - The new title for the item.
+ * @throws {Error} When the network response is not ok.
+ */
+export const updateConversationTitle = function(itemID, newTitle){
     const endpointUrl = getUrl('update');
 
     const data = { updateTitle: true, itemID: itemID, newTitle: newTitle };
@@ -19,13 +25,13 @@ export const updateConversationTitle = function(itemID, newTitle){
         }
         return response.json(); // Assuming response is JSON
     })
-    .then(data => {
-        if(data.response == true){
-            loadConversationTitles();
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-    
+    // .then(data => {
+    //     if(data.response == true){
+    //         loadConversationTitles();
+    //     }
+    // })
+    // .catch((error) => {
+    //     console.error('Error:', error);
+    // })
+    ;
 }
