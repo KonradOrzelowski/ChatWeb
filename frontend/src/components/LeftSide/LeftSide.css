@@ -1,0 +1,17 @@
+.left-side {
+    display: flex;
+    flex-direction: row;
+
+    width: 20vw;
+    height: 100%;
+    
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.div-list-of-conversations{
+    width: 20vw;
+    height: 100%;
+    
+    background-color: var(--background-color);
+}

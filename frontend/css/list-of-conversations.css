@@ -3,57 +3,14 @@
     margin-top: .5rem;
 }
 
-.conversation-title{
-    display: flex;
-    align-items: center;
 
-    font-size: .875rem;
-    line-height: 1.25rem;
-
-    height: 2.5rem;
-    min-width: 200px;
-
-    border-radius: .5rem;
-    padding: .5rem;
-
-    /* top | right | bottom | left */
-    margin: 0 .5rem 0 .5rem;
-
-    cursor: pointer;
-
-    position: relative
-
-}
    
-.conversation-title:hover{
-    background-color: rgb(81, 81, 81);
-}
 
-.conversation-title a{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
 
-.new-chat{
-    display: flex;
-    justify-content: space-between;
-}
 .bottoms-wrapper{
     opacity: 0;
 }
 
-.conversation-title:hover .bottoms-wrapper{
-    opacity: 1;
-}
-
-.conversation-title:hover  .bottoms{
-    background-color: rgb(81, 81, 81);
-}
-
-.conversation-title:hover  .bottoms-transtion{
-    background: linear-gradient(to right, rgba(81, 81, 81, 0) 30%, rgb(81, 81, 81));
-}
 
 .bottoms{
     position: absolute;

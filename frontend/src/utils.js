@@ -1,15 +1,20 @@
 /**
  * Clears the conversation by removing all child elements from the conversation container.
  */
-export const clear_conversation = function(){
-    var divs = document.getElementsByClassName("conversation");
+export const clearConversation = function(){
+    try{
+        var divs = document.getElementsByClassName("conversation");
 
-    for (var i = divs.length - 1; i >= 0; i--) {
-        var div = divs[i];
-        while (div.firstChild) {
-            div.removeChild(div.firstChild);
+        for (var i = divs.length - 1; i >= 0; i--) {
+            var div = divs[i];
+            while (div.firstChild) {
+                div.removeChild(div.firstChild);
+            }
         }
+    }catch{
+        console.log("Error clearing conversation");
     }
+
 }
 
 /**
