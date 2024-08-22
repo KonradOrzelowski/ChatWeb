@@ -7,10 +7,15 @@ import { ConversationTitle } from '../ConversationTitle/ConversationTitle.jsx';
 import { fetchData } from '../..//network_requests/fetch_data.js';
 import { getUrl } from '../../get_url.js';
 
-const ConversationDropdown = ({ conversationTitles, key, onCancel }) => (
+const ConversationDropdown = ({ conversationTitles, reloadLeftSide }) => (
     <div className="dropdown-menu">
         {conversationTitles.map((item, index) => (
-            <ConversationTitle key={index} title={item.title} id={item._id} onCancel={onCancel}/>
+            <ConversationTitle
+                key={index}
+                title={item.title}
+                id={item._id}
+                reloadLeftSide={reloadLeftSide}
+            />
         ))}
     </div>
 );
@@ -47,10 +52,9 @@ export function LeftSide() {
             
             <ConversationDropdown
                 conversationTitles={conversationTitles}
-                key={reloadKey}
-                onCancel={reloadLeftSide}
+                reloadLeftSide={reloadLeftSide}
             />
-            
+
         </div>
     )
 

@@ -16,7 +16,7 @@ function getCustomAlertWrapper(){
 }
 
 
-const showEditAlert = function(itemTitle, itemID, onCancel){ 
+const showEditAlert = function(itemTitle, itemID, reloadLeftSide){ 
 
     var contentDocument = document.getElementsByClassName("content")[0];
     let customAlert = document.createElement('div');
@@ -58,12 +58,12 @@ const showEditAlert = function(itemTitle, itemID, onCancel){
 
     updateButton.addEventListener('click', function() {
         sendEditAlert(itemID, 'custom-alert-wrapper-edit');
-        onCancel();
+        reloadLeftSide();
     });
 
 }
 
-const showDeleteAlert = function(itemTitle, itemID, onCancel){ 
+const showDeleteAlert = function(itemTitle, itemID, reloadLeftSide){ 
     console.log(`"showDeleteAlert ${itemID}"`)
 
     var contentDocument = document.getElementsByClassName("content")[0];
@@ -102,7 +102,7 @@ const showDeleteAlert = function(itemTitle, itemID, onCancel){
 
     deleteButton.addEventListener('click', function() {
         sendDeleteAlert(itemID, 'custom-alert-wrapper-delete');
-        onCancel();
+        reloadLeftSide();
     });
 
     
@@ -153,7 +153,7 @@ async function displayConversation(conversationID){
         }
 }
 
-export function ConversationTitle({ title, id, onCancel}){
+export function ConversationTitle({ title, id, reloadLeftSide}){
 
     return (
       <div className='conversation-title' onClick={
@@ -170,14 +170,14 @@ export function ConversationTitle({ title, id, onCancel}){
                     id="editIcon"
                     src="assets/icons/edit-pen-icon.svg"
                     alt="Icon description"
-                    onClick={() => showEditAlert(title, id, onCancel)} 
+                    onClick={() => showEditAlert(title, id, reloadLeftSide)} 
                 />
 
                 <img
                     id="deleteIcon"
                     src="assets/icons/trash-bin-icon.svg"
                     alt="Icon description"
-                    onClick={() => showDeleteAlert(title, id, onCancel)} 
+                    onClick={() => showDeleteAlert(title, id, reloadLeftSide)} 
                 />
                 
             </div>
