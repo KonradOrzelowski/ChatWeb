@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 import { LeftSide } from './components/LeftSide/LeftSide.jsx';
 import { RightSide } from './components/RightSide/RightSide.jsx';
-import { OpenLeftSideButton } from './components/OpenLeftSideButton/OpenLeftSideButton.jsx';
+// import { OpenLeftSideButton } from './components/OpenLeftSideButton/OpenLeftSideButton.jsx';
 
 export function loadReactDom() {
     

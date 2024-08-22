@@ -46,16 +46,26 @@ export function LeftSide() {
     }
 
     return (
-        
-        <div className='div-list-of-conversations'>
-            <AddNewChat/>
-            
-            <ConversationDropdown
-                conversationTitles={conversationTitles}
-                reloadLeftSide={reloadLeftSide}
-            />
+        <>
 
-        </div>
+            <div className='div-list-of-conversations'>
+                <AddNewChat/>
+                
+                <ConversationDropdown
+                    conversationTitles={conversationTitles}
+                    reloadLeftSide={reloadLeftSide}
+                />
+            </div>
+            
+            <button className='test-button'
+                onClick={() => setOpen(!open)}>
+                    Click me!
+            </button>
+        
+        </>
+
+
+        
     )
 
 }
