@@ -3,6 +3,7 @@ import './LeftSide.css';
 
 import { AddNewChat } from '../AddNewChat/AddNewChat.jsx';
 import { ConversationTitle } from '../ConversationTitle/ConversationTitle.jsx';
+import { ToggleConversationList } from '../ToggleConversationList/ToggleConversationList.jsx';
 
 import { fetchData } from '../..//network_requests/fetch_data.js';
 import { getUrl } from '../../get_url.js';
@@ -20,11 +21,7 @@ const ConversationDropdown = ({ conversationTitles, reloadLeftSide }) => (
     </div>
 );
 
-function RedSquare() {
-    return(
-        <div style={{width: '10vw', height: '10vh', backgroundColor: 'red'}}></div>
-    )
-}
+
 
 export function LeftSide() {
 
@@ -52,8 +49,8 @@ export function LeftSide() {
     }
 
     return (
-        <>
-
+        <div>
+            <ToggleConversationList/>
             <div className='div-list-of-conversations'>
                 <AddNewChat/>
                 
@@ -71,7 +68,7 @@ export function LeftSide() {
 
             
         
-        </>
+        </div>
 
 
         
