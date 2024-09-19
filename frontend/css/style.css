@@ -147,6 +147,17 @@ img{
     }
 }
 
+#toggle-blue{
+    display: none;
+}
+#toggle-red{
+    display: block;
+}
+
+.div-list-of-conversations.red-hidden {
+    display: none !important;
+}
+
 @media (max-width: 600px) {
     .left-side {
         background-color: var(--background-second-color);
@@ -156,9 +167,18 @@ img{
         display: none !important;
     }
 
-    .div-list-of-conversations.hidden {
+    .div-list-of-conversations.blue-hidden {
         display: block !important;
     }
+
+    #toggle-blue{
+        display: block;
+    }
+    #toggle-red{
+        display: none;
+    }
+    
+
     main {
         width: 100vw;
         padding: 0;
