@@ -143,18 +143,18 @@ img{
 
 @media (min-width: 600px) {
     .overlay.active{
-        display: none;
+        display: none !important;
     }
 }
 
-#toggle-blue{
+#toggleWhenSmall{
     display: none;
 }
-#toggle-red{
+#toggleWhenLarge{
     display: block;
 }
 
-.div-list-of-conversations.red-hidden {
+.div-list-of-conversations.when-large-hidden {
     display: none !important;
 }
 
@@ -167,14 +167,14 @@ img{
         display: none !important;
     }
 
-    .div-list-of-conversations.blue-hidden {
+    .div-list-of-conversations.when-small-hidden {
         display: block !important;
     }
 
-    #toggle-blue{
+    #toggleWhenSmall{
         display: block;
     }
-    #toggle-red{
+    #toggleWhenLarge{
         display: none;
     }
     
