@@ -59,14 +59,7 @@ export function LeftSide() {
                     reloadLeftSide={reloadLeftSide}
                 />
             </div>
-            
-            
-            {/* <button className='pop-conversation-dropdown'
-                onClick={() => setOpen(!open)}>
-                    Click me!
-            </button> */}
-
-            
+                       
         
         </div>
 

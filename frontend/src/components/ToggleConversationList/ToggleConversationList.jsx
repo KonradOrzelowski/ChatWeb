@@ -7,12 +7,8 @@ export function ToggleConversationList() {
             style={{width: '200px', height: '10vh', backgroundColor: 'blue'}}
             onClick={ () => {
 
-                var elementId = document.getElementsByClassName('div-list-of-conversations')[0];
-                if (elementId.style.display === 'none') {
-                    elementId.style.display = 'block';
-                } else {
-                    elementId.style.display = 'none';
-                }
+                const element = document.getElementsByClassName('div-list-of-conversations')[0];
+                element.classList.toggle('hidden');
             }}
         >
 

@@ -152,8 +152,12 @@ img{
         background-color: var(--background-second-color);
     }
 
-    .div-list-of-conversations{
-        display: none;
+    .div-list-of-conversations {
+        display: none !important;
+    }
+
+    .div-list-of-conversations.hidden {
+        display: block !important;
     }
     main {
         width: 100vw;
