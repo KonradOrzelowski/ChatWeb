@@ -5,9 +5,9 @@
 
     bottom: 0;
 
-    position: fixed;
+    position: sticky;
     width: inherit;
-
+    z-index: 10;
     background-color: var(--background-second-color);
     
 }

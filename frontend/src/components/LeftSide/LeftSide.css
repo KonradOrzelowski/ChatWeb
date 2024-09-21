@@ -11,7 +11,7 @@
 
 .div-list-of-conversations{
     width: 20vw;
-    height: 100%;
+    /* height: 100%; */
     
     background-color: var(--background-color);
 }
