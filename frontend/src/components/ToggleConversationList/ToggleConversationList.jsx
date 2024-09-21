@@ -22,12 +22,18 @@ export function ToggleConversationList() {
         
         <div id='toggleWhenLarge'
         
-        style={{width: '200px', height: '10vh', backgroundColor: 'red'}}
+        
         onClick={ () => {
 
             const element = document.getElementsByClassName('div-list-of-conversations')[0];
             element.classList.toggle('when-large-hidden');
 
+            const toogleElement = document.getElementById('toggleWhenLarge');
+            toogleElement.classList.toggle('when-large-hidden');
+
+            const LeftSide = document.getElementById('left-side');
+            LeftSide.classList.toggle('when-large-hidden');
+            
         }}
         >
 

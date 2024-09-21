@@ -1,0 +1,16 @@
+#toggleWhenLarge{
+    width: 200px;
+    height: 10vh;
+    background-color: red;
+}
+
+#toggleWhenLarge.when-large-hidden{
+    width: 10vh;
+    height: 10vh;
+
+    background-color: brown;
+}
+
+#left-side.when-large-hidden{
+    background-color: var(--background-second-color);
+}
