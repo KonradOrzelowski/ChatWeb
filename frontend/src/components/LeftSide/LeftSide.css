@@ -4,6 +4,8 @@
 
     /* width: 40vw; */
     height: 100%;
+
+    overflow-y: scroll;
     
     color: var(--text-color);
     background-color: var(--background-color);
