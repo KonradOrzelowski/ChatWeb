@@ -4,6 +4,12 @@
     background-color: red;
 }
 
+#toggleWhenSmall{
+    width: 10vh;
+    height: 10vh;
+    background-color: blue;
+}
+
 #toggleWhenLarge.when-large-hidden{
     width: 10vh;
     height: 10vh;
@@ -11,6 +17,15 @@
     background-color: brown;
 }
 
+#toggleWhenSmall.when-small-hidden{
+    width: 200px;
+    height: 10vh;
+
+}
+
 #left-side.when-large-hidden{
+    background-color: var(--background-second-color);
+}
+#left-side.when-small-hidden{
     background-color: var(--background-second-color);
 }

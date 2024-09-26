@@ -6,11 +6,14 @@ export function ToggleConversationList() {
     <div>
         
         <div id='toggleWhenSmall'
-        style={{width: '200px', height: '10vh', backgroundColor: 'blue'}}
+        
         onClick={ () => {
 
             const elementHidden = document.getElementsByClassName('div-list-of-conversations')[0];
             elementHidden.classList.toggle('when-small-hidden');
+
+            const toogleElement = document.getElementById('toggleWhenSmall');
+            toogleElement.classList.toggle('when-small-hidden');
 
             const overlayElement = document.getElementsByClassName('overlay')[0];
             overlayElement.classList.toggle('active');

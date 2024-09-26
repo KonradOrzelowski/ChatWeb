@@ -161,7 +161,7 @@ img{
 
 @media (max-width: 600px) {
     .left-side {
-        background-color: var(--background-second-color);
+        /* background-color: var(--background-color); */
     }
 
     .div-list-of-conversations {
