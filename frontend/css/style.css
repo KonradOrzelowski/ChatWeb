@@ -130,8 +130,8 @@ img{
 .overlay{
     position: fixed;
     top: 0;
-    left: 10vw;
-    width: 90vw;
+    left: 40vw;
+    width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
