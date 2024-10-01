@@ -1,10 +1,11 @@
 #left-side {
-    height: 100%;
-
     display: flex;
     flex-direction: row;
 
     overflow-y: scroll;
+    height: 100vh;
+
+
     
     color: var(--text-color);
 }
@@ -14,11 +15,18 @@
 }
 
 .div-list-of-conversations{
-    width: 20vw;
+    display: flex;
+    flex-direction: column;
     
+    height: 100%;
+    width: 20vw;
+
     background-color: var(--background-color);
 }
-
+.dropdown-menu{
+    height: 100%;
+    
+}
 
 .pop-conversation-dropdown{
     width: 20vw;
