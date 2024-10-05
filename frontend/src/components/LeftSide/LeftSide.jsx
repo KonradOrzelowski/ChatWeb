@@ -52,7 +52,7 @@ export function LeftSide() {
         <div className='left-side-content'>
             <ToggleConversationList/>
             <div className='div-list-of-conversations'>
-                <AddNewChat/>
+                {/* <AddNewChat/> */}
                 
                 <ConversationDropdown
                     conversationTitles={conversationTitles}
