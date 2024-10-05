@@ -19,12 +19,13 @@
     flex-direction: column;
     
     height: 100%;
-    width: 20vw;
+    /* width: 20vw; */
 
     background-color: var(--background-color);
 }
 .dropdown-menu{
     height: 100%;
+    width: 100%;
     
 }
 

@@ -6,7 +6,7 @@
     line-height: 1.25rem;
 
     height: 2.5rem;
-    min-width: 200px;
+    /* min-width: 200px; */
 
     border-radius: .5rem;
     padding: .5rem;
@@ -25,6 +25,10 @@
 }
 
 .conversation-title a{
+    width: 70%;
+
+    background-color: red;
+
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
