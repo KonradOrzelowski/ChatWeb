@@ -25,9 +25,9 @@
 }
 
 .conversation-title a{
-    width: 70%;
+    /* width: 80%; */
 
-    background-color: red;
+    /* background-color: red; */
 
     overflow: hidden;
     text-overflow: ellipsis;

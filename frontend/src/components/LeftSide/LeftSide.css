@@ -9,6 +9,9 @@
     
     color: var(--text-color);
 }
+.left-side-content{
+    width: 100%;
+}
 
 .dark-mode #left-side {
     background-color: var(--background-second-color);

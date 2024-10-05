@@ -49,7 +49,7 @@ export function LeftSide() {
     }
 
     return (
-        <div>
+        <div className='left-side-content'>
             <ToggleConversationList/>
             <div className='div-list-of-conversations'>
                 <AddNewChat/>
