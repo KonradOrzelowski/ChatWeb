@@ -29,3 +29,15 @@
 #left-side.when-small-hidden{
     background-color: var(--background-second-color);
 }
+
+
+@media (max-widht: 600px) {
+
+    #toggleWhenSmall{
+        display: block;
+    }
+    #toggleWhenLarge{
+        display: none;
+    }
+    
+}

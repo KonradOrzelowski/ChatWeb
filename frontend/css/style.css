@@ -172,12 +172,6 @@ img{
         display: block !important;
     }
 
-    #toggleWhenSmall{
-        display: block;
-    }
-    #toggleWhenLarge{
-        display: none;
-    }
     
 
     main {

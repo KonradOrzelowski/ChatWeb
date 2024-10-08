@@ -27,21 +27,31 @@ export function ToggleConversationList() {
         LeftSide.classList.toggle('when-large-hidden');
     }
 
+    function onClickTestToggle(){
+        
+        const parentElement = document.getElementById('testToggle')
+        if(parentElement.classList.contains('is_small')){
+            console.log('Parent element has class is_small');
+        } else {
+            console.log('Parent element does not have class is_small');
+        }
+    }
+
     return(
     <div>
-        {/* <AddNewChat/> */}
+        {/* <div id='testToggle' className={['toggleWhenSmall', 'toggleWhenLarge']} onClick={onClickTestToggle}>
+
+        </div> */}
         <div id='toggleWhenSmall'
-        
-        onClick={ onClickToggleWhenSmall}
+            onClick={ onClickToggleWhenSmall}
         >
+            <AddNewChat/>
         </div>
         
         <div id='toggleWhenLarge'
-        
-        
-        onClick={ onClickToggleWhenLarge}
+            onClick={ onClickToggleWhenLarge}
         >
-
+            <AddNewChat/>
         </div>
     </div>
 
