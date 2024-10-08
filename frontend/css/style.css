@@ -160,9 +160,6 @@ img{
 }
 
 @media (max-width: 600px) {
-    .left-side {
-        /* background-color: var(--background-color); */
-    }
 
     .div-list-of-conversations {
         display: none !important;
@@ -178,4 +175,18 @@ img{
         width: 100vw;
         padding: 0;
     }
+
+
+    /* #toggleWhenSmall{
+        display: block;
+    }
+    #toggleWhenLarge{
+        display: none;
+    }
+    
+    #testToggle{
+        width: 10vh;
+        height: 10vh;
+        background-color: blue;
+    } */
 }

@@ -4,6 +4,12 @@
     background-color: red;
 }
 
+#testToggle{
+    width: 100%;
+    height: 10vh;
+    background-color: red;
+}
+
 #toggleWhenSmall{
     width: 10vh;
     height: 10vh;
@@ -31,7 +37,7 @@
 }
 
 
-@media (max-widht: 600px) {
+@media (max-width: 600px) {
 
     #toggleWhenSmall{
         display: block;
@@ -40,4 +46,9 @@
         display: none;
     }
     
+    #testToggle{
+        width: 10vh;
+        height: 10vh;
+        background-color: blue;
+    }
 }
