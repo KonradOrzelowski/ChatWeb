@@ -9,18 +9,18 @@ export function ToggleConversationList() {
         const elementHidden = document.getElementsByClassName('div-list-of-conversations')[0];
         elementHidden.classList.toggle('when-small-hidden');
     
-        const toogleElement = document.getElementById('toggleWhenSmall');
+        const toogleElement = document.getElementById('toogleList');
         toogleElement.classList.toggle('when-small-hidden');
     
-        const overlayElement = document.getElementsByClassName('overlay')[0];
-        overlayElement.classList.toggle('active');
+        // const overlayElement = document.getElementsByClassName('overlay')[0];
+        // overlayElement.classList.toggle('active');
     }
     
     const onClickToggleWhenLarge = () => {
         const element = document.getElementsByClassName('div-list-of-conversations')[0];
         element.classList.toggle('when-large-hidden');
     
-        const toogleElement = document.getElementById('toggleWhenLarge');
+        const toogleElement = document.getElementById('toogleList');
         toogleElement.classList.toggle('when-large-hidden');
     
         const LeftSide = document.getElementById('left-side');

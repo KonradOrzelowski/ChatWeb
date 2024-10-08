@@ -1,29 +1,18 @@
-#toggleWhenLarge{
+#toogleList{
     width: 100%;
     height: 10vh;
     background-color: red;
 }
 
-#testToggle{
-    width: 100%;
-    height: 10vh;
-    background-color: red;
-}
 
-#toggleWhenSmall{
-    width: 10vh;
-    height: 10vh;
-    background-color: blue;
-}
-
-#toggleWhenLarge.when-large-hidden{
+#toogleList.when-large-hidden{
     width: 10vh;
     height: 10vh;
 
     background-color: brown;
 }
 
-#toggleWhenSmall.when-small-hidden{
+#toogleList.when-small-hidden{
     width: 100%;
     height: 10vh;
 
@@ -46,7 +35,7 @@
         display: none;
     }
     
-    #testToggle{
+    #toogleList{
         width: 10vh;
         height: 10vh;
         background-color: blue;
