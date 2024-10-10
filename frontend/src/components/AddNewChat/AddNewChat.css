@@ -8,11 +8,15 @@
     align-items: center;
 
 
-    background-color: black;
+    background-color: var(--background-color);
 
     cursor: pointer;
 
 
+}
+
+.new-chat:hover{
+    background-color: gray;
 }
 
 .new-chat.when-small-hidden{
