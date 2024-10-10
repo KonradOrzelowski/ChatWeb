@@ -1,26 +1,28 @@
 .new-chat{
-    display: flex;
-    justify-content: space-between;
 
     height: 2.5rem;
     width: 2.5rem;
 
-    background-color: black;
-
     display: flex;
+    justify-content: center;
     align-items: center;
 
-    font-size: .875rem;
-    line-height: 1.25rem;
 
-    border-radius: .5rem;
-    padding: .5rem;
-
-    /* top | right | bottom | left */
-    margin: 0 .5rem 0 .5rem;
+    background-color: black;
 
     cursor: pointer;
 
-    position: relative
 
+}
+
+.new-chat.when-small-hidden{
+    display: flex;
+    background-color: black;
+}
+
+@media (max-width: 600px) {
+    .new-chat{
+        display: none;
+    }
+    
 }

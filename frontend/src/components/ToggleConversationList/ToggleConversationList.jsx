@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ToggleConversationList.css';
 import { AddNewChat } from '../AddNewChat/AddNewChat.jsx';
-
+import { CloseList } from '../CloseList/CloseList.jsx';
 
 export function ToggleConversationList() {
 
@@ -41,10 +41,7 @@ export function ToggleConversationList() {
     return(
     <div>
         <div id='toogleList' onClick={onClickToogleList}>
-            <div 
-                className="green-square" 
-                style={{width: '10vh', height: '10vh', backgroundColor: 'green'}}
-            ></div>
+            <CloseList/>
             <AddNewChat/>
         </div>
 

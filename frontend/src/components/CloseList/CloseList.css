@@ -1,0 +1,14 @@
+.close-list{
+    height: 2.5rem;
+    width: 2.5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    background-color: black;
+
+    cursor: pointer;
+}
+
