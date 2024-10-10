@@ -41,6 +41,10 @@ export function ToggleConversationList() {
     return(
     <div>
         <div id='toogleList' onClick={onClickToogleList}>
+            <div 
+                className="green-square" 
+                style={{width: '10vh', height: '10vh', backgroundColor: 'green'}}
+            ></div>
             <AddNewChat/>
         </div>
 

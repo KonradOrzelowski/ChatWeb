@@ -11,7 +11,7 @@ export function AddNewChat() {
             sendNewChatSignal();
             clearConversation();
         }}>
-            New chat
+            {/* New chat */}
             <img src="assets/icons/text-document-add-icon.svg"
                 alt="Icon description"
                 style={{maxWidth: '1.25rem', maxHeight: '1.25rem'}}
