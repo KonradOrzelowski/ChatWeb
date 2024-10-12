@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useDarkMode } from '../../hooks/useDarkMode.js';
+
 import './CloseList.css';
+
+import { useDarkMode } from '../../hooks/useDarkMode.js';
+import { disableTransition } from '../../hooks/disableTransition.js';
+
+
 
 export function CloseList() {
 
     const isDarkMode = useDarkMode();
+    const isDisableTransition = disableTransition(isDarkMode);
 
     
     const onClickToggleWhenSmall = () => {
@@ -41,7 +47,11 @@ export function CloseList() {
     }
 
     return (
-        <div className="close-list"  onClick={onClickToogleList}>
+        
+        <div
+            className={`${isDisableTransition ? 'no-transition' : ''} close-list`}
+            onClick={onClickToogleList}
+        >
             <img src={isDarkMode ? "assets/icons/light-mode.svg" : "assets/icons/dark-mode.svg"}
                 alt="Icon description"
             />

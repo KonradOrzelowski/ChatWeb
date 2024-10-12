@@ -27,6 +27,9 @@
 
 }
 
+.no-transition {
+    transition: none !important;
+}
 
 /* Main styles */
 main {

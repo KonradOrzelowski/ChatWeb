@@ -15,7 +15,7 @@
 
     transition: background-color var(--hover-transtion-speed) ease, transform var(--hover-transtion-speed) ease;
 
-
+    
 }
 
 .new-chat:hover{
