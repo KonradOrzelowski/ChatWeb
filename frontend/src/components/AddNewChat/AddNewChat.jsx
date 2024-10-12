@@ -5,7 +5,7 @@ import './AddNewChat.css';
 import { sendNewChatSignal } from '../../network_requests/new_chat_created.js';
 import { clearConversation } from '../../utils.js';
 
-import { useDarkMode } from '../../hooks/useDarkMode.jsx';
+import { useDarkMode } from '../../hooks/useDarkMode.js';
 
 export function AddNewChat() {
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDarkMode } from '../../hooks/useDarkMode.jsx';
+import { useDarkMode } from '../../hooks/useDarkMode.js';
 import './CloseList.css';
 
 export function CloseList() {
