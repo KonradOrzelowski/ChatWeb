@@ -38,7 +38,7 @@ export function CloseList() {
 
     return (
         <div className="close-list"  onClick={onClickToogleList}>
-            <img src="assets/icons/light-mode.svg"
+            <img src="assets/icons/dark-mode.svg"
                 alt="Icon description"
             />
         </div>

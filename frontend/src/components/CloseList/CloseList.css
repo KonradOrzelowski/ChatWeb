@@ -1,15 +1,21 @@
 .close-list{
+
     height: 2.5rem;
     width: 2.5rem;
 
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
+    border-radius: 0.25rem;
 
     background-color: var(--background-color);
 
     cursor: pointer;
+
+    transition: background-color var(--hover-transtion-speed) ease, transform var(--hover-transtion-speed) ease;
+
+
 }
 
 .close-list:hover{

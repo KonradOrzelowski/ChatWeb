@@ -12,7 +12,7 @@ export function AddNewChat() {
             clearConversation();
         }}>
             {/* New chat */}
-            <img src="assets/icons/text-document-add-icon.svg"
+            <img src="assets/icons/text-document-add-icon-black.svg"
                 alt="Icon description"
             />
         </div>
