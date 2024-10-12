@@ -29,6 +29,7 @@
 
 .no-transition {
     transition: none !important;
+    /* transform: all 0.25s ease 0.25s !important; */
 }
 
 /* Main styles */
