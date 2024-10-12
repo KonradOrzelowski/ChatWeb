@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
-
+import { useDarkMode } from '../../hooks/useDarkMode.jsx';
 import './CloseList.css';
 
 export function CloseList() {
+
+    const isDarkMode = useDarkMode();
+
+    
     const onClickToggleWhenSmall = () => {
         const elementHidden = document.getElementsByClassName('div-list-of-conversations')[0];
         elementHidden.classList.toggle('when-small-hidden');
@@ -38,7 +42,7 @@ export function CloseList() {
 
     return (
         <div className="close-list"  onClick={onClickToogleList}>
-            <img src="assets/icons/dark-mode.svg"
+            <img src={isDarkMode ? "assets/icons/light-mode.svg" : "assets/icons/dark-mode.svg"}
                 alt="Icon description"
             />
         </div>

@@ -5,16 +5,21 @@ import './AddNewChat.css';
 import { sendNewChatSignal } from '../../network_requests/new_chat_created.js';
 import { clearConversation } from '../../utils.js';
 
+import { useDarkMode } from '../../hooks/useDarkMode.jsx';
+
 export function AddNewChat() {
+
+    const isDarkMode = useDarkMode();
+
     return (
         <div className="new-chat" onClick={() =>{
             sendNewChatSignal();
             clearConversation();
         }}>
-            {/* New chat */}
-            <img src="assets/icons/text-document-add-icon-black.svg"
+            <img
+                src={isDarkMode ? "assets/icons/text-document-add-icon-white.svg" : "assets/icons/text-document-add-icon-black.svg"}
                 alt="Icon description"
             />
         </div>
-    )
+    );
 }
