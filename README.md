@@ -72,7 +72,7 @@ It provides an interface for the user to interact with the chatbot.
 ## Frontend
 - [x] 🟡 Add dark/light mode.
 - [ ] 🟢 Replace functions that create HTML elements with React components.
-- [ ] 🔴 Add responsive design for mobile views.
+- [x] 🔴 Add responsive design for mobile views.
 - [ ] 🟢 Fix refresh and close signal.
 - [ ] 🟡 Add messages to existing conversations.
 - [ ] 🟡 Replace save button with logic.
