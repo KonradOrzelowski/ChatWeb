@@ -3,6 +3,9 @@
     height: 2.5rem;
     width: 2.5rem;
 
+    padding: .5rem;
+    margin: 0 .5rem 0 .5rem;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,12 +22,12 @@
 }
 
 .new-chat:hover{
-    background-color: gray;
+    background-color: var(--buttom-color-hover);
 }
 
 .new-chat.when-small-hidden{
     display: flex;
-    background-color: black;
+    /* background-color: black; */
 }
 
 @media (max-width: 600px) {

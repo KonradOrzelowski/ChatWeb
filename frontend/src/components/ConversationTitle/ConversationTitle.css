@@ -16,12 +16,12 @@
 
     cursor: pointer;
 
-    position: relative
+    position: relative;
 
 }
 
 .conversation-title:hover{
-    background-color: rgb(81, 81, 81);
+    background-color: var(--buttom-color-hover);
 }
 
 .conversation-title a{
@@ -39,7 +39,7 @@
 }
 
 .conversation-title:hover  .bottoms{
-    background-color: rgb(81, 81, 81);
+    background-color: var(--buttom-color-hover);
 }
 
 .conversation-title:hover  .bottoms-transtion{
