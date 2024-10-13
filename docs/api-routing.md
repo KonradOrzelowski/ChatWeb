@@ -1,5 +1,33 @@
 # Project API Routing Documentation
 
+## 1. Backend API Routes
+
+### Conversations
+- **GET** `/conversations/:id`:
+    - Returns: List of convesartoins
+
+- **POST** `/delete_alert`: Deletes a conversation alert from the "ChatWebDB" by its ID
+    - Example Request:
+    ```json
+        {
+        "message": "7f2a3e9c5d1b4a6f2c9b1d7e"
+        }
+    ```
+    - Returns: Status
+    - Example Response:
+      ```json
+        {
+        "response": true
+        }
+    ```
+
+### User Management
+- **GET** `/api/users`: Fetches a list of users.
+    - Middleware: Requires admin role.
+    - Returns: Array of user objects
+    - Error Codes: 403 Forbidden, 401 Unauthorized
+
+
 ## 1. Frontend API Routes
 
 ### User Module
@@ -22,16 +50,6 @@
       }
       ```
 
-## 2. Backend API Routes
 
-### Authentication
-- **POST** `/api/auth/login`: Handles user authentication.
-    - Middleware: None
-    - Returns: JWT Token for authentication
-    - Error Codes: 401 Unauthorized, 400 Bad Request
 
-### User Management
-- **GET** `/api/users`: Fetches a list of users.
-    - Middleware: Requires admin role.
-    - Returns: Array of user objects
-    - Error Codes: 403 Forbidden, 401 Unauthorized
+
