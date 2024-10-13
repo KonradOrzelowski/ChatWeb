@@ -1,5 +1,4 @@
-.new-chat{
-
+.close-list{
     height: 2.5rem;
     width: 2.5rem;
 
@@ -17,21 +16,9 @@
 
     transition: background-color var(--hover-transtion-speed) ease, transform var(--hover-transtion-speed) ease;
 
-    
+
 }
 
-.new-chat:hover{
+.close-list:hover{
     background-color: var(--buttom-color-hover);
-}
-
-.new-chat.when-small-hidden{
-    display: flex;
-    /* background-color: black; */
-}
-
-@media (max-width: 600px) {
-    .new-chat{
-        display: none;
-    }
-    
 }

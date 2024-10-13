@@ -8,7 +8,7 @@
 
     --buttom-color-delete-hover: rgb(153, 27, 27);
     --buttom-color-accept-hover: rgb(26, 127, 100);
-    --buttom-color-hover: rgba(249,249,249,255);
+    --buttom-color-hover: rgba(81, 81, 81,255);
     
     --text-color: rgb(0, 0, 0);
 
@@ -25,4 +25,3 @@
     
     --text-color: white;
 }
-

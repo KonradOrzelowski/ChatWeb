@@ -1,26 +1,20 @@
-#toggleWhenLarge{
+#toogleList{
+
     width: 100%;
-    height: 10vh;
-    background-color: red;
+
+    /* padding: .5rem; */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    background-color: var(--background-color);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-#toggleWhenSmall{
-    width: 10vh;
-    height: 10vh;
-    background-color: blue;
-}
-
-#toggleWhenLarge.when-large-hidden{
-    width: 10vh;
-    height: 10vh;
-
-    background-color: brown;
-}
-
-#toggleWhenSmall.when-small-hidden{
+#toogleList.when-small-hidden{
     width: 100%;
-    height: 10vh;
-
 }
 
 #left-side.when-large-hidden{
@@ -28,4 +22,16 @@
 }
 #left-side.when-small-hidden{
     background-color: var(--background-second-color);
+}
+
+
+@media (max-width: 600px) {
+
+    #toggleWhenSmall{
+        display: block;
+    }
+    #toggleWhenLarge{
+        display: none;
+    }
+
 }

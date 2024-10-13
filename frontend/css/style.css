@@ -27,6 +27,10 @@
 
 }
 
+.no-transition {
+    transition: none !important;
+    /* transform: all 0.25s ease 0.25s !important; */
+}
 
 /* Main styles */
 main {
@@ -160,9 +164,6 @@ img{
 }
 
 @media (max-width: 600px) {
-    .left-side {
-        /* background-color: var(--background-color); */
-    }
 
     .div-list-of-conversations {
         display: none !important;
@@ -172,16 +173,24 @@ img{
         display: block !important;
     }
 
-    #toggleWhenSmall{
-        display: block;
-    }
-    #toggleWhenLarge{
-        display: none;
-    }
     
 
     main {
         width: 100vw;
         padding: 0;
     }
+
+
+    /* #toggleWhenSmall{
+        display: block;
+    }
+    #toggleWhenLarge{
+        display: none;
+    }
+    
+    #testToggle{
+        width: 10vh;
+        height: 10vh;
+        background-color: blue;
+    } */
 }
