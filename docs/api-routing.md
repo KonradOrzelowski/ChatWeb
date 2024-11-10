@@ -4,7 +4,7 @@
 
 ### Conversations
 - **GET** `/conversations/:id`:
-    - Returns: List of convesartoins
+    - Returns: Get conversation content.
 
 - **POST** `/delete_alert`: Deletes a conversation from the database by its ID
     - Example Request:
