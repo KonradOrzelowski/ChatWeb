@@ -68,3 +68,10 @@
     ```
 
 - **POST** `/save_conversation`: Insert conversation into MongoDB
+    - Returns: Status
+    - Example Response:
+      ```json
+        {
+        "response": true
+        }
+    ```
