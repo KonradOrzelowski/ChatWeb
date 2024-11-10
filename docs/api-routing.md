@@ -15,7 +15,7 @@
     ```
     - Returns: Status
     - Example Response:
-      ```json
+  ```json
         {
         "response": true
         }
@@ -24,7 +24,7 @@
 - **GET** `/lists/list_of_titles`
     - Returns: List of all titles
     - Example Response:
-      ```json
+  ```json
         {"response":[
             {"title":"Title 1","_id":"3b8a4c1e7d2f5a9b8e6d3c2a"},
             {"title":"Title 2", "_id":"9d4e7f8c1b2a6e3f4c5b8a1e"},
@@ -34,7 +34,7 @@
 - **GET** `/lists/list_of_convs`
     - Returns: List of all conversations
     - Example Response:
-      ```json
+    ```json
         {"response":{
             "3b8a4c1e7d2f5a9b8e6d3c2a": {
                 "_id":"3b8a4c1e7d2f5a9b8e6d3c2a",
@@ -61,17 +61,17 @@
 - **POST** `/refresh`
     - Returns: Status
     - Example Response:
-      ```json
+```json
         {
         "response": true
         }
-    ```
+```
 
 - **POST** `/save_conversation`: Insert conversation into MongoDB
     - Returns: Status
     - Example Response:
-      ```json
+```json
         {
         "response": true
         }
-    ```
+```
