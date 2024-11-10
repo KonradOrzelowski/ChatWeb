@@ -3,7 +3,7 @@
 ## 1. Backend API Routes
 
 ### Conversations
-- **GET** `/conversations/:id`:
+- **GET** `/conversations/:id`: Get conversation content.
     - Returns: Get conversation content.
 
 - **POST** `/delete_alert`: Deletes a conversation from the database by its ID
