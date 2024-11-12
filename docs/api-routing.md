@@ -75,3 +75,23 @@
         "response": true
         }
 ```
+
+
+
+- **POST** `/message`: Sends a message and receives a response.
+
+    - Example Request:
+```json
+    {
+    "message": "Hello"
+    }
+```
+    - Returns: Status and response message
+    - Example Response:
+
+```json
+    "response": {
+        "receivedMessage": "Hello",
+        "serverResponse": "Hi, how can I help you?"
+    }
+```
