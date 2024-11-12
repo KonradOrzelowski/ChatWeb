@@ -4,7 +4,27 @@
 
 ### Conversations
 - **GET** `/conversations/:id`: Get conversation content.
+    - Example Request:
+    ```json
+        {
+        "message": "3b8a4c1e7d2f5a9b8e6d3c2a"
+        }
+    ```
     - Returns: Get conversation content.
+    ```json
+        {
+            "response":{
+                "3b8a4c1e7d2f5a9b8e6d3c2a": {
+                    "_id":"3b8a4c1e7d2f5a9b8e6d3c2a",
+                    "title":"Title 1",
+                    "conversation":[
+                        {"speaker":"You","message":"Question."},
+                        {"speaker":"Bot","message":"Answer."}
+                    ]
+                }
+            }
+        }
+    ```
 
 - **POST** `/delete_alert`: Deletes a conversation from the database by its ID
     - Example Request:
@@ -15,7 +35,7 @@
     ```
     - Returns: Status
     - Example Response:
-  ```json
+    ```json
         {
         "response": true
         }
@@ -24,7 +44,7 @@
 - **GET** `/lists/list_of_titles`
     - Returns: List of all titles
     - Example Response:
-  ```json
+    ```json
         {"response":[
             {"title":"Title 1","_id":"3b8a4c1e7d2f5a9b8e6d3c2a"},
             {"title":"Title 2", "_id":"9d4e7f8c1b2a6e3f4c5b8a1e"},
@@ -61,37 +81,56 @@
 - **POST** `/refresh`
     - Returns: Status
     - Example Response:
-```json
-        {
-        "response": true
-        }
-```
+    ```json
+            {
+            "response": true
+            }
+    ```
 
 - **POST** `/save_conversation`: Insert conversation into MongoDB
     - Returns: Status
     - Example Response:
-```json
-        {
-        "response": true
-        }
-```
+    ```json
+            {
+            "response": true
+            }
+    ```
 
 
 
 - **POST** `/message`: Sends a message and receives a response.
 
     - Example Request:
-```json
-    {
-    "message": "Hello"
-    }
-```
+    ```json
+        {
+        "message": "Hello"
+        }
+    ```
     - Returns: Status and response message
     - Example Response:
 
-```json
-    "response": {
-        "receivedMessage": "Hello",
-        "serverResponse": "Hi, how can I help you?"
-    }
-```
+    ```json
+        "response": {
+            "receivedMessage": "Hello",
+            "serverResponse": "Hi, how can I help you?"
+        }
+    ```
+
+- **POST** `/update`: Updates the title of a conversation.
+
+    - Example Request:
+    ```json
+        {
+        "itemID": "5f8d0d55b54764421b7156c7",
+        "newTitle": "New Conversation Title"
+        }
+    ```
+    
+    - Returns: Status
+    - Example Response:
+
+  ```json
+        {
+        "response": true
+        }
+    ```
