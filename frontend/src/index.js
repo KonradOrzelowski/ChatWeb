@@ -14,9 +14,6 @@ import './send_to_server.js';
 // Other scripts
 import './load_list_of_conversations.js';
 
-
 // Load React components
 import { loadReactDom } from './loadReactDom.js';
 loadReactDom();
-
-import './script.js';

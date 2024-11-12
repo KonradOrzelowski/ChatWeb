@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './MainContent.css';
 
+import { ChatInput } from '../ChatInput/ChatInput.jsx'
+
 
 
 export function MainContent() {
@@ -9,9 +11,7 @@ export function MainContent() {
         <div className = "main-content">
             <div className="conversation"></div>
 
-            <div className="input_div">
-                <input id="chat-input" type="text" placeholder="Message ChatBot"/>
-            </div>
+            <ChatInput/>
         </div>   
     )
 }
