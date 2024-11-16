@@ -3,7 +3,7 @@ import './ChatInput.css';
 
 import {addDiv2Conversation} from '../../utils.js';
 import {sendToServer} from '../../send_to_server.js';
-
+import { CurrentIdProvider } from '../../contexts/currentIdContext.js';
 
 
 export function ChatInput() {
@@ -15,6 +15,8 @@ export function ChatInput() {
             sendToServer(event.target.value);
     
             document.getElementById('chat-input').value = "";
+
+            console.log(`From ChatInput: ${CurrentIdProvider.getCurrentId()}`)
         }
       };
     

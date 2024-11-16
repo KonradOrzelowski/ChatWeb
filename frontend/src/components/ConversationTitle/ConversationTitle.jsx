@@ -9,6 +9,8 @@ import { getUrl } from '../../get_url.js';
 import { fetchData } from '../../network_requests/fetch_data.js';
 import { clearConversation, addDiv2Conversation } from '../../utils.js';
 
+import { CurrentIdProvider } from '../../contexts/currentIdContext.js';
+
 function getCustomAlertWrapper(){
     let customAlertWrapper = document.createElement('div');
     customAlertWrapper.id = 'custom-alert-wrapper';
@@ -151,6 +153,9 @@ async function displayConversation(conversationID){
         for (let item of conversation.conversation) {
             addDiv2Conversation(item.speaker, item.message, 0);
         }
+        CurrentIdProvider.setCurrentId(conversationID)
+
+        console.log(CurrentIdProvider.getCurrentId())
 }
 
 export function ConversationTitle({ title, id, reloadLeftSide}){
