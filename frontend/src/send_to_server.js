@@ -44,9 +44,9 @@ function makeDivConv(speakerClass, speakerDiv){
 import {postData} from './network_requests/fetch_data.js';
 import {typeTextToDiv} from './utils.js';
 
-export const sendToServer = async function(msg) {
+export const sendToServer = async function(conversationId, msg) {
     const endpointUrl = getUrl('message');
-    const postResponse = await postData(endpointUrl, { "message": msg });
+    const postResponse = await postData(endpointUrl, {"conversationId": conversationId, "message": msg });
     
     const text = await postResponse.json();
     const serverResponse = text.response.serverResponse;

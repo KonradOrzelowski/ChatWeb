@@ -12,7 +12,7 @@ export function ChatInput() {
         if (event.key === 'Enter') {
             addDiv2Conversation('You', event.target.value)
     
-            sendToServer(event.target.value);
+            sendToServer(CurrentIdProvider.getCurrentId(), event.target.value);
     
             document.getElementById('chat-input').value = "";
 
