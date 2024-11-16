@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 
 const { generateResponseFromModel } = require("../generate_response_from_model");
 const ConfigurationModule = require("../state_manager/messages_managaer");
@@ -33,8 +33,8 @@ router.post("/message", async (req, res) => {
         const collection = database.collection("conversations");
 
         const result = await collection.updateOne(
-            { _id: conversationId },
-            { $push: { conversation: newConversation } }
+            { _id: new ObjectId(conversationId) },
+            { $push: { conversation: { $each: newConversation } } }
           );
         console.log(result)
 
