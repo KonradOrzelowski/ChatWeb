@@ -11,7 +11,7 @@ export const sendNewChatSignal = function() {
         body: JSON.stringify({ chatCreated: true }),
     })
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => console.log(`newObjectId: ${data.newObjectId}`))
     .catch((error) => {
         console.error('Error:', error);
     });

@@ -1,5 +1,5 @@
 const express = require("express");
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 
 const ConfigurationModule = require("../state_manager/messages_managaer");
 
@@ -10,8 +10,12 @@ router.post("/refresh", async (req, res) => {
 
     
     const currentMgs = ConfigurationModule.getCurrentMgs();
+    // genereted new id
+    const newObjectId = new ObjectId();
+    
+
     ConfigurationModule.setCurrentMgs([]);
-    res.json({ response: true });
+    res.json({ response: true, newObjectId: newObjectId });
 });
 
 module.exports = router;
