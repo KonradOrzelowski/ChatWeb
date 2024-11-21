@@ -32,8 +32,8 @@ router.post("/message", async (req, res) => {
         const database = client.db("ChatWebDB");
         const collection = database.collection("conversations");
         
-
-        if(collection.find(ObjectId(conversationId))){
+        const existingConversation = await collection.findOne({ _id: new ObjectId(conversationId) });
+        if(existingConversation){
             const result = await collection.updateOne(
                 { _id: new ObjectId(conversationId) },
                 { $push: { conversation: { $each: newConversation } } }
@@ -43,7 +43,6 @@ router.post("/message", async (req, res) => {
             const newId = new ObjectId(conversationId);
             const title = newConversation[0].message;
             const conversation = newConversation;
-
 
             const doc = {
                 "_id": newId,

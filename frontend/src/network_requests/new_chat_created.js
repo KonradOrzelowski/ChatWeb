@@ -1,4 +1,5 @@
 import { getUrl } from "../get_url";
+import { CurrentIdProvider } from '../contexts/currentIdContext';
 
 export const sendNewChatSignal = function() {
     const endpointUrl = getUrl('refresh');
@@ -11,7 +12,10 @@ export const sendNewChatSignal = function() {
         body: JSON.stringify({ chatCreated: true }),
     })
     .then(response => response.json())
-    .then(data => console.log(`newObjectId: ${data.newObjectId}`))
+    .then(data => {
+        CurrentIdProvider.setCurrentId(data.newObjectId)
+        console.log(`newObjectId: ${data.newObjectId}`)
+    })
     .catch((error) => {
         console.error('Error:', error);
     });
