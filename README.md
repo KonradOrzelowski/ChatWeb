@@ -38,7 +38,7 @@ It provides an interface for the user to interact with the chatbot.
   - [`utils.js`]: Contains utility functions used across the application, such as `clear_conversation` and `addDiv2Conversation`.
   - [`send_to_server.js`]: Handles sending user input to the server.
   - [`custom-alert.js`]: Contains functions related to custom alerts in the application.
-  - [`/network_requests/`: Contains JavaScript files that handle various network requests for the application.
+  - [`/network_requests/`]: Contains JavaScript files that handle various network requests for the application.
     - [`close_website.js`]: Contains the function to handle the event when the website is closed.
     - [`new_chat_created.js`]: Contains the function to handle the event when a new chat is created.
     - [`fetch_data.js`]: Contains the function to fetch data from the server.
@@ -73,9 +73,9 @@ It provides an interface for the user to interact with the chatbot.
 - [x] 🟡 Add dark/light mode.
 - [ ] 🟢 Replace functions that create HTML elements with React components.
 - [x] 🔴 Add responsive design for mobile views.
-- [ ] 🟢 Fix refresh and close signal.
-- [ ] 🟡 Add messages to existing conversations.
-- [ ] 🟡 Replace save button with logic.
+- [x] 🟢 Fix refresh and close signal.
+- [x] 🟡 Add messages to existing conversations.
+- [x] 🟡 Replace save button with logic.
 - [ ] 🟡 Sort conversation by last use.
 - [ ] 🟢 Add Content Delivery Network (CDN) for Static Assets
 
