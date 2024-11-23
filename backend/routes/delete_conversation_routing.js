@@ -2,20 +2,17 @@ const express = require("express");
 const router = express.Router();
 
 
-const { MongoClient, ObjectId } = require("mongodb");
+const { MongoDBHandler } = require('../mongoDB-handler'); 
 
 router.post("/delete_alert", async (req, res) => {
-    const mongoUrl = process.env.MONGODB_URL
+
     const message = req.body.message;
 
-    const client = new MongoClient(mongoUrl);
+    const mongdbClass = new MongoDBHandler();
 
-    await client.connect();
 
     try{
-        
-        const collection = await client.db("ChatWebDB").collection("conversations");
-        const querry_result = await collection.deleteOne({ _id: new ObjectId(message) });
+        const querry_result = await mongdbClass.deletePost(message);
 
         console.log(querry_result);
 
@@ -24,9 +21,7 @@ router.post("/delete_alert", async (req, res) => {
         console.error("Error processing message:", error);
         
         res.json({ response: false });
-    }finally{
-        await client.close();
-    }   
+    }
 });
 
 module.exports = router;
