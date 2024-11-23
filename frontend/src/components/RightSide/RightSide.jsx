@@ -7,7 +7,7 @@ export function RightSide() {
 
     return (
         <>
-            <SaveConversationButton/>
+            {/* <SaveConversationButton/> */}
             <DarkModeButton/>
         </>
     );

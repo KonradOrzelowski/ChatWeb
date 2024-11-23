@@ -24,7 +24,7 @@ router.post("/message", async (req, res) => {
             {"speaker" : "You", "message" : message},
             {"speaker" :" Bot", "message" : serverResponse}
         ]
-        // Insert conversation into MongoDB
+
         const mongoUrl = process.env.MONGODB_URL;
         const client = new MongoClient(mongoUrl);
         await client.connect();
