@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './LeftSide.css';
 
-import { AddNewChat } from '../AddNewChat/AddNewChat.jsx';
 import { ConversationTitle } from '../ConversationTitle/ConversationTitle.jsx';
 import { ToggleConversationList } from '../ToggleConversationList/ToggleConversationList.jsx';
 
@@ -57,7 +56,6 @@ export function LeftSide() {
         <div className='left-side-content'>
             <ToggleConversationList/>
             <div className='div-list-of-conversations'>
-                {/* <AddNewChat/> */}
                 
                 <ConversationDropdown
                     conversationTitles={conversationTitles}
