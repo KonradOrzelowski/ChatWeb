@@ -18,7 +18,7 @@ export function AddNewChat() {
         
         <div
             className={`${isDisableTransition ? 'no-transition' : ''} new-chat`}
-            onClick={() =>{
+            onClick={ async () =>{
                 sendNewChatSignal();
                 clearConversation();
             }}
