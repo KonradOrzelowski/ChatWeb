@@ -44,6 +44,12 @@ function makeDivConv(speakerClass, speakerDiv){
 import {postData} from './network_requests/fetch_data.js';
 import {typeTextToDiv} from './utils.js';
 
+// Add this function to dispatch the reload event
+function dispatchReloadEvent() {
+    const event = new Event('reloadLeftSide');
+    window.dispatchEvent(event);
+}
+
 export const sendToServer = async function(conversationId, msg) {
     const endpointUrl = getUrl('message');
     const postResponse = await postData(endpointUrl, {"conversationId": conversationId, "message": msg });
@@ -71,5 +77,7 @@ export const sendToServer = async function(conversationId, msg) {
     lastElement_div_text.innerHTML = '';
 
     typeTextToDiv(lastElement_div_text, serverResponse, 50, 0)
+
+    dispatchReloadEvent();
 
 };

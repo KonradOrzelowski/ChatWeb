@@ -42,6 +42,11 @@ export function LeftSide() {
         };
 
         fetchTitles();
+        window.addEventListener('reloadLeftSide', reloadLeftSide);
+
+        return () => {
+            window.removeEventListener('reloadLeftSide', reloadLeftSide);
+        };
     }, [reloadKey]);
 
     if (!conversationTitles) {

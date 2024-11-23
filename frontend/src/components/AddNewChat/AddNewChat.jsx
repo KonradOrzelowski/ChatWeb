@@ -14,8 +14,7 @@ export function AddNewChat() {
     const isDisableTransition = disableTransition(isDarkMode);
 
     return (
-        // className={disableTransition ? 'no-transition' : ''}
-        
+                
         <div
             className={`${isDisableTransition ? 'no-transition' : ''} new-chat`}
             onClick={ async () =>{
