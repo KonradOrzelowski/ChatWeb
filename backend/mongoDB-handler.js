@@ -8,6 +8,20 @@ class MongoDBHandler{
 
         this.databaseName = "ChatWebDB";
         this.collectionName = "conversations"
+
+        const getCentralEuropeanTime = () => {
+            const now = new Date();
+            const utcOffset = now.getTimezoneOffset() / 60; // Timezone offset in hours
+            return new Date(now.setHours(now.getHours() + utcOffset + 1)); // Adjust for CET (UTC+1)
+        };
+        
+        this.conversationSchema = {
+            _id: null,
+            title: '',
+            conversation: '',
+            initDate: getCentralEuropeanTime(),
+            lastChangeDate: getCentralEuropeanTime()
+        };
     }
 
     async deletePost(idToDelete){
@@ -30,22 +44,21 @@ class MongoDBHandler{
         const existingConversation = await collection.findOne({ _id: new ObjectId(conversationId) });
         if(existingConversation){
             const result = await collection.updateOne(
-                { _id: new ObjectId(conversationId) },
-                { $push: { conversation: { $each: newConversation } } }
-              );
+            { _id: new ObjectId(conversationId) },
+            {
+                $push: { conversation: { $each: newConversation } } ,
+                $set: { lastChangeDate: getCentralEuropeanTime() }
+            }
+            );
             console.log(result)
         }else{
-            const newId = new ObjectId(conversationId);
-            const title = newConversation[0].message;
-            const conversation = newConversation;
 
-            const doc = {
-                "_id": newId,
-                "title": title,
-                "conversation": conversation
-            }
+            const newEntry = { ...this.conversationSchema }; 
+            newEntry._id = new ObjectId(conversationId);
+            newEntry.title = newConversation[0]?.message;
+            newEntry.conversation = newConversation;
 
-            const result = await collection.insertOne(doc);
+            const result = await collection.insertOne(newEntry);
             console.log(`Results from inserting a new document: ${result}`)
         }
         await this.client.close();
