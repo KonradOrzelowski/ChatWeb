@@ -9,18 +9,17 @@ class MongoDBHandler{
         this.databaseName = "ChatWebDB";
         this.collectionName = "conversations"
 
-        const getCentralEuropeanTime = () => {
+        this.getCentralEuropeanTime = () => {
             const now = new Date();
-            const utcOffset = now.getTimezoneOffset() / 60; // Timezone offset in hours
-            return new Date(now.setHours(now.getHours() + utcOffset + 1)); // Adjust for CET (UTC+1)
+            return new Date(now.setHours(now.getHours() + 1));
         };
         
         this.conversationSchema = {
             _id: null,
+            initDate: this.getCentralEuropeanTime(),
+            lastChangeDate: this.getCentralEuropeanTime(),
             title: '',
             conversation: '',
-            initDate: getCentralEuropeanTime(),
-            lastChangeDate: getCentralEuropeanTime()
         };
     }
 
@@ -47,7 +46,7 @@ class MongoDBHandler{
             { _id: new ObjectId(conversationId) },
             {
                 $push: { conversation: { $each: newConversation } } ,
-                $set: { lastChangeDate: getCentralEuropeanTime() }
+                $set: { lastChangeDate: this.getCentralEuropeanTime() }
             }
             );
             console.log(result)
