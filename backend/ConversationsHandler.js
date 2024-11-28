@@ -27,7 +27,7 @@ function get_list_of_titles(list_of_convs){
     var list_of_titles = [];
     try {
         for (var [, value] of Object.entries(list_of_convs)) {
-            list_of_titles.push({"title": value.title, "_id": value._id});
+            list_of_titles.push({"title": value.title, "_id": value._id, "lastChangeDate": value.lastChangeDate});
         }
     } catch (error) {
         console.error('get_list_of_titles An error occurred:', error);

@@ -7,19 +7,32 @@ import { ToggleConversationList } from '../ToggleConversationList/ToggleConversa
 import { fetchData } from '../..//network_requests/fetch_data.js';
 import { getUrl } from '../../get_url.js';
 
-const ConversationDropdown = ({ conversationTitles, reloadLeftSide }) => (
-    <div className="dropdown-menu">
-        {conversationTitles.map((item, index) => (
-            <ConversationTitle
-                key={index}
-                title={item.title}
-                id={item._id}
-                reloadLeftSide={reloadLeftSide}
-            />
-        ))}
-    </div>
-);
+const ConversationDropdown = ({ conversationTitles, reloadLeftSide }) => {
 
+    var sortedConversationTitles = conversationTitles.slice(0);
+    sortedConversationTitles.sort(function(a,b) {
+        return new Date(b.lastChangeDate) - new Date(a.lastChangeDate);
+    });
+
+    for(var i = 0; i < sortedConversationTitles.length; i++){
+        console.log(sortedConversationTitles[i].title, sortedConversationTitles[i])
+    }
+
+    return (
+        <div className="dropdown-menu">
+            {
+                sortedConversationTitles.map((item) => (
+                    <ConversationTitle
+                    key={item._id}
+                    title={item.title}
+                    id={item._id}
+                    reloadLeftSide={reloadLeftSide}
+                    />
+                ))
+            }
+        </div>
+    )
+}
 
 
 export function LeftSide() {
