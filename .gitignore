@@ -20,3 +20,4 @@ frontend/node_modules/*
 backend/test_db.js
 backend/temp.js
 frontend/dist/main.js
+temp.js
