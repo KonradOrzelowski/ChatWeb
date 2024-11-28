@@ -14,10 +14,6 @@ const ConversationDropdown = ({ conversationTitles, reloadLeftSide }) => {
         return new Date(b.lastChangeDate) - new Date(a.lastChangeDate);
     });
 
-    for(var i = 0; i < sortedConversationTitles.length; i++){
-        console.log(sortedConversationTitles[i].title, sortedConversationTitles[i])
-    }
-
     return (
         <div className="dropdown-menu">
             {
