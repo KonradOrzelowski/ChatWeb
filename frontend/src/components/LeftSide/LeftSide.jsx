@@ -7,15 +7,9 @@ import { ToggleConversationList } from '../ToggleConversationList/ToggleConversa
 import { fetchData } from '../..//network_requests/fetch_data.js';
 import { getUrl } from '../../get_url.js';
 
-const ConversationDropdown = ({ conversationTitles, reloadLeftSide }) => {
-
-    var sortedConversationTitles = conversationTitles.slice(0);
-    sortedConversationTitles.sort(function(a,b) {
-        return new Date(b.lastChangeDate) - new Date(a.lastChangeDate);
-    });
-
+function splitTitles(sortedConversationTitles){
     let now = Date.now();
-    let tempDate, lastChangeDate, title;
+    let lastChangeDate, title;
     
     const oneDay = 1 * 24 * 60 * 60 * 1000;
     const oneWeek = 7 * 24 * 60 * 60 * 1000;
@@ -25,8 +19,6 @@ const ConversationDropdown = ({ conversationTitles, reloadLeftSide }) => {
     const moreThanDayList = [];
     const moreThanWeekList = [];
     const olderThanMonthList = [];
-    
-    // let isMoreThanADay, isMoreThanAWeek, isMoreThanAMonth;
     
     for(let i = 0; i < sortedConversationTitles.length; i++){
         lastChangeDate = new Date(sortedConversationTitles[i].lastChangeDate);
@@ -47,60 +39,52 @@ const ConversationDropdown = ({ conversationTitles, reloadLeftSide }) => {
             // Older than a month
             olderThanMonthList.push(sortedConversationTitles[i]);
         }
-
-        console.log(`title: ${title} lastChangeDate: ${lastChangeDate}`)
     
     }
 
+    return {
+        'todayList': todayList,
+        'moreThanDayList': moreThanDayList,
+        'moreThanWeekList': moreThanWeekList,
+        'olderThanMonthList': olderThanMonthList
+    }
+}
+
+function getList(listToReturn, titleList, reloadLeftSide){
+    return (<>
+        <h3>{titleList}</h3>
+        {listToReturn.map((item) => (
+            <ConversationTitle
+                key={item._id}
+                title={item.title}
+                id={item._id}
+                reloadLeftSide={reloadLeftSide}
+            />
+        ))}
+    </>)
+}
+
+const ConversationDropdown = ({ conversationTitles, reloadLeftSide }) => {
+
+    var sortedConversationTitles = conversationTitles.slice(0);
+    sortedConversationTitles.sort(function(a,b) {
+        return new Date(b.lastChangeDate) - new Date(a.lastChangeDate);
+    });
+
+    const splitedTitels = splitTitles(sortedConversationTitles);
+    const todayList = splitedTitels.todayList;
+    const moreThanDayList = splitedTitels.moreThanDayList;
+    const moreThanWeekList = splitedTitels.moreThanWeekList;
+    const olderThanMonthList = splitedTitels.olderThanMonthList;
 
     return (
         <div className="dropdown-menu">
-            <h3>todayList</h3>
-            {
-                todayList.map((item) => (
-                    <ConversationTitle
-                    key={item._id}
-                    title={item.title}
-                    id={item._id}
-                    reloadLeftSide={reloadLeftSide}
-                    />
-                ))
-            }
 
-            <h3>moreThanDayList</h3>
-            {
-                moreThanDayList.map((item) => (
-                    <ConversationTitle
-                    key={item._id}
-                    title={item.title}
-                    id={item._id}
-                    reloadLeftSide={reloadLeftSide}
-                    />
-                ))
-            }
-            <h3>moreThanWeekList</h3>
-            {
-                moreThanWeekList.map((item) => (
-                    <ConversationTitle
-                    key={item._id}
-                    title={item.title}
-                    id={item._id}
-                    moreThanWeekList={reloadLeftSide}
-                    />
-                ))
-            }
+            {todayList.length !== 0 && getList(todayList, "todayList", reloadLeftSide)}
+            {moreThanDayList.length !== 0 && getList(moreThanDayList, "moreThanDayList", reloadLeftSide)}
+            {moreThanWeekList.length !== 0 && getList(moreThanWeekList, "moreThanWeekList", reloadLeftSide)}
+            {olderThanMonthList.length !== 0 && getList(olderThanMonthList, "olderThanMonthList", reloadLeftSide)}
 
-            <h3>olderThanMonthList</h3>
-            {
-                olderThanMonthList.map((item) => (
-                    <ConversationTitle
-                    key={item._id}
-                    title={item.title}
-                    id={item._id}
-                    reloadLeftSide={reloadLeftSide}
-                    />
-                ))
-            }
         </div>
     )
 }
