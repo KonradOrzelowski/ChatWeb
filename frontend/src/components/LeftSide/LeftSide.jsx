@@ -14,10 +14,85 @@ const ConversationDropdown = ({ conversationTitles, reloadLeftSide }) => {
         return new Date(b.lastChangeDate) - new Date(a.lastChangeDate);
     });
 
+    let now = Date.now();
+    let tempDate, lastChangeDate, title;
+    
+    const oneDay = 1 * 24 * 60 * 60 * 1000;
+    const oneWeek = 7 * 24 * 60 * 60 * 1000;
+    const oneMonth = 30 * 24 * 60 * 60 * 1000;
+    
+    const todayList = [];
+    const moreThanDayList = [];
+    const moreThanWeekList = [];
+    const olderThanMonthList = [];
+    
+    // let isMoreThanADay, isMoreThanAWeek, isMoreThanAMonth;
+    
+    for(let i = 0; i < sortedConversationTitles.length; i++){
+        lastChangeDate = new Date(sortedConversationTitles[i].lastChangeDate);
+        title = sortedConversationTitles[i].title;
+    
+        const timeDifference = now - lastChangeDate.getTime();
+
+        if (timeDifference <= oneDay) {
+            // Today
+            todayList.push(sortedConversationTitles[i]);
+        } else if (timeDifference > oneDay && timeDifference <= oneWeek) {
+            // More than a day, but within a week
+            moreThanDayList.push(sortedConversationTitles[i]);
+        } else if (timeDifference > oneWeek && timeDifference <= oneMonth) {
+            // More than a week, but within a month
+            moreThanWeekList.push(sortedConversationTitles[i]);
+        } else if (timeDifference > oneMonth) {
+            // Older than a month
+            olderThanMonthList.push(sortedConversationTitles[i]);
+        }
+
+        console.log(`title: ${title} lastChangeDate: ${lastChangeDate}`)
+    
+    }
+
+
     return (
         <div className="dropdown-menu">
+            <h3>todayList</h3>
             {
-                sortedConversationTitles.map((item) => (
+                todayList.map((item) => (
+                    <ConversationTitle
+                    key={item._id}
+                    title={item.title}
+                    id={item._id}
+                    reloadLeftSide={reloadLeftSide}
+                    />
+                ))
+            }
+
+            <h3>moreThanDayList</h3>
+            {
+                moreThanDayList.map((item) => (
+                    <ConversationTitle
+                    key={item._id}
+                    title={item.title}
+                    id={item._id}
+                    reloadLeftSide={reloadLeftSide}
+                    />
+                ))
+            }
+            <h3>moreThanWeekList</h3>
+            {
+                moreThanWeekList.map((item) => (
+                    <ConversationTitle
+                    key={item._id}
+                    title={item.title}
+                    id={item._id}
+                    moreThanWeekList={reloadLeftSide}
+                    />
+                ))
+            }
+
+            <h3>olderThanMonthList</h3>
+            {
+                olderThanMonthList.map((item) => (
                     <ConversationTitle
                     key={item._id}
                     title={item.title}
