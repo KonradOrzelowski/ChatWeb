@@ -7,83 +7,99 @@ import { ToggleConversationList } from '../ToggleConversationList/ToggleConversa
 import { fetchData } from '../..//network_requests/fetch_data.js';
 import { getUrl } from '../../get_url.js';
 
-function splitTitles(sortedConversationTitles){
-    let now = Date.now();
-    let lastChangeDate, title;
+/**
+ * Categorizes a list of conversation titles based on their last change date.
+ *
+ * @param {Array<Object>} conversationTitles - An array of objects representing conversation titles. 
+ * Each object should have a `lastChangeDate` property in a valid date string format.
+ *
+ * @returns {Object} An object containing categorized conversation titles:
+ * - `todayList`: Titles changed in the last 24 hours.
+ * - `pastWeekList`: Titles changed in the last week but more than 24 hours ago.
+ * - `pastMonthList`: Titles changed in the last month but more than a week ago.
+ * - `olderList`: Titles changed more than a month ago.
+ *
+ * @example
+ * const conversationTitles = [
+ *     { title: "Chat A", lastChangeDate: "2024-11-29T10:00:00Z" },
+ *     { title: "Chat B", lastChangeDate: "2024-11-20T10:00:00Z" }
+ * ];
+ * const categorized = splitTitles(conversationTitles);
+ * console.log(categorized.todayList); // Logs titles changed today.
+ */
+function splitTitles(conversationTitles){
+    const now = Date.now();
     
     const oneDay = 1 * 24 * 60 * 60 * 1000;
     const oneWeek = 7 * 24 * 60 * 60 * 1000;
     const oneMonth = 30 * 24 * 60 * 60 * 1000;
     
-    const todayList = [];
-    const moreThanDayList = [];
-    const moreThanWeekList = [];
-    const olderThanMonthList = [];
+    const categories = {
+        todayList: [],
+        pastWeekList: [],
+        pastMonthList: [],
+        olderList: [],
+    };
     
-    for(let i = 0; i < sortedConversationTitles.length; i++){
-        lastChangeDate = new Date(sortedConversationTitles[i].lastChangeDate);
-        title = sortedConversationTitles[i].title;
-    
+    for (const title of conversationTitles) {
+
+        const lastChangeDate = new Date(title.lastChangeDate);
+        if (isNaN(lastChangeDate)) {
+            console.warn("Invalid date format:", title.lastChangeDate);
+            continue;
+        }
+
+
         const timeDifference = now - lastChangeDate.getTime();
 
         if (timeDifference <= oneDay) {
-            // Today
-            todayList.push(sortedConversationTitles[i]);
-        } else if (timeDifference > oneDay && timeDifference <= oneWeek) {
-            // More than a day, but within a week
-            moreThanDayList.push(sortedConversationTitles[i]);
-        } else if (timeDifference > oneWeek && timeDifference <= oneMonth) {
-            // More than a week, but within a month
-            moreThanWeekList.push(sortedConversationTitles[i]);
-        } else if (timeDifference > oneMonth) {
-            // Older than a month
-            olderThanMonthList.push(sortedConversationTitles[i]);
+            categories.todayList.push(title);
+        } else if (timeDifference <= oneWeek) {
+            categories.pastWeekList.push(title);
+        } else if (timeDifference <= oneMonth) {
+            categories.pastMonthList.push(title);
+        } else {
+            categories.olderList.push(title);
         }
     
     }
 
-    return {
-        'todayList': todayList,
-        'moreThanDayList': moreThanDayList,
-        'moreThanWeekList': moreThanWeekList,
-        'olderThanMonthList': olderThanMonthList
-    }
+    return categories
 }
 
-function getList(listToReturn, titleList, reloadLeftSide){
-    return (<>
-        <h3>{titleList}</h3>
-        {listToReturn.map((item) => (
-            <ConversationTitle
-                key={item._id}
-                title={item.title}
-                id={item._id}
-                reloadLeftSide={reloadLeftSide}
-            />
-        ))}
-    </>)
+function renderCategory(list, title, reloadLeftSide) {
+    if (list.length === 0) return null;
+    return (
+        <div key={title}>
+            <h4>{title}</h4>
+            {list.map((item) => (
+                <ConversationTitle
+                    key={item._id}
+                    title={item.title}
+                    id={item._id}
+                    reloadLeftSide={reloadLeftSide}
+                />
+            ))}
+        </div>
+    );
 }
 
 const ConversationDropdown = ({ conversationTitles, reloadLeftSide }) => {
 
-    var sortedConversationTitles = conversationTitles.slice(0);
-    sortedConversationTitles.sort(function(a,b) {
+    var conversationTitles = conversationTitles.slice(0);
+    conversationTitles.sort(function(a,b) {
         return new Date(b.lastChangeDate) - new Date(a.lastChangeDate);
     });
 
-    const splitedTitels = splitTitles(sortedConversationTitles);
-    const todayList = splitedTitels.todayList;
-    const moreThanDayList = splitedTitels.moreThanDayList;
-    const moreThanWeekList = splitedTitels.moreThanWeekList;
-    const olderThanMonthList = splitedTitels.olderThanMonthList;
+    const { todayList, pastWeekList, pastMonthList, olderList } = splitTitles(conversationTitles);
 
     return (
         <div className="dropdown-menu">
 
-            {todayList.length !== 0 && getList(todayList, "todayList", reloadLeftSide)}
-            {moreThanDayList.length !== 0 && getList(moreThanDayList, "moreThanDayList", reloadLeftSide)}
-            {moreThanWeekList.length !== 0 && getList(moreThanWeekList, "moreThanWeekList", reloadLeftSide)}
-            {olderThanMonthList.length !== 0 && getList(olderThanMonthList, "olderThanMonthList", reloadLeftSide)}
+            {renderCategory(todayList, "Today", reloadLeftSide)}
+            {renderCategory(pastWeekList, "Past Week", reloadLeftSide)}
+            {renderCategory(pastMonthList, "Past Month", reloadLeftSide)}
+            {renderCategory(olderList, "olderThanMonthList", reloadLeftSide)}
 
         </div>
     )
