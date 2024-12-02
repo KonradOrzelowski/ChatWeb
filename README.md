@@ -76,8 +76,7 @@ It provides an interface for the user to interact with the chatbot.
 - [x] 🟢 Fix refresh and close signal.
 - [x] 🟡 Add messages to existing conversations.
 - [x] 🟡 Replace save button with logic.
-- [ ] 🟡 Sort conversation by last use.
-- [ ] 🟢 Add Content Delivery Network (CDN) for Static Assets
+- [x] 🟡 Sort conversation by last use.
 
 ## Test
 - [ ] 🟡 Add tests for the [API](https://www.youtube.com/watch?v=qquIJ1Ivusg).
