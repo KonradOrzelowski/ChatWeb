@@ -65,9 +65,6 @@ It provides an interface for the user to interact with the chatbot.
 - [ ] 🟡 Allow multiple calls for APIs.
 - [ ] 🟢 Make API documentation using tools like Swagger or Postman.
 - [ ] 🟢 Add rate limiting to your API for better security and performance.
-### Model
-- [ ] 🟢 Add second model.
-- [ ] 🟢 Add initial instructions for each prompt.
 
 ## Frontend
 - [x] 🟡 Add dark/light mode.
