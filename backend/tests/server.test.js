@@ -4,17 +4,18 @@
 const { getUrl } = require("../get_url");
 
 const request = require("supertest");
-const HOST_NAME = process.env.HOST_NAME;
-
-
 
 describe("GET/", () => {
-    const url = getUrl("/");
+    const url = getUrl("");
     console.log(url);
 
     it("responds with 200", async () => {
         const response = await request(url);
-        expect(response.statusCode).toBe(200);
+
+        console.log(response)
+
+        // expect(response.statusCode).toBe(200);
+        expect(response.text).toBe("Server is running");
     });
 });
 
