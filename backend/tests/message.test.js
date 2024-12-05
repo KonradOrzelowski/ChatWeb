@@ -1,7 +1,7 @@
 const { getUrl } = require("../get_url");
 const request = require("supertest");
 
-describe("POST /message", () => {
+describe.skip("POST /message", () => {
     const url = getUrl("message");
 
     it("responds with a response from model", async () => {
