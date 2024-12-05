@@ -3,7 +3,7 @@ const request = require("supertest");
 
 describe("GET/", () => {
     const url = getUrl("");
-    console.log(url);
+
 
     it("responds with 200", async () => {
         const response = await request(url).get('');
@@ -13,7 +13,7 @@ describe("GET/", () => {
 
 describe("GET /lists/list_of_titles", () => {
     const url = getUrl("lists/list_of_titles");
-    console.log(url);
+
     it("responds with a list of titles", async () => {
         const response = await request(url).get('');
         expect(response.statusCode).toBe(200);
@@ -35,7 +35,7 @@ const Item = mongoose.model('Item', ItemSchema);
 
 describe("GET /lists/list_of_titles: Check if the titles have the correct type", () => {
     const url = getUrl("lists/list_of_titles");
-    console.log(url);
+
     it("list_of_titles has correct type", async () => {
         const response = await request(url).get('');
         expect(response.statusCode).toBe(200);
