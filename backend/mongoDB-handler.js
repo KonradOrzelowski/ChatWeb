@@ -23,44 +23,67 @@ class MongoDBHandler{
         };
     }
 
-    async deletePost(idToDelete){
+    async deletePost(conversationId){
+        try{
+            await this.client.connect();
+            const collection = await this.client.db(this.databaseName).collection(this.collectionName);
+            const query_result = await collection.deleteOne({ _id: new ObjectId(conversationId) });
+            
+            return query_result
+        } catch (error) {
+            console.error("Error deleting document:", error);
+            throw error;
+        } finally {
+            await this.client.close();
+        }
+    }
 
+    async pathConversation(conversationId, newTitle){
         await this.client.connect();
+
         const collection = await this.client.db(this.databaseName).collection(this.collectionName);
-        const querry_result = await collection.deleteOne({ _id: new ObjectId(idToDelete) });
-        await this.client.close();
-        
-        return querry_result
+
+        const query_result = await collection.updateOne(
+            {  _id: new ObjectId(conversationId) },
+            { $set: { title: newTitle } 
+            });
+
+        return query_result
     }
 
 
     async addConversation(conversationId, newConversation){
-        await this.client.connect();
+        try {
+            await this.client.connect();
 
-        const database = this.client.db(this.databaseName);
-        const collection = database.collection(this.collectionName);
-        
-        const existingConversation = await collection.findOne({ _id: new ObjectId(conversationId) });
-        if(existingConversation){
-            const result = await collection.updateOne(
-            { _id: new ObjectId(conversationId) },
-            {
-                $push: { conversation: { $each: newConversation } } ,
-                $set: { lastChangeDate: this.getCentralEuropeanTime() }
+            const database = this.client.db(this.databaseName);
+            const collection = database.collection(this.collectionName);
+            
+            const existingConversation = await collection.findOne({ _id: new ObjectId(conversationId) });
+            if(existingConversation){
+                const result = await collection.updateOne(
+                    { _id: new ObjectId(conversationId) },
+                    {
+                        $push: { conversation: { $each: newConversation } } ,
+                        $set: { lastChangeDate: this.getCentralEuropeanTime() }
+                    }
+                );
+                console.log(result)
+            }else{
+
+                const newEntry = { ...this.conversationSchema }; 
+                newEntry._id = new ObjectId(conversationId);
+                newEntry.title = newConversation[0]?.message;
+                newEntry.conversation = newConversation;
+
+                const result = await collection.insertOne(newEntry);
+                console.log(`Results from inserting a new document: ${result}`)
             }
-            );
-            console.log(result)
-        }else{
-
-            const newEntry = { ...this.conversationSchema }; 
-            newEntry._id = new ObjectId(conversationId);
-            newEntry.title = newConversation[0]?.message;
-            newEntry.conversation = newConversation;
-
-            const result = await collection.insertOne(newEntry);
-            console.log(`Results from inserting a new document: ${result}`)
+        } catch (error) {
+            console.error("Error retrieving conversations:", error);
+        } finally {
+            await this.client.close();
         }
-        await this.client.close();
     }
 
     async get_all_from_collection(){
@@ -70,7 +93,7 @@ class MongoDBHandler{
             await this.client.connect();
             const conversations = await this.client.db(this.databaseName).collection(this.collectionName);
             const array_of_convs = await conversations.find({}).toArray();
-            await this.client.close();
+            
     
             var dict_of_convs = {};
     
@@ -79,6 +102,8 @@ class MongoDBHandler{
             });
         } catch (error) {
             console.error("Error retrieving conversations:", error);
+        } finally {
+            await this.client.close();
         }
     
         return(dict_of_convs);
