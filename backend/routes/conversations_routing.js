@@ -74,4 +74,43 @@ router.patch("/conversations/:id", async (req, res) => {
 });
 
 
+const { generateResponseFromModel } = require("../generate_response_from_model");
+const ConfigurationModule = require("../state_manager/messages_managaer");
+
+const { MongoDBHandler } = require('../mongoDB-handler');
+
+router.post("/conversations/:id/messages", async (req, res) => {
+    const idToDelete = req.params.id;
+
+    try {
+        const message = req.body.message;
+
+        const serverResponse = await generateResponseFromModel(message);
+
+
+        console.log(`idToDelete: ${idToDelete} \t message: ${message}`);
+        console.log(`Received message: ${message}`);
+        console.log(`Server response: ${serverResponse}`);
+
+        ConfigurationModule.pushCurrentMgs({"speaker": "You", "message": message});
+        ConfigurationModule.pushCurrentMgs({"speaker": "Bot", "message": serverResponse});
+
+        let newConversation = [
+            {"speaker" : "You", "message" : message},
+            {"speaker" :" Bot", "message" : serverResponse}
+        ]
+
+        const mongdbClass = new MongoDBHandler();
+        await mongdbClass.addConversation(idToDelete, newConversation);
+
+
+        res.json({ response:{receivedMessage: message, serverResponse: serverResponse} });
+
+    } catch (error) {
+        console.error("Error processing message:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+// router.post("/conversations/:id/messages", async (req, res) => {});
 module.exports = router;

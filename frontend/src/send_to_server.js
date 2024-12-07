@@ -50,8 +50,10 @@ function dispatchReloadEvent() {
     window.dispatchEvent(event);
 }
 
+
+
 export const sendToServer = async function(conversationId, msg) {
-    const endpointUrl = getUrl(`message/${conversationId}`);
+    const endpointUrl = getUrl(`conversations/${conversationId}/messages`);
     const postResponse = await postData(endpointUrl, {"conversationId": conversationId, "message": msg });
     
     const text = await postResponse.json();
