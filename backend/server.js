@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const getListsRouting = require("./routes/get_lists_routing");
 const conversationsRouting = require("./routes/conversations_routing");
+const refresh = require("./routes/refresh")
 const app = express();
 
 app.use(express.json());
@@ -11,6 +12,7 @@ app.use(cors());
 
 app.use(getListsRouting);
 app.use(conversationsRouting);
+app.use(refresh);
 
 var counter = 0;
 
