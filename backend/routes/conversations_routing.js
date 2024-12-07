@@ -5,6 +5,13 @@ const router = express.Router();
 
 const { get_all_from_collection } = require("../ConversationsHandler");
 
+
+
+const { generateResponseFromModel } = require("../generate_response_from_model");
+const ConfigurationModule = require("../state_manager/messages_managaer");
+
+const { MongoDBHandler } = require('../mongoDB-handler');
+
 router.get("/conversations/:id", async (req, res) => {
     var list_of_convs = await get_all_from_collection("ChatWebDB", "conversations");
     const { id } = req.params;
@@ -73,12 +80,6 @@ router.patch("/conversations/:id", async (req, res) => {
 
 });
 
-
-const { generateResponseFromModel } = require("../generate_response_from_model");
-const ConfigurationModule = require("../state_manager/messages_managaer");
-
-const { MongoDBHandler } = require('../mongoDB-handler');
-
 router.post("/conversations/:id/messages", async (req, res) => {
     const idToDelete = req.params.id;
 
@@ -112,5 +113,4 @@ router.post("/conversations/:id/messages", async (req, res) => {
     }
 });
 
-// router.post("/conversations/:id/messages", async (req, res) => {});
 module.exports = router;

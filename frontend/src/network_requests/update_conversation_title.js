@@ -13,7 +13,7 @@ export const updateConversationTitle = function(itemID, newTitle){
     const data = { updateTitle: true, itemID: itemID, newTitle: newTitle };
     console.log(data);
     fetch(endpointUrl, {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
         },
