@@ -13,8 +13,7 @@ router.get("/conversations/:id", async (req, res) => {
 
 router.delete("/conversations/:id", async (req, res) => {
     const mongoUrl = process.env.MONGODB_URL;
-    const { idToDelete } = req.params;
-    // const idToDelete = req.body.message;
+    const idToDelete = req.params.id;
     
     const client = new MongoClient(mongoUrl);
 
@@ -43,7 +42,6 @@ router.delete("/conversations/:id", async (req, res) => {
 
 // router.get("/conversations/:id", async (req, res) => {});
 // router.patch("/conversations/:id", async (req, res) => {}); // update title
-// router.delete("/conversations/:id", async (req, res) => {});
 // router.post("/conversations/:id/messages", async (req, res) => {});
 
 module.exports = router;
