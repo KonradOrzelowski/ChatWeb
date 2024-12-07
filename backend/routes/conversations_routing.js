@@ -8,7 +8,6 @@ const { get_all_from_collection } = require("../ConversationsHandler");
 
 
 const { generateResponseFromModel } = require("../generate_response_from_model");
-const ConfigurationModule = require("../state_manager/messages_managaer");
 
 const { MongoDBHandler } = require('../mongoDB-handler');
 
@@ -19,27 +18,20 @@ router.get("/conversations/:id", async (req, res) => {
 });
 
 router.delete("/conversations/:id", async (req, res) => {
-    const mongoUrl = process.env.MONGODB_URL;
     const idToDelete = req.params.id;
-    
-    const client = new MongoClient(mongoUrl);
-
-    await client.connect();
 
     console.log(`Deleting conversation with id: ${idToDelete}`);
 
     try{
-        const collection = await client.db("ChatWebDB").collection("conversations");
 
-        const querry_result = await collection.deleteOne({ _id: new ObjectId(idToDelete) });
-        console.log(querry_result);
+        const mongdbClass = new MongoDBHandler();
+        await mongdbClass.deletePost(idToDelete);
 
         res.json({ response: true });
 
-        console.log("Response sended from update");
     }catch (error){
+
         console.error("Error processing message:", error);
-        
         res.json({ response: false });
     }finally{
         await client.close();
@@ -92,9 +84,6 @@ router.post("/conversations/:id/messages", async (req, res) => {
         console.log(`idToDelete: ${idToDelete} \t message: ${message}`);
         console.log(`Received message: ${message}`);
         console.log(`Server response: ${serverResponse}`);
-
-        ConfigurationModule.pushCurrentMgs({"speaker": "You", "message": message});
-        ConfigurationModule.pushCurrentMgs({"speaker": "Bot", "message": serverResponse});
 
         let newConversation = [
             {"speaker" : "You", "message" : message},

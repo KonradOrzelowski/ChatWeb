@@ -79,7 +79,9 @@ class MongoDBHandler{
             });
         } catch (error) {
             console.error("Error retrieving conversations:", error);
-        }
+        }finally{
+            await client.close();
+        }   
     
         return(dict_of_convs);
         
