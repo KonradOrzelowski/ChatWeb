@@ -2,13 +2,11 @@ import { getUrl } from "../get_url";
 
 export const deletePost = function(itemID){ 
     try{
-        const endpointUrl = getUrl('delete_alert');
-        const data = { message: itemID };
-    
+        const endpointUrl = getUrl(`conversations/${itemID}`);
+        console.log(endpointUrl);
         fetch(endpointUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+            method: 'delete',
+            headers: { 'Content-Type': 'application/json' }
         })
         .then(response => {
             if (!response.ok) {
