@@ -40,8 +40,38 @@ router.delete("/conversations/:id", async (req, res) => {
 
 });
 
-// router.get("/conversations/:id", async (req, res) => {});
-// router.patch("/conversations/:id", async (req, res) => {}); // update title
-// router.post("/conversations/:id/messages", async (req, res) => {});
+router.patch("/conversations/:id", async (req, res) => {
+    const idToDelete = req.params.id;
+
+    const mongoUrl = process.env.MONGODB_URL;
+    const message = req.body;
+
+
+    const client = new MongoClient(mongoUrl);
+
+    await client.connect();
+
+    try{
+        const collection = await client.db("ChatWebDB").collection("conversations");
+
+        const querry_result = await collection.updateOne(
+            {  _id: new ObjectId(idToDelete) },
+            { $set: { title: message.newTitle } 
+            });
+        console.log(querry_result);
+
+        res.json({ response: true });
+
+        console.log("Response sended from update");
+    }catch (error){
+        console.error("Error processing message:", error);
+        
+        res.json({ response: false });
+    }finally{
+        await client.close();
+    }   
+
+});
+
 
 module.exports = router;

@@ -8,7 +8,7 @@ import { getUrl } from '../get_url.js';
  * @throws {Error} When the network response is not ok.
  */
 export const updateConversationTitle = function(itemID, newTitle){
-    const endpointUrl = getUrl('update');
+    const endpointUrl = getUrl(`conversations/${itemID}`);
 
     const data = { updateTitle: true, itemID: itemID, newTitle: newTitle };
     console.log(data);
