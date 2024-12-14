@@ -87,7 +87,6 @@ class MongoDBHandler{
     }
 
     async get_all_from_collection(){
-        console.log("get_all_from_collection");
         
         try {
             await this.client.connect();
