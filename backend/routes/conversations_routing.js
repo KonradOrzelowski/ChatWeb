@@ -18,20 +18,26 @@ class ConversationsRouting {
         return Promise.resolve(fn(req, res, next)).catch(next);
     };
 
-    logMethod(req, res) {
-        console.log('Request Type:', req.method)
+    logMethod(req, res, handler) {
+        console.log(`[${req.method}] ${req.originalUrl} - Function: ${handler.name}`);
     }
 
+    handleRequest(handler){
+        return async (req, res, next) => {
+            this.logMethod(req, res, handler);
+            try {
+                await handler(req, res, next);
+            } catch (err) {
+                next(err);
+            }
+        };
+    };
+    
     initializeRoutes() {
-        this.router.get("/conversations/:id",
-            this.asyncErrorHandler(async (req, res, next) => {
-                this.logMethod(req, res);
-                await this.getConversation(req, res);
-            })
-        );
-        this.router.delete("/conversations/:id", this.asyncErrorHandler(this.deleteConversation.bind(this)));
-        this.router.patch("/conversations/:id", this.asyncErrorHandler(this.patchConversation.bind(this)));
-        this.router.post("/conversations/:id/messages", this.asyncErrorHandler(this.postConversation.bind(this)));
+        this.router.get("/conversations/:id", this.handleRequest(this.getConversation.bind(this)));
+        this.router.delete("/conversations/:id", this.handleRequest(this.deleteConversation.bind(this)));
+        this.router.patch("/conversations/:id", this.handleRequest(this.patchConversation.bind(this)));
+        this.router.post("/conversations/:id/messages", this.handleRequest(this.postConversation.bind(this)));
     }
 
     async getConversation(req, res){
