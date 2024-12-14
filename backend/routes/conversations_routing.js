@@ -1,5 +1,3 @@
-const { MongoClient, ObjectId } = require("mongodb");
-
 const express = require("express");
 const router = express.Router();
 
@@ -11,20 +9,29 @@ const { MongoDBHandler } = require('../mongoDB-handler');
 class ConversationsRouting {
     constructor() {
         this.mongdbClass = new MongoDBHandler();
-
+        
         this.router = express.Router();
         this.initializeRoutes();
     }
 
-    asyncHandler = fn => (req, res, next) => {
+    asyncErrorHandler = fn => (req, res, next) => {
         return Promise.resolve(fn(req, res, next)).catch(next);
     };
-    
+
+    logMethod(req, res) {
+        console.log('Request Type:', req.method)
+    }
+
     initializeRoutes() {
-        this.router.get("/conversations/:id", this.asyncHandler(this.getConversation.bind(this)));
-        this.router.delete("/conversations/:id", this.asyncHandler(this.deleteConversation.bind(this)));
-        this.router.patch("/conversations/:id", this.asyncHandler(this.patchConversation.bind(this)));
-        this.router.post("/conversations/:id/messages", this.asyncHandler(this.postConversation.bind(this)));
+        this.router.get("/conversations/:id",
+            this.asyncErrorHandler(async (req, res, next) => {
+                this.logMethod(req, res);
+                await this.getConversation(req, res);
+            })
+        );
+        this.router.delete("/conversations/:id", this.asyncErrorHandler(this.deleteConversation.bind(this)));
+        this.router.patch("/conversations/:id", this.asyncErrorHandler(this.patchConversation.bind(this)));
+        this.router.post("/conversations/:id/messages", this.asyncErrorHandler(this.postConversation.bind(this)));
     }
 
     async getConversation(req, res){
