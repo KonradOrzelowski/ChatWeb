@@ -7,67 +7,77 @@ const { generateResponseFromModel } = require("../generate_response_from_model")
 
 const { MongoDBHandler } = require('../mongoDB-handler');
 
-const asyncHandler = fn => (req, res, next) => {
-    return Promise.resolve(fn(req, res, next)).catch(next);
-};
 
+class ConversationsRouting {
+    constructor() {
+        this.mongdbClass = new MongoDBHandler();
 
-router.get("/conversations/:id", asyncHandler(async(req, res) => {
-    const mongdbClass = new MongoDBHandler();
-    var list_of_convs = await mongdbClass.get_all_from_collection();
+        this.router = express.Router();
+        this.initializeRoutes();
+    }
 
-    const { id } = req.params;
-    res.json({ response: list_of_convs[id] });
-
-}));
-
-router.delete("/conversations/:id", asyncHandler(async(req, res) => {
-
-    const conversationId = req.params.id;
-    console.log(`Deleting conversation with id: ${conversationId}`);
+    asyncHandler = fn => (req, res, next) => {
+        return Promise.resolve(fn(req, res, next)).catch(next);
+    };
     
-    const mongdbClass = new MongoDBHandler();
-    await mongdbClass.deletePost(conversationId);
+    initializeRoutes() {
+        this.router.get("/conversations/:id", this.asyncHandler(this.getConversation.bind(this)));
+        this.router.delete("/conversations/:id", this.asyncHandler(this.deleteConversation.bind(this)));
+        this.router.patch("/conversations/:id", this.asyncHandler(this.patchConversation.bind(this)));
+        this.router.post("/conversations/:id/messages", this.asyncHandler(this.postConversation.bind(this)));
+    }
 
-    res.json({ response: true });
-
-}));
-
-router.patch("/conversations/:id", asyncHandler(async(req, res) => {
-
-    const conversationId = req.params.id;
-    const message = req.body;
-    const newTitle = message.newTitle;
-
-    const mongdbClass = new MongoDBHandler();
-    await mongdbClass.pathConversation(conversationId, newTitle);
-
-    res.json({ response: true });
-
-    console.log("Response sent from update");
+    async getConversation(req, res){
+        var list_of_convs = await this.mongdbClass.get_all_from_collection();
+    
+        const { id } = req.params;
+        res.json({ response: list_of_convs[id] });
+    }
 
 
-}));
+    async deleteConversation(req, res){
 
-router.post("/conversations/:id/messages", asyncHandler(async(req, res) => {
+        const conversationId = req.params.id;
+        console.log(`Deleting conversation with id: ${conversationId}`);
+                
+        await this.mongdbClass.deletePost(conversationId);
+    
+        res.json({ response: true });
 
+    }
+    async patchConversation(req, res){
 
-    const conversationId = req.params.id;
+        const conversationId = req.params.id;
+        const message = req.body;
+        const newTitle = message.newTitle;
 
-    const message = req.body.message;
-    const serverResponse = await generateResponseFromModel(message);
+        
+        await this.mongdbClass.pathConversation(conversationId, newTitle);
+    
+        res.json({ response: true });
+    
+        console.log("Response sent from update");
 
-    let newConversation = [
-        {"speaker" : "You", "message" : message},
-        {"speaker" :" Bot", "message" : serverResponse}
-    ]
+    }
+    async postConversation(req, res){
 
-    const mongdbClass = new MongoDBHandler();
-    await mongdbClass.addConversation(conversationId, newConversation);
+        const conversationId = req.params.id;
 
-    res.json({ response:{receivedMessage: message, serverResponse: serverResponse} });
+        const message = req.body.message;
+        const serverResponse = await generateResponseFromModel(message);
+    
+        let newConversation = [
+            {"speaker" : "You", "message" : message},
+            {"speaker" :" Bot", "message" : serverResponse}
+        ]
+    
+        
+        await this.mongdbClass.addConversation(conversationId, newConversation);
+    
+        res.json({ response:{receivedMessage: message, serverResponse: serverResponse} });
+    
+    }
+    
+}
 
-
-}));
-
-module.exports = router;
+module.exports = new ConversationsRouting().router;
