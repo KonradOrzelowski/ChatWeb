@@ -17,14 +17,19 @@ class getDataFromServer{
         }
     }
     
-    async callEndPoint(method, apiString, data){
-        const response = await fetch(getUrl(apiString), {
-            method: method,
-            headers: this.header,
-            body: JSON.stringify(data)
-        });
+    async callEndPoint(method, apiString, data = null){
 
-        return response
+        const config = {
+            method,
+            headers: this.header,
+            ...(data && { body: JSON.stringify(data) }), // If data is provided
+        };
+        const url = this.getUrl(apiString);
+
+        const response = await fetch(url, config);
+        const jsonResponse = await response.json();
+
+        return jsonResponse.response;
 
     }
 }
