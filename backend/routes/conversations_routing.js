@@ -13,7 +13,10 @@ class ConversationsRouting {
         this.router = express.Router();
         this.initializeRoutes();
     }
-
+    getCentralEuropeanTime = () => {
+        const now = new Date();
+        return new Date(now.setHours(now.getHours() + 1));
+    };
     asyncErrorHandler = fn => (req, res, next) => {
         return Promise.resolve(fn(req, res, next)).catch(next);
     };
@@ -22,13 +25,25 @@ class ConversationsRouting {
         console.log(`[${req.method}] ${req.originalUrl} - Function: ${handler.name}`);
     }
 
+    logErrorMethod(req, res, handler, error) {
+        console.log(`[${req.method}] ${req.originalUrl} - Function: ${handler.name} - ${error}`);
+    }
+
+    responseMaker(endPointResponse){
+        return {
+            date: this.getCentralEuropeanTime(),
+            response: endPointResponse
+        }
+    }
+
     handleRequest(handler){
         return async (req, res, next) => {
             this.logMethod(req, res, handler);
             try {
                 await handler(req, res, next);
-            } catch (err) {
-                next(err);
+            } catch (error) {
+                this.logErrorMethod(req, res, next, error)
+                next(error);
             }
         };
     };
@@ -44,15 +59,15 @@ class ConversationsRouting {
         var list_of_convs = await this.mongdbClass.get_all_from_collection();
     
         const { id } = req.params;
-        res.json({ response: list_of_convs[id] });
+
+        // this.responseMaker(list_of_convs[id]) 
+        res.json(this.responseMaker(list_of_convs[id]) );
     }
 
 
     async deleteConversation(req, res){
 
-        const conversationId = req.params.id;
-        console.log(`Deleting conversation with id: ${conversationId}`);
-                
+        const conversationId = req.params.id;                
         await this.mongdbClass.deletePost(conversationId);
     
         res.json({ response: true });
@@ -68,8 +83,6 @@ class ConversationsRouting {
         await this.mongdbClass.pathConversation(conversationId, newTitle);
     
         res.json({ response: true });
-    
-        console.log("Response sent from update");
 
     }
     async postConversation(req, res){

@@ -5,7 +5,6 @@ const { get_list_of_titles } = require("../ConversationsHandler");
 const { MongoDBHandler } = require('../mongoDB-handler'); 
 
 router.get("/lists/list_of_titles", async (req, res) => {
-    console.log("get list of titles");
     try {
         const mongdbClass = new MongoDBHandler();
         var list_of_convs = await mongdbClass.get_all_from_collection();
