@@ -69,8 +69,8 @@ class ConversationsRouting {
 
         const conversationId = req.params.id;                
         await this.mongdbClass.deletePost(conversationId);
-    
-        res.json({ response: true });
+        
+        res.json(this.responseMaker({response: true}));
 
     }
     async patchConversation(req, res){
@@ -82,7 +82,7 @@ class ConversationsRouting {
         
         await this.mongdbClass.pathConversation(conversationId, newTitle);
     
-        res.json({ response: true });
+        res.json(this.responseMaker({response: true}));
 
     }
     async postConversation(req, res){
@@ -100,7 +100,9 @@ class ConversationsRouting {
         
         await this.mongdbClass.addConversation(conversationId, newConversation);
     
-        res.json({ response:{receivedMessage: message, serverResponse: serverResponse} });
+        res.json(this.responseMaker({
+            receivedMessage: message, serverResponse: serverResponse
+        }));
     
     }
     
