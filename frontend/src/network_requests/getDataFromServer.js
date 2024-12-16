@@ -44,15 +44,26 @@ class getDataFromServer{
 async function main(){
     const dataFromServer = new getDataFromServer()
 
-    const id = process.env.CONV_ID;
-    // console.log(id)
+    const id = process.env.CONV_ID + '1';
+    const newId = id.replace("d", "r");
 
-    const getResponse = await dataFromServer.callEndPoint("GET", `conversations/${id}`);
+    const messageToSend = 'This is test';
+
+    // const getResponse = await dataFromServer.callEndPoint("GET", `conversations/${id}`);
+    // console.log(getResponse)
+
+    // const data = { updateTitle: true, itemID: id, newTitle: 'newTitle' };
+    // const patchResponse = await dataFromServer.callEndPoint("PATCH", `conversations/${id}`, data);
+    // console.log(patchResponse)
+
+    // const postData = {message: messageToSend}
+    // const postResponse = await dataFromServer.callEndPoint("POST", `conversations/${newId}/messages`, postData);
+    // console.log(postResponse)
+
+    const getResponse = await dataFromServer.callEndPoint("GET", `conversations/${newId}`);
+    console.log(`conversations/${newId}/messages`)
     console.log(getResponse)
-
-    const data = { updateTitle: true, itemID: id, newTitle: 'newTitle' };
-    const patchResponse = await dataFromServer.callEndPoint("PATCH", `conversations/${id}`, data);
-    console.log(patchResponse)
+    console.log(`newId: ${newId}`)
 }
 main();
 
