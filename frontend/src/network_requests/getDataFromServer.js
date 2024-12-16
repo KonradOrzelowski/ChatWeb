@@ -29,7 +29,27 @@ class getDataFromServer{
         const response = await fetch(url, config);
         const jsonResponse = await response.json();
 
-        return jsonResponse.response;
+        return jsonResponse;
 
     }
 }
+
+// this.router.get("/conversations/:id", this.handleRequest(this.getConversation.bind(this)));
+// this.router.delete("/conversations/:id", this.handleRequest(this.deleteConversation.bind(this)));
+// this.router.patch("/conversations/:id", this.handleRequest(this.patchConversation.bind(this)));
+// this.router.post("/conversations/:id/messages", this.handleRequest(this.postConversation.bind(this)));
+
+
+
+async function main(){
+    const dataFromServer = new getDataFromServer()
+
+    const id = process.env.CONV_ID;
+    // console.log(id)
+
+    const response = await dataFromServer.callEndPoint("GET", `conversations/${id}`);
+
+    console.log(response)
+}
+main();
+
