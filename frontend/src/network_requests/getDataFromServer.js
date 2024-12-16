@@ -47,9 +47,12 @@ async function main(){
     const id = process.env.CONV_ID;
     // console.log(id)
 
-    const response = await dataFromServer.callEndPoint("GET", `conversations/${id}`);
+    const getResponse = await dataFromServer.callEndPoint("GET", `conversations/${id}`);
+    console.log(getResponse)
 
-    console.log(response)
+    const data = { updateTitle: true, itemID: id, newTitle: 'newTitle' };
+    const patchResponse = await dataFromServer.callEndPoint("PATCH", `conversations/${id}`, data);
+    console.log(patchResponse)
 }
 main();
 
