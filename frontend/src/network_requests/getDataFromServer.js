@@ -27,9 +27,9 @@ class getDataFromServer{
         const url = this.getUrl(apiString);
 
         const response = await fetch(url, config);
-        const jsonResponse = await response.json();
+        // const jsonResponse = await response.json();
 
-        return jsonResponse;
+        return response;
 
     }
 }
@@ -65,5 +65,6 @@ async function main(){
     console.log(getResponse)
     console.log(`newId: ${newId}`)
 }
-main();
+// main();
 
+module.exports = { getDataFromServer };

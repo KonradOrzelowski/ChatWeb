@@ -1,4 +1,4 @@
-export const getUrl = (apiString) => {
+function getUrl(apiString) {
     if (typeof apiString !== 'string') {
         throw new Error('apiString must be a string');
     }
@@ -13,3 +13,5 @@ export const getUrl = (apiString) => {
         return `https://${HOST_NAME}/${apiString}`;
     }
 }
+
+module.exports = { getUrl };
