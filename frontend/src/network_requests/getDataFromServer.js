@@ -49,9 +49,6 @@ async function main(){
 
     const messageToSend = 'This is test';
 
-    // const getResponse = await dataFromServer.callEndPoint("GET", `conversations/${id}`);
-    // console.log(getResponse)
-
     // const data = { updateTitle: true, itemID: id, newTitle: 'newTitle' };
     // const patchResponse = await dataFromServer.callEndPoint("PATCH", `conversations/${id}`, data);
     // console.log(patchResponse)
