@@ -81,8 +81,35 @@ class ConversationsRouting {
 
         
         await this.mongdbClass.pathConversation(conversationId, newTitle);
-    
-        res.json(this.responseMaker({response: true}));
+
+        const list_of_convs = await this.mongdbClass.get_all_from_collection();
+        const conversation = list_of_convs[conversationId];
+
+        const isChanges = conversation.title === newTitle;
+
+        const response = {
+            conversationId: conversationId,
+            titleChangeTo: newTitle,
+            isChanges: isChanges
+        }
+
+        // Failed to update
+        if (isChanges == true) {
+            return res.status(200).json(this.responseMaker(response));
+        }
+        if (isChanges == false) {
+            return res.status(500).json(this.responseMaker(
+            ...(response && {
+                message: "Failed to update the title due to an internal error.",
+                error: "InternalServerError"
+            })));
+          }
+
+
+
+        
+        
+        res.json(this.responseMaker({response: conversation.title === newTitle}));
 
     }
     async postConversation(req, res){

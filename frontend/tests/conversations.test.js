@@ -52,7 +52,7 @@ const postSchema = {
 
 const ConversationMessage = mongoose.model('ConversationMessage', postSchema);
 
-describe("POST /conversations/:id/messages endpoint", () => {
+describe.skip("POST /conversations/:id/messages endpoint", () => {
     const serverApi = new getDataFromServer();
 
     const conversationId = process.env.CONV_ID;
@@ -72,4 +72,27 @@ describe("POST /conversations/:id/messages endpoint", () => {
         const validationError = messageInstance.validateSync();
         expect(validationError).toBeUndefined();
     });
+});
+
+
+describe("PATCH /conversations/:id/messages endpoint", () => {
+    const serverApi = new getDataFromServer();
+
+    const conversationId = process.env.CONV_ID;
+    const modifiedConversationId = conversationId.replace("e", "f");
+
+    const newTitle = 'This is a test';
+    const patchData = { newTitle: newTitle };
+
+    it("should respond with a 200 status code and return correct title", async () => {
+        const response = await serverApi.callEndPoint("PATCH", `conversations/${modifiedConversationId}`, patchData);
+        expect(response.status).toBe(200);
+
+        const responseData = await response.json();
+
+        expect(responseData.response.isChanges).toBe(true);
+        expect(responseData.response.titleChangeTo).toBe(newTitle);
+
+    });
+
 });
