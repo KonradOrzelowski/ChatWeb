@@ -96,3 +96,32 @@ describe("PATCH /conversations/:id/messages endpoint", () => {
     });
 
 });
+
+describe("DELETE /conversations/:id/messages endpoint", () => {
+    const serverApi = new getDataFromServer();
+
+    const conversationId = process.env.CONV_ID;
+    const modifiedConversationId = conversationId.replace("e", "a");
+
+    const testMessage = 'This is a test';
+
+    const postData = { message: testMessage };
+
+    it("should respond with a 200 status code and have the correct JSON structure", async () => {
+        const response = await serverApi.callEndPoint("POST", `conversations/${modifiedConversationId}/messages`, postData);
+        expect(response.status).toBe(200);
+
+        const responseData = await response.json();
+
+        const messageInstance = new ConversationMessage(responseData);
+        const validationError = messageInstance.validateSync();
+        expect(validationError).toBeUndefined();
+    });
+
+    const deleteData = { id: modifiedConversationId };
+
+    it("should respond with a 200 status code after successful deletion", async () => {
+        const response = await serverApi.callEndPoint("DELETE", `conversations/${modifiedConversationId}`, deleteData);
+        expect(response.status).toBe(200);
+    });
+});
