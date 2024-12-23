@@ -21,6 +21,18 @@ const TitleSchema = {
 const Item = mongoose.model('Item', TitleSchema);
 
 
+const postSchema = {
+    date: { type: String, required: true },
+    response: {
+        type: {
+            receivedMessage: { type: String, required: true },
+            serverResponse: { type: String, required: true }
+        }
+    }
+};
+
+const ConversationMessage = mongoose.model('ConversationMessage', postSchema);
+
 describe("GET /conversations/:id endpoint", () => {
     const dataFromServer = new getDataFromServer();
     const id = process.env.CONV_ID;
@@ -39,18 +51,6 @@ describe("GET /conversations/:id endpoint", () => {
 
     });
 });
-
-const postSchema = {
-    date: { type: String, required: true },
-    response: {
-        type: {
-            receivedMessage: { type: String, required: true },
-            serverResponse: { type: String, required: true }
-        }
-    }
-};
-
-const ConversationMessage = mongoose.model('ConversationMessage', postSchema);
 
 describe.skip("POST /conversations/:id/messages endpoint", () => {
     const serverApi = new getDataFromServer();
