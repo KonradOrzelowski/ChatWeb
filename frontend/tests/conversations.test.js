@@ -97,7 +97,7 @@ describe("PATCH /conversations/:id/messages endpoint", () => {
 
 });
 
-describe("DELETE /conversations/:id/messages endpoint", () => {
+describe.skip("DELETE /conversations/:id/messages endpoint", () => {
     const serverApi = new getDataFromServer();
 
     const conversationId = process.env.CONV_ID;

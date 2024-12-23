@@ -12,6 +12,14 @@ class ConversationsRouting {
         
         this.router = express.Router();
         this.initializeRoutes();
+
+        this.responseTemplate = {
+            date: null,
+            status: null,
+            data: null,
+            message: null,
+            error:null
+        };
     }
     getCentralEuropeanTime = () => {
         const now = new Date();
@@ -56,12 +64,18 @@ class ConversationsRouting {
     }
 
     async getConversation(req, res){
-        var list_of_convs = await this.mongdbClass.get_all_from_collection();
-    
         const { id } = req.params;
 
-        // this.responseMaker(list_of_convs[id]) 
-        res.json(this.responseMaker(list_of_convs[id]) );
+        const allConversations = await this.mongdbClass.get_all_from_collection();
+        const conversation = allConversations[id];
+        
+        let responseToSend = { ...this.responseTemplate };
+
+        responseToSend.date = this.getCentralEuropeanTime();
+        responseToSend.status = 'success';
+        responseToSend.data = conversation;
+
+        res.json(responseToSend);
     }
 
 
@@ -69,8 +83,13 @@ class ConversationsRouting {
 
         const conversationId = req.params.id;                
         await this.mongdbClass.deletePost(conversationId);
+
+        let responseToSend = { ...this.responseTemplate };
+
+        responseToSend.date = this.getCentralEuropeanTime();
+        responseToSend.status = 'success';
         
-        res.json(this.responseMaker({response: true}));
+        res.json(responseToSend);
 
     }
     async patchConversation(req, res){
@@ -82,8 +101,8 @@ class ConversationsRouting {
         
         await this.mongdbClass.pathConversation(conversationId, newTitle);
 
-        const list_of_convs = await this.mongdbClass.get_all_from_collection();
-        const conversation = list_of_convs[conversationId];
+        const allConversations = await this.mongdbClass.get_all_from_collection();
+        const conversation = allConversations[conversationId];
 
         const isChanges = conversation.title === newTitle;
 
@@ -93,16 +112,23 @@ class ConversationsRouting {
             isChanges: isChanges
         }
 
-        // Failed to update
+        let responseToSend = { ...this.responseTemplate };
+
         if (isChanges == true) {
-            return res.status(200).json(this.responseMaker(response));
+            responseToSend.date = this.getCentralEuropeanTime();
+            responseToSend.status = 'success';
+            responseToSend.data = response;
+
+            return res.status(200).json(responseToSend);
         }
         if (isChanges == false) {
-            return res.status(500).json(this.responseMaker(
-            ...(response && {
-                message: "Failed to update the title due to an internal error.",
-                error: "InternalServerError"
-            })));
+            responseToSend.date = this.getCentralEuropeanTime();
+            responseToSend.status = 'error';
+            responseToSend.data = response;
+            responseToSend.message = "Failed to update the title due to an internal error.";
+            responseToSend.error = "InternalServerError";
+
+            return res.status(500).json(responseToSend);
           }
 
 
@@ -126,11 +152,16 @@ class ConversationsRouting {
     
         
         await this.mongdbClass.addConversation(conversationId, newConversation);
-    
-        res.json(this.responseMaker({
+
+
+        responseToSend.date = this.getCentralEuropeanTime();
+        responseToSend.status = 'success';
+        responseToSend.data = {
             receivedMessage: message, serverResponse: serverResponse
-        }));
-    
+        };
+
+        res.json(responseToSend);
+            
     }
     
 }
