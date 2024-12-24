@@ -56,18 +56,18 @@ const postSchema = {
 const validateTitle = ajv.compile(titleSchema);
 const validatePost = ajv.compile(postSchema);
 
-describe("GET /conversations/:id endpoint", () => {
+describe("GET /conversations/:conversationId endpoint", () => {
     const dataFromServer = new getDataFromServer();
-    const id = process.env.CONV_ID;
+    const conversationId = process.env.CONV_ID;
 
     it("should respond with a 200 status code and have the correct JSON structure", async () => {
-        const response = await dataFromServer.callEndPoint("GET", `conversations/${id}`);
+        const response = await dataFromServer.callEndPoint("GET", `conversations/${conversationId}`);
         
         expect(response.status).toBe(200);
 
         const jsonResponse = await response.json();
 
-        expect(jsonResponse.data._id).toBe(id);
+        expect(jsonResponse.data._id).toBe(conversationId);
 
         const isValid = validateTitle(jsonResponse);
         expect(isValid).toBe(true);
@@ -75,7 +75,7 @@ describe("GET /conversations/:id endpoint", () => {
     });
 });
 
-describe("POST /conversations/:id/messages endpoint", () => {
+describe("POST /conversations/:conversationId/messages endpoint", () => {
     const serverApi = new getDataFromServer();
 
     const conversationId = process.env.CONV_ID;
@@ -98,7 +98,7 @@ describe("POST /conversations/:id/messages endpoint", () => {
     });
 });
 
-describe("PATCH /conversations/:id endpoint", () => {
+describe("PATCH /conversations/:conversationId endpoint", () => {
     const serverApi = new getDataFromServer();
 
     const conversationId = process.env.CONV_ID;
@@ -119,7 +119,7 @@ describe("PATCH /conversations/:id endpoint", () => {
 
 });
 
-describe("DELETE /conversations/:id endpoint", () => {
+describe("DELETE /conversations/:conversationId endpoint", () => {
     const serverApi = new getDataFromServer();
 
     const conversationId = process.env.CONV_ID;
@@ -140,7 +140,7 @@ describe("DELETE /conversations/:id endpoint", () => {
         if (!isValid) console.error(validatePost.errors);
     });
 
-    const deleteData = { id: modifiedConversationId };
+    const deleteData = { conversationId: modifiedConversationId };
 
     it("should respond with a 200 status code after successful deletion", async () => {
         const response = await serverApi.callEndPoint("DELETE", `conversations/${modifiedConversationId}`, deleteData);

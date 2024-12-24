@@ -57,17 +57,17 @@ class ConversationsRouting {
     };
     
     initializeRoutes() {
-        this.router.get("/conversations/:id", this.handleRequest(this.getConversation.bind(this)));
-        this.router.delete("/conversations/:id", this.handleRequest(this.deleteConversation.bind(this)));
-        this.router.patch("/conversations/:id", this.handleRequest(this.patchConversation.bind(this)));
-        this.router.post("/conversations/:id/messages", this.handleRequest(this.postConversation.bind(this)));
+        this.router.get("/conversations/:conversationId", this.handleRequest(this.getConversation.bind(this)));
+        this.router.delete("/conversations/:conversationId", this.handleRequest(this.deleteConversation.bind(this)));
+        this.router.patch("/conversations/:conversationId", this.handleRequest(this.patchConversation.bind(this)));
+        this.router.post("/conversations/:conversationId/messages", this.handleRequest(this.postConversation.bind(this)));
     }
 
     async getConversation(req, res){
-        const { id } = req.params;
+        const { conversationId } = req.params;
 
         const allConversations = await this.mongdbClass.get_all_from_collection();
-        const conversation = allConversations[id];
+        const conversation = allConversations[conversationId];
         
         let responseToSend = { ...this.responseTemplate };
 
@@ -81,7 +81,7 @@ class ConversationsRouting {
 
     async deleteConversation(req, res){
 
-        const conversationId = req.params.id;                
+        const conversationId = req.params.conversationId;                
         await this.mongdbClass.deletePost(conversationId);
 
         let responseToSend = { ...this.responseTemplate };
@@ -94,7 +94,7 @@ class ConversationsRouting {
     }
     async patchConversation(req, res){
 
-        const conversationId = req.params.id;
+        const conversationId = req.params.conversationId;
         const message = req.body;
         const newTitle = message.newTitle;
 
@@ -140,7 +140,7 @@ class ConversationsRouting {
     }
     async postConversation(req, res){
 
-        const conversationId = req.params.id;
+        const conversationId = req.params.conversationId;
 
         const message = req.body.message;
         const serverResponse = await generateResponseFromModel(message);
