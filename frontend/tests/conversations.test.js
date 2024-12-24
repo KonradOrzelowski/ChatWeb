@@ -1,6 +1,6 @@
 const Ajv = require("ajv");
 const addFormats = require("ajv-formats");
-const { getDataFromServer } = require("../src/network_requests/getDataFromServer");
+const { ApiClient } = require("../src/network_requests/api-client.js");
 
 // Initialize AJV
 const ajv = new Ajv();
@@ -57,7 +57,7 @@ const validateTitle = ajv.compile(titleSchema);
 const validatePost = ajv.compile(postSchema);
 
 describe("GET /conversations/:conversationId endpoint", () => {
-    const dataFromServer = new getDataFromServer();
+    const dataFromServer = new ApiClient();
     const conversationId = process.env.CONV_ID;
 
     it("should respond with a 200 status code and have the correct JSON structure", async () => {
@@ -76,7 +76,7 @@ describe("GET /conversations/:conversationId endpoint", () => {
 });
 
 describe("POST /conversations/:conversationId/messages endpoint", () => {
-    const serverApi = new getDataFromServer();
+    const serverApi = new ApiClient();
 
     const conversationId = process.env.CONV_ID;
     const modifiedConversationId = conversationId.replace("e", "f");
@@ -99,7 +99,7 @@ describe("POST /conversations/:conversationId/messages endpoint", () => {
 });
 
 describe("PATCH /conversations/:conversationId endpoint", () => {
-    const serverApi = new getDataFromServer();
+    const serverApi = new ApiClient();
 
     const conversationId = process.env.CONV_ID;
     const modifiedConversationId = conversationId.replace("e", "f");
@@ -120,7 +120,7 @@ describe("PATCH /conversations/:conversationId endpoint", () => {
 });
 
 describe("DELETE /conversations/:conversationId endpoint", () => {
-    const serverApi = new getDataFromServer();
+    const serverApi = new ApiClient();
 
     const conversationId = process.env.CONV_ID;
     const modifiedConversationId = conversationId.replace("e", "a");
