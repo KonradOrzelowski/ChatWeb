@@ -14,11 +14,7 @@ app.use(getListsRouting);
 app.use(conversationsRouting);
 app.use(refresh);
 
-var counter = 0;
-
 app.get("/", (req, res) => {
-    counter++;
-    console.log(`Server is running. Counter: ${counter}`);
     res.status(200).send("Server is running");
 });
 

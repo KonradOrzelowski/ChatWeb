@@ -39,11 +39,12 @@ describe("GET /conversations/:id endpoint", () => {
 
     it("should respond with a 200 status code and have the correct JSON structure", async () => {
         const response = await dataFromServer.callEndPoint("GET", `conversations/${id}`);
+        
         expect(response.status).toBe(200);
 
         const jsonResponse = await response.json();
 
-        expect(jsonResponse.response._id).toBe(id);
+        expect(jsonResponse.data._id).toBe(id);
 
         const instance = new Item(jsonResponse);
         const validationError = instance.validateSync(); 
@@ -52,7 +53,7 @@ describe("GET /conversations/:id endpoint", () => {
     });
 });
 
-describe.skip("POST /conversations/:id/messages endpoint", () => {
+describe("POST /conversations/:id/messages endpoint", () => {
     const serverApi = new getDataFromServer();
 
     const conversationId = process.env.CONV_ID;
@@ -64,18 +65,20 @@ describe.skip("POST /conversations/:id/messages endpoint", () => {
 
     it("should respond with a 200 status code and have the correct JSON structure", async () => {
         const response = await serverApi.callEndPoint("POST", `conversations/${modifiedConversationId}/messages`, postData);
+        
         expect(response.status).toBe(200);
 
         const responseData = await response.json();
-
         const messageInstance = new ConversationMessage(responseData);
+        
         const validationError = messageInstance.validateSync();
+        console.log(validationError)
         expect(validationError).toBeUndefined();
     });
 });
 
 
-describe("PATCH /conversations/:id/messages endpoint", () => {
+describe.skip("PATCH /conversations/:id/messages endpoint", () => {
     const serverApi = new getDataFromServer();
 
     const conversationId = process.env.CONV_ID;

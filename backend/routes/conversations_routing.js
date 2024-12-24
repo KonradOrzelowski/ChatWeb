@@ -153,7 +153,7 @@ class ConversationsRouting {
         
         await this.mongdbClass.addConversation(conversationId, newConversation);
 
-
+        let responseToSend = { ...this.responseTemplate };
         responseToSend.date = this.getCentralEuropeanTime();
         responseToSend.status = 'success';
         responseToSend.data = {
