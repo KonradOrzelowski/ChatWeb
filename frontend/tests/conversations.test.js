@@ -1,37 +1,60 @@
+const Ajv = require("ajv");
+const addFormats = require("ajv-formats");
 const { getDataFromServer } = require("../src/network_requests/getDataFromServer");
-const request = require("supertest");
 
-const mongoose = require('mongoose');
-const TitleSchema = {
-    date: { type: String, required: true },
-    data: {
-        type: {
-            _id: { type: String, required: true },
-            initDate: { type: String, required: true },
-            lastChangeDate: { type: String, required: true },
-            title: { type: String, required: true },
-            conversation: [{
-                speaker: { type: String, required: true },
-                message: { type: String, required: true }
-            }]
+// Initialize AJV
+const ajv = new Ajv();
+addFormats(ajv);
+
+// Define AJV Schemas
+const titleSchema = {
+    type: "object",
+    properties: {
+        date: { type: "string", format: "date-time" },
+        data: {
+            type: "object",
+            properties: {
+                _id: { type: "string" },
+                initDate: { type: "string", format: "date-time" },
+                lastChangeDate: { type: "string", format: "date-time" },
+                title: { type: "string" },
+                conversation: {
+                    type: "array",
+                    items: {
+                        type: "object",
+                        properties: {
+                            speaker: { type: "string" },
+                            message: { type: "string" }
+                        },
+                        required: ["speaker", "message"]
+                    }
+                }
+            },
+            required: ["_id", "initDate", "lastChangeDate", "title", "conversation"]
         }
-    }
+    },
+    required: ["date", "data"]
 };
-
-const Item = mongoose.model('Item', TitleSchema);
-
 
 const postSchema = {
-    date: { type: String, required: true },
-    data: {
-        type: {
-            receivedMessage: { type: String, required: true },
-            serverResponse: { type: String, required: true }
+    type: "object",
+    properties: {
+        date: { type: "string", format: "date-time" },
+        data: {
+            type: "object",
+            properties: {
+                receivedMessage: { type: "string" },
+                serverResponse: { type: "string" }
+            },
+            required: ["receivedMessage", "serverResponse"]
         }
-    }
+    },
+    required: ["date", "data"]
 };
 
-const ConversationMessage = mongoose.model('ConversationMessage', postSchema);
+// Compile schemas
+const validateTitle = ajv.compile(titleSchema);
+const validatePost = ajv.compile(postSchema);
 
 describe("GET /conversations/:id endpoint", () => {
     const dataFromServer = new getDataFromServer();
@@ -46,14 +69,13 @@ describe("GET /conversations/:id endpoint", () => {
 
         expect(jsonResponse.data._id).toBe(id);
 
-        const instance = new Item(jsonResponse);
-        const validationError = instance.validateSync(); 
-        expect(validationError).toBeUndefined();
-
+        const isValid = validateTitle(jsonResponse);
+        expect(isValid).toBe(true);
+        if (!isValid) console.error(validateTitle.errors);
     });
 });
 
-describe.skip("POST /conversations/:id/messages endpoint", () => {
+describe("POST /conversations/:id/messages endpoint", () => {
     const serverApi = new getDataFromServer();
 
     const conversationId = process.env.CONV_ID;
@@ -69,14 +91,12 @@ describe.skip("POST /conversations/:id/messages endpoint", () => {
         expect(response.status).toBe(200);
 
         const responseData = await response.json();
-        const messageInstance = new ConversationMessage(responseData);
-        
-        const validationError = messageInstance.validateSync();
-        console.log(validationError)
-        expect(validationError).toBeUndefined();
+
+        const isValid = validatePost(responseData);
+        expect(isValid).toBe(true);
+        if (!isValid) console.error(validatePost.errors);
     });
 });
-
 
 describe("PATCH /conversations/:id endpoint", () => {
     const serverApi = new getDataFromServer();
@@ -95,12 +115,11 @@ describe("PATCH /conversations/:id endpoint", () => {
 
         expect(responseData.data.isChanges).toBe(true);
         expect(responseData.data.titleChangeTo).toBe(newTitle);
-
     });
 
 });
 
-describe.skip("DELETE /conversations/:id endpoint", () => {
+describe("DELETE /conversations/:id endpoint", () => {
     const serverApi = new getDataFromServer();
 
     const conversationId = process.env.CONV_ID;
@@ -116,9 +135,9 @@ describe.skip("DELETE /conversations/:id endpoint", () => {
 
         const responseData = await response.json();
 
-        const messageInstance = new ConversationMessage(responseData);
-        const validationError = messageInstance.validateSync();
-        expect(validationError).toBeUndefined();
+        const isValid = validatePost(responseData);
+        expect(isValid).toBe(true);
+        if (!isValid) console.error(validatePost.errors);
     });
 
     const deleteData = { id: modifiedConversationId };
