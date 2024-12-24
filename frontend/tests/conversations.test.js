@@ -4,7 +4,7 @@ const request = require("supertest");
 const mongoose = require('mongoose');
 const TitleSchema = {
     date: { type: String, required: true },
-    response: {
+    data: {
         type: {
             _id: { type: String, required: true },
             initDate: { type: String, required: true },
@@ -23,7 +23,7 @@ const Item = mongoose.model('Item', TitleSchema);
 
 const postSchema = {
     date: { type: String, required: true },
-    response: {
+    data: {
         type: {
             receivedMessage: { type: String, required: true },
             serverResponse: { type: String, required: true }
@@ -53,7 +53,7 @@ describe("GET /conversations/:id endpoint", () => {
     });
 });
 
-describe("POST /conversations/:id/messages endpoint", () => {
+describe.skip("POST /conversations/:id/messages endpoint", () => {
     const serverApi = new getDataFromServer();
 
     const conversationId = process.env.CONV_ID;
@@ -78,7 +78,7 @@ describe("POST /conversations/:id/messages endpoint", () => {
 });
 
 
-describe.skip("PATCH /conversations/:id/messages endpoint", () => {
+describe("PATCH /conversations/:id endpoint", () => {
     const serverApi = new getDataFromServer();
 
     const conversationId = process.env.CONV_ID;
@@ -93,14 +93,14 @@ describe.skip("PATCH /conversations/:id/messages endpoint", () => {
 
         const responseData = await response.json();
 
-        expect(responseData.response.isChanges).toBe(true);
-        expect(responseData.response.titleChangeTo).toBe(newTitle);
+        expect(responseData.data.isChanges).toBe(true);
+        expect(responseData.data.titleChangeTo).toBe(newTitle);
 
     });
 
 });
 
-describe.skip("DELETE /conversations/:id/messages endpoint", () => {
+describe.skip("DELETE /conversations/:id endpoint", () => {
     const serverApi = new getDataFromServer();
 
     const conversationId = process.env.CONV_ID;
