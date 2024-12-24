@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import './ConversationTitle.css';
-
-
-import { updateConversationTitle } from '../..//network_requests/update_conversation_title.js';
-import { deletePost } from '../..//network_requests/delete_post.js';
 import { getUrl } from '../../get_url.js';
 import { fetchData } from '../../network_requests/fetch_data.js';
 import { clearConversation, addDiv2Conversation } from '../../utils.js';

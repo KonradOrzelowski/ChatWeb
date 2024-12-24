@@ -1,5 +1,5 @@
-import { updateConversationTitle } from './network_requests/update_conversation_title.js';
 import { deletePost } from './network_requests/delete_post.js';
+const { ApiClient } = require(".network_requests/api-client.js");
 function getCustomAlertWrapper(){
     let customAlertWrapper = document.createElement('div');
     customAlertWrapper.id = 'custom-alert-wrapper';
@@ -7,7 +7,7 @@ function getCustomAlertWrapper(){
 }
 
 
-export const showEditAlert = function(itemID, itemTitle){ 
+export const showEditAlert = function(conversationId, itemTitle){ 
 
     var contentDocument = document.getElementsByClassName("content")[0];
     let customAlert = document.createElement('div');
@@ -47,13 +47,13 @@ export const showEditAlert = function(itemID, itemTitle){
     });
 
     updateButton.addEventListener('click', function() {
-        sendEditAlert(itemID, 'custom-alert-wrapper-edit');
+        sendEditAlert(conversationId, 'custom-alert-wrapper-edit');
     });
 
 }
 
-export const showDeleteAlert = function(itemID, itemTitle){ 
-    console.log(`"showDeleteAlert ${itemID}"`)
+export const showDeleteAlert = function(conversationId, itemTitle){ 
+    console.log(`"showDeleteAlert ${conversationId}"`)
 
     var contentDocument = document.getElementsByClassName("content")[0];
     let customAlert = document.createElement('div');
@@ -90,7 +90,7 @@ export const showDeleteAlert = function(itemID, itemTitle){
     });
 
     deleteButton.addEventListener('click', function() {
-        sendDeleteAlert(itemID, 'custom-alert-wrapper-delete');
+        sendDeleteAlert(conversationId, 'custom-alert-wrapper-delete');
     });
 
     
@@ -106,20 +106,23 @@ function hideCustomAlert(elementId) {
 
 
 
-function sendEditAlert(itemID, elementId){
+async function sendEditAlert(conversationId, elementId){
 
     var customAlert = document.getElementsByClassName(elementId)[0];
     var childInput = customAlert.querySelector('input');
-    console.log(childInput.value)
+    const newTitle = childInput.value;
     
-    updateConversationTitle(itemID, childInput.value)
+
+
+    const data = { newTitle: newTitle }
+    await serverApi.callEndPoint("PATCH", `conversations/${conversationId}`, data)
     hideCustomAlert(elementId)
 
 }
 
-function sendDeleteAlert(itemID, elementId){
+function sendDeleteAlert(conversationId, elementId){
     
-    deletePost(itemID)
+    deletePost(conversationId)
     hideCustomAlert(elementId)
 }
 
